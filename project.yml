@@ -1,0 +1,42 @@
+name: UlyKosh
+options:
+  bundleIdPrefix: kz.ulykosh
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  developmentLanguage: ru
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_STRICT_CONCURRENCY: minimal
+    CODE_SIGN_STYLE: Automatic
+    TARGETED_DEVICE_FAMILY: "1"
+    # Иначе скрипт очистки xattr не может трогать бандл.
+    ENABLE_USER_SCRIPT_SANDBOXING: NO
+targets:
+  UlyKosh:
+    type: application
+    platform: iOS
+    sources:
+      - path: UlyKosh
+    info:
+      path: UlyKosh/Info.plist
+      properties:
+        CFBundleDisplayName: Ұлы Көш
+        CFBundleDevelopmentRegion: ru
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        NSHealthShareUsageDescription: "Ұлы Көш читает количество шагов, чтобы превращать их в километры пути вашего аула."
+        NSHealthUpdateUsageDescription: "Приложение не записывает данные в Здоровье."
+        ITSAppUsesNonExemptEncryption: false
+    entitlements:
+      path: UlyKosh/UlyKosh.entitlements
+      properties:
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+    postBuildScripts:
+      - name: Strip extended attributes before codesign
+        script: |
+          # macOS помечает файлы com.apple.provenance, а codesign отказывается подписывать бандл с такими атрибутами.
+          xattr -cr "${CODESIGNING_FOLDER_PATH}" 2>/dev/null || true
+        basedOnDependencyAnalysis: false
