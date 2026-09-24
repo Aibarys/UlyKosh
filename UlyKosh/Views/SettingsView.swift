@@ -58,6 +58,7 @@ struct SettingsView: View {
                     Button("Добавить 10 000 шагов сегодня") { engine.addDebugSteps(10_000) }
                     Button("Добавить 50 000 шагов сегодня") { engine.addDebugSteps(50_000) }
                     NavigationLink("Все пиктограммы") { PictogramSheetView() }
+                    NavigationLink("Сцены по сезонам") { SeasonSheetView() }
                 }
                 #endif
 

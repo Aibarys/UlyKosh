@@ -23,6 +23,7 @@
 		95FD3480EBD3940C75704169 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */; };
 		9A91EA0BD6EB31E810F0DDD3 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD843740DD3290D6E37F3B /* Route.swift */; };
 		9C539DC345877EA6711534AD /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */; };
+		AFBB706AFBAF613622C5FE6B /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF139901566A4D74C8AB674 /* Season.swift */; };
 		B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29D5081EB728FED8BF154E /* OnboardingView.swift */; };
 		C87C063ED198832D5886002C /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06702F7441D5CF31C7A774F3 /* StateStore.swift */; };
 		CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F1C5AAC906C5C78F4DE5B /* GameState.swift */; };
@@ -53,6 +54,7 @@
 		9196C3239C4E23B179D5B5D8 /* UlyKosh.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UlyKosh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9617FA4D102727E0CC62F293 /* RouteMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapView.swift; sourceTree = "<group>"; };
 		9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRoute.swift; sourceTree = "<group>"; };
+		AAF139901566A4D74C8AB674 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
 		AF29D5081EB728FED8BF154E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyKoshApp.swift; sourceTree = "<group>"; };
 		B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kazakhstan-map.json"; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 			isa = PBXGroup;
 			children = (
 				E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */,
+				AAF139901566A4D74C8AB674 /* Season.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -296,6 +299,7 @@
 				0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */,
 				9C539DC345877EA6711534AD /* RouteView.swift in Sources */,
 				95FD3480EBD3940C75704169 /* SceneView.swift in Sources */,
+				AFBB706AFBAF613622C5FE6B /* Season.swift in Sources */,
 				8CCC08E719C5084DE25D8600 /* SettingsView.swift in Sources */,
 				F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */,
 				C87C063ED198832D5886002C /* StateStore.swift in Sources */,

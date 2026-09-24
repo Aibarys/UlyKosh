@@ -15,38 +15,13 @@ enum Terrain: String, Codable, Hashable {
     }
 }
 
-enum SkyPhase {
-    case night, dawn, day, dusk
-
-    static func current(_ date: Date = .now) -> SkyPhase {
-        switch Calendar.current.component(.hour, from: date) {
-        case 5..<8: return .dawn
-        case 8..<18: return .day
-        case 18..<21: return .dusk
-        default: return .night
-        }
-    }
-
-    var colors: [Color] {
-        switch self {
-        case .night:
-            return [Color(red: 0.03, green: 0.06, blue: 0.10), Color(red: 0.06, green: 0.13, blue: 0.17), Color(red: 0.11, green: 0.19, blue: 0.21)]
-        case .dawn:
-            return [Color(red: 0.16, green: 0.33, blue: 0.53), Color(red: 0.47, green: 0.65, blue: 0.79), Color(red: 0.95, green: 0.77, blue: 0.55), Color(red: 0.91, green: 0.63, blue: 0.60)]
-        case .day:
-            return [Color(red: 0.20, green: 0.45, blue: 0.70), Color(red: 0.55, green: 0.74, blue: 0.88), Color(red: 0.86, green: 0.90, blue: 0.91)]
-        case .dusk:
-            return [Color(red: 0.15, green: 0.13, blue: 0.25), Color(red: 0.45, green: 0.24, blue: 0.35), Color(red: 0.86, green: 0.53, blue: 0.34), Color(red: 0.95, green: 0.78, blue: 0.55)]
-        }
-    }
-}
-
 enum SceneWeather { case clear, snow, sand }
 
 /// Силуэтный пейзаж: градиентное небо, дальний план, чёрная земля, фигуры каравана.
 struct SceneView: View {
     let terrain: Terrain
     var phase: SkyPhase = .current()
+    var season: Season = .current()
     var weather: SceneWeather = .clear
     var showCaravan = true
 
@@ -59,20 +34,23 @@ struct SceneView: View {
                 let ground = TerrainProfile.ground(terrain)
 
                 ZStack {
-                    LinearGradient(colors: phase.colors, startPoint: .top, endPoint: .bottom)
+                    LinearGradient(colors: phase.colors(for: season), startPoint: .top, endPoint: .bottom)
                     if phase == .night {
                         StarField(time: time)
                     } else {
                         Clouds(time: time, phase: phase)
                     }
+                    if let haze = phase.haze(for: season) {
+                        LinearGradient(colors: [.clear, haze], startPoint: .top, endPoint: .bottom)
+                    }
                     Color(red: 0.72, green: 0.50, blue: 0.20).opacity(weather == .sand ? 0.35 : 0)
                     Color(white: 0.65).opacity(weather == .snow ? 0.35 : 0)
 
                     TerrainShape(profile: TerrainProfile.far(terrain))
-                        .fill(Color.black.opacity(0.5))
+                        .fill(phase.farColor(for: season))
 
                     TerrainShape(profile: ground)
-                        .fill(Color.black)
+                        .fill(phase.groundColor(for: season))
 
                     if terrain == .river || terrain == .ford {
                         let top = terrain == .ford ? 0.88 : 0.91
@@ -96,6 +74,8 @@ struct SceneView: View {
                     if weather == .snow {
                         Particles(time: time, color: .white.opacity(0.8), fall: 0.07, drift: 0.02, count: 70)
                             .transition(.opacity)
+                    } else if season == .winter {
+                        Particles(time: time, color: .white.opacity(0.55), fall: 0.03, drift: 0.01, count: 25)
                     }
                     if weather == .sand {
                         Particles(time: time, color: Color(red: 0.85, green: 0.65, blue: 0.35).opacity(0.7), fall: 0.02, drift: 0.45, count: 90)
