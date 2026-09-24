@@ -230,16 +230,17 @@ struct YurtCutoutsShape: Shape {
         let w = rect.width, h = rect.height
         let ground = TerrainProfile.ground(terrain)
         for (t, width) in StructuresShape.yurts(for: terrain, w: w) {
-            let baseY = h * ground(t)
+            let baseY = StructuresShape.yurtBase(ground, at: t, width: width, w: w, h: h)
             let cx = w * t
             let wallH = width * 0.30
-            let doorW = width * 0.16, doorH = wallH * 0.78
+            let visibleBase = h * ground(t)
+            let doorW = width * 0.16, doorH = wallH * 0.72
             var door = Path()
-            door.move(to: CGPoint(x: cx - doorW / 2, y: baseY))
-            door.addLine(to: CGPoint(x: cx - doorW / 2, y: baseY - doorH * 0.8))
-            door.addQuadCurve(to: CGPoint(x: cx + doorW / 2, y: baseY - doorH * 0.8),
-                              control: CGPoint(x: cx, y: baseY - doorH * 1.15))
-            door.addLine(to: CGPoint(x: cx + doorW / 2, y: baseY))
+            door.move(to: CGPoint(x: cx - doorW / 2, y: visibleBase))
+            door.addLine(to: CGPoint(x: cx - doorW / 2, y: visibleBase - doorH * 0.8))
+            door.addQuadCurve(to: CGPoint(x: cx + doorW / 2, y: visibleBase - doorH * 0.8),
+                              control: CGPoint(x: cx, y: visibleBase - doorH * 1.15))
+            door.addLine(to: CGPoint(x: cx + doorW / 2, y: visibleBase))
             door.closeSubpath()
             path.addPath(door)
             // тонкий пояс на карнизе
@@ -261,7 +262,7 @@ struct StructuresShape: Shape {
         /// Юрта: цилиндрическая стена кереге, конический купол с плавным перегибом,
         /// шанырак с дымком, дверь и просветы решётки в стене.
         func yurt(at t: Double, width: CGFloat, door: Bool = true) {
-            let baseY = h * ground(t)
+            let baseY = Self.yurtBase(ground, at: t, width: width, w: w, h: h)
             let cx = w * t
             let r = width / 2
             let wallH = width * 0.30
@@ -317,11 +318,18 @@ struct StructuresShape: Shape {
         return path
     }
 
+    /// Основание юрты: ниже самой низкой точки земли под ней, чтобы оба края уходили в грунт.
+    static func yurtBase(_ ground: (Double) -> Double, at t: Double, width: CGFloat, w: CGFloat, h: CGFloat) -> CGFloat {
+        let half = Double(width / 2 / w)
+        let lowest = max(ground(max(0, t - half)), ground(t), ground(min(1, t + half)))
+        return h * lowest + width * 0.06
+    }
+
     /// Положение и ширина юрт по местности, общие для силуэта и просветов.
     static func yurts(for terrain: Terrain, w: CGFloat) -> [(Double, CGFloat)] {
         switch terrain {
-        case .river: return [(0.80, w * 0.13), (0.92, w * 0.10)]
-        case .pasture: return [(0.84, w * 0.12), (0.95, w * 0.095)]
+        case .river: return [(0.80, w * 0.13), (0.93, w * 0.10)]
+        case .pasture: return [(0.86, w * 0.12), (0.96, w * 0.095)]
         default: return []
         }
     }
