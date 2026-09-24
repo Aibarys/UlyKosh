@@ -221,6 +221,34 @@ struct TerrainShape: Shape {
     }
 }
 
+/// Просветы в юртах: дверь и пояс на стыке стены и купола.
+struct YurtCutoutsShape: Shape {
+    let terrain: Terrain
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let w = rect.width, h = rect.height
+        let ground = TerrainProfile.ground(terrain)
+        for (t, width) in StructuresShape.yurts(for: terrain, w: w) {
+            let baseY = h * ground(t)
+            let cx = w * t
+            let wallH = width * 0.30
+            let doorW = width * 0.16, doorH = wallH * 0.78
+            var door = Path()
+            door.move(to: CGPoint(x: cx - doorW / 2, y: baseY))
+            door.addLine(to: CGPoint(x: cx - doorW / 2, y: baseY - doorH * 0.8))
+            door.addQuadCurve(to: CGPoint(x: cx + doorW / 2, y: baseY - doorH * 0.8),
+                              control: CGPoint(x: cx, y: baseY - doorH * 1.15))
+            door.addLine(to: CGPoint(x: cx + doorW / 2, y: baseY))
+            door.closeSubpath()
+            path.addPath(door)
+            // тонкий пояс на карнизе
+            path.addRect(CGRect(x: cx - width / 2 + width * 0.03, y: baseY - wallH - width * 0.012, width: width * 0.94, height: width * 0.014))
+        }
+        return path
+    }
+}
+
 /// Постройки на переднем плане: руины, мавзолей, юрты.
 struct StructuresShape: Shape {
     let terrain: Terrain
@@ -230,12 +258,40 @@ struct StructuresShape: Shape {
         let w = rect.width, h = rect.height
         let ground = TerrainProfile.ground(terrain)
 
-        func yurt(at t: Double, width: CGFloat) {
+        /// Юрта: цилиндрическая стена кереге, конический купол с плавным перегибом,
+        /// шанырак с дымком, дверь и просветы решётки в стене.
+        func yurt(at t: Double, width: CGFloat, door: Bool = true) {
             let baseY = h * ground(t)
-            let x = w * t - width / 2
-            let wall = width * 0.32
-            path.addRect(CGRect(x: x, y: baseY - wall, width: width, height: wall))
-            path.addEllipse(in: CGRect(x: x, y: baseY - wall - width * 0.42, width: width, height: width * 0.84))
+            let cx = w * t
+            let r = width / 2
+            let wallH = width * 0.30
+            let domeH = width * 0.34
+            let wallTop = baseY - wallH
+            let ringR = width * 0.09
+
+            var body = Path()
+            body.move(to: CGPoint(x: cx - r, y: baseY))
+            body.addLine(to: CGPoint(x: cx - r, y: wallTop))
+            body.addLine(to: CGPoint(x: cx - r * 1.04, y: wallTop))
+            // левый скат купола: круто у карниза, положе к шаныраку
+            body.addQuadCurve(to: CGPoint(x: cx - ringR, y: wallTop - domeH),
+                              control: CGPoint(x: cx - r * 0.72, y: wallTop - domeH * 0.78))
+            body.addLine(to: CGPoint(x: cx + ringR, y: wallTop - domeH))
+            body.addQuadCurve(to: CGPoint(x: cx + r * 1.04, y: wallTop),
+                              control: CGPoint(x: cx + r * 0.72, y: wallTop - domeH * 0.78))
+            body.addLine(to: CGPoint(x: cx + r, y: wallTop))
+            body.addLine(to: CGPoint(x: cx + r, y: baseY))
+            body.closeSubpath()
+            path.addPath(body)
+
+            // шанырак: кольцо и крестовина над куполом
+            let ringY = wallTop - domeH - ringR * 0.5
+            path.addEllipse(in: CGRect(x: cx - ringR, y: ringY - ringR * 0.55, width: ringR * 2, height: ringR * 1.1))
+            path.addRect(CGRect(x: cx - width * 0.012, y: ringY - ringR * 1.35, width: width * 0.024, height: ringR * 1.35))
+
+            // просветы: дверь и полосы бау на куполе делаем отдельно, вычитанием не получится в одном Path,
+            // поэтому рисуем их поверх цветом неба в StructuresOverlay.
+            _ = door
         }
 
         switch terrain {
@@ -253,16 +309,21 @@ struct StructuresShape: Shape {
             path.addRect(CGRect(x: x, y: baseY - h * 0.11, width: bw, height: h * 0.12))
             path.addEllipse(in: CGRect(x: x + bw * 0.1, y: baseY - h * 0.11 - bw * 0.36, width: bw * 0.8, height: bw * 0.72))
             path.addRect(CGRect(x: x + bw * 0.44, y: baseY - h * 0.11 - bw * 0.36 - h * 0.03, width: bw * 0.12, height: h * 0.04))
-        case .river:
-            yurt(at: 0.80, width: w * 0.11)
-            yurt(at: 0.91, width: w * 0.09)
-        case .pasture:
-            yurt(at: 0.85, width: w * 0.10)
-            yurt(at: 0.94, width: w * 0.08)
+        case .river, .pasture:
+            for (t, width) in Self.yurts(for: terrain, w: w) { yurt(at: t, width: width) }
         default:
             break
         }
         return path
+    }
+
+    /// Положение и ширина юрт по местности, общие для силуэта и просветов.
+    static func yurts(for terrain: Terrain, w: CGFloat) -> [(Double, CGFloat)] {
+        switch terrain {
+        case .river: return [(0.80, w * 0.13), (0.92, w * 0.10)]
+        case .pasture: return [(0.84, w * 0.12), (0.95, w * 0.095)]
+        default: return []
+        }
     }
 }
 
