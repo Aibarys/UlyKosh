@@ -69,7 +69,7 @@ struct KazakhstanMapView: View {
                 let cam = displayedCamera(at: now)
                 let s = screenScale(zoom: cam.zoom, size: size)
                 let transform = CGAffineTransform(a: s, b: 0, c: 0, d: s, tx: size.width / 2 - cam.center.x * s, ty: size.height / 2 - cam.center.y * s)
-                let reveal = revealProgress(at: now)
+                let reveal = revealFinished ? 1.0 : revealProgress(at: now)
                 let travelled = route.fraction(atKm: engine.totalKm)
 
                 ZStack {

@@ -25,10 +25,15 @@ final class GameEngine {
     private(set) var lastSync: Date?
     var lastError: String?
 
-    let route: Route = SpringRoute.route
     private let store = StateStore()
     private let health = HealthKitStepSource()
     private let notifications = NotificationService.shared
+
+    /// Маршрут текущего кочевья; до старта — тот, что подходит по сезону.
+    var route: Route {
+        if let id = state?.routeId, let r = Routes.byId(id) { return r }
+        return Routes.forStart()
+    }
     private var loaded = false
     private var suppressNotificationsOnce = false
 
@@ -69,7 +74,7 @@ final class GameEngine {
     func startJourney(aulName: String) async {
         let name = aulName.trimmingCharacters(in: .whitespacesAndNewlines)
         state = GameState(
-            routeId: route.id,
+            routeId: Routes.forStart().id,
             aulName: name.isEmpty ? "Аул Ұлы Көш" : name,
             startDate: Calendar.current.startOfDay(for: .now)
         )
@@ -230,13 +235,7 @@ final class GameEngine {
         return notes[(dayNumber + reachedStops.count) % notes.count]
     }
 
-    var sceneWeather: SceneWeather {
-        switch activeEvent?.event.id {
-        case "buran": return .snow
-        case "sandstorm": return .sand
-        default: return .clear
-        }
-    }
+    var sceneWeather: SceneWeather { activeEvent?.event.weather ?? .clear }
 
     /// Кого аул встретил сегодня: выбирается детерминированно по дате из фауны ближайшей стоянки.
     var encounterOfTheDay: Fauna? {
@@ -290,8 +289,7 @@ final class GameEngine {
         }
 
         if old.finishedAt == nil, new.finishedAt != nil {
-            notifications.post(id: "finish", title: "Аул дошёл до жайляу!",
-                               body: "Кочевье окончено. Юрты стоят на склонах Ұлытау, вечером будет той.")
+            notifications.post(id: "finish", title: "Кочевье окончено!", body: route.outro)
         }
     }
 

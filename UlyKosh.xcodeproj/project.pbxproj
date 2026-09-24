@@ -26,6 +26,7 @@
 		AFBB706AFBAF613622C5FE6B /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF139901566A4D74C8AB674 /* Season.swift */; };
 		B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29D5081EB728FED8BF154E /* OnboardingView.swift */; };
 		C87C063ED198832D5886002C /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06702F7441D5CF31C7A774F3 /* StateStore.swift */; };
+		C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */; };
 		CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F1C5AAC906C5C78F4DE5B /* GameState.swift */; };
 		E01F7229EFB90E72A16BB95A /* Herd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C04906DC303EFA406662493 /* Herd.swift */; };
 		E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */; };
@@ -62,6 +63,7 @@
 		D48EE511B542603879310EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		EA374652C6F6D6E467AF0FA5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutumnRoute.swift; sourceTree = "<group>"; };
 		FD734DCCD061DD5E164CE25A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -69,6 +71,7 @@
 		018358E88CD7FEE12A72F211 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */,
 				9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */,
 			);
 			path = Data;
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5002506627A97E4F3DC8100 /* AulView.swift in Sources */,
+				C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */,
 				F9A940E803A636F8F171D365 /* GameEngine.swift in Sources */,
 				CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */,
 				79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */,

@@ -5,11 +5,11 @@ enum Pictogram: String, Codable, CaseIterable {
     case camel, horse, rider, sheep, ram, saiga, gazelle, deer, wolf, boar, dog
     case eagle, crane, bird, tortoise, hedgehog, marmot
     case yurt, tree, spruce, reeds, mausoleum, ruins, tulip
-    case elder, dombra, well, hammer, crescent
+    case elder, dombra, well, hammer, crescent, fish, bow, book
     case snow, whirlwind, wave
 
     var isStroke: Bool { [.snow, .whirlwind, .wave].contains(self) }
-    var evenOdd: Bool { [.yurt, .mausoleum, .crescent].contains(self) }
+    var evenOdd: Bool { [.yurt, .mausoleum, .crescent, .fish, .book].contains(self) }
 
     var title: String {
         switch self {
@@ -42,6 +42,9 @@ enum Pictogram: String, Codable, CaseIterable {
         case .well: return "Колодец"
         case .hammer: return "Молот"
         case .crescent: return "Полумесяц"
+        case .fish: return "Рыба"
+        case .bow: return "Лук"
+        case .book: return "Книга"
         case .snow: return "Снег"
         case .whirlwind: return "Вихрь"
         case .wave: return "Волна"
@@ -380,6 +383,38 @@ private enum PictogramLibrary {
         case .crescent:
             b.ellipse(50, 50, 36, 36)
             b.ellipse(57, 47, 28, 28, hole: true)
+
+        case .fish:
+            b.ellipse(46, 50, 30, 14)
+            b.poly([(72, 50), (92, 36), (88, 50), (92, 64)])
+            b.poly([(40, 36), (50, 24), (56, 38)])
+            b.poly([(38, 64), (48, 74), (54, 62)])
+            b.ellipse(30, 47, 3, 3, hole: true)
+
+        case .bow:
+            var arc: [(CGFloat, CGFloat)] = []
+            for i in 0...30 {
+                let a = -CGFloat.pi / 2 + CGFloat.pi * CGFloat(i) / 30
+                arc.append((50 + cos(a) * 34, 50 + sin(a) * 44))
+            }
+            var inner: [(CGFloat, CGFloat)] = []
+            for i in 0...30 {
+                let a = -CGFloat.pi / 2 + CGFloat.pi * CGFloat(i) / 30
+                inner.append((50 + cos(a) * 28, 50 + sin(a) * 40))
+            }
+            b.poly(arc + inner.reversed())
+            b.bar((50, 6), (50, 94), width: 2.5)
+            b.bar((8, 50), (86, 50), width: 3)
+            b.poly([(86, 50), (74, 43), (74, 57)])
+            b.poly([(8, 50), (18, 43), (22, 50), (18, 57)])
+
+        case .book:
+            b.poly([(14, 24), (48, 30), (48, 84), (14, 78)])
+            b.poly([(52, 30), (86, 24), (86, 78), (52, 84)])
+            b.poly([(20, 34), (42, 38), (42, 42), (20, 38)], hole: true)
+            b.poly([(20, 46), (42, 50), (42, 54), (20, 50)], hole: true)
+            b.poly([(58, 38), (80, 34), (80, 38), (58, 42)], hole: true)
+            b.poly([(58, 50), (80, 46), (80, 50), (58, 54)], hole: true)
 
         case .snow:
             for i in 0..<6 {

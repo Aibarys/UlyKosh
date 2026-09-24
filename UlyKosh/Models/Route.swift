@@ -50,6 +50,8 @@ struct RouteEvent: Identifiable, Codable, Hashable {
     let days: Int
     let rewardText: String
     let reward: HerdDelta
+    /// Как испытание выглядит на сцене.
+    let weather: SceneWeather
 }
 
 struct Route: Identifiable {
@@ -57,8 +59,24 @@ struct Route: Identifiable {
     let title: String
     let season: String
     let intro: String
+    /// Фраза на главном экране, когда маршрут пройден.
+    let outro: String
     let stops: [Stop]
     let events: [RouteEvent]
 
     var totalKm: Double { stops.last?.km ?? 0 }
+}
+
+enum Routes {
+    static let all: [Route] = [SpringRoute.route, AutumnRoute.route]
+
+    /// Весной и летом аул идёт на жайляу, осенью и зимой возвращается на кыстау.
+    static func forStart(_ date: Date = .now) -> Route {
+        switch Season.current(date) {
+        case .spring, .summer: return SpringRoute.route
+        case .autumn, .winter: return AutumnRoute.route
+        }
+    }
+
+    static func byId(_ id: String) -> Route? { all.first { $0.id == id } }
 }

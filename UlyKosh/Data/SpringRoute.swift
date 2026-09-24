@@ -7,6 +7,7 @@ enum SpringRoute {
         title: "Сырдария → Ұлытау",
         season: "Весна · көктеу",
         intro: "Снег сошёл, река вскрылась, трава на зимовке съедена. Пора поднимать аул и вести его на север, к прохладным пастбищам Ұлытау. Впереди 520 километров степи, гор и пустыни.",
+        outro: "Юрты стоят на склоне Ұлытау, кобылиц отпустили в табун, скоро первый кумыс. Кочевье окончено.",
         stops: [
             Stop(
                 id: "kystau",
@@ -199,7 +200,8 @@ enum SpringRoute {
                 goalKm: 15,
                 days: 4,
                 rewardText: "Стадо укрыто, ни одна овца не потеряна",
-                reward: HerdDelta(sheep: 30)
+                reward: HerdDelta(sheep: 30),
+                weather: .snow
             ),
             RouteEvent(
                 id: "sandstorm",
@@ -210,7 +212,8 @@ enum SpringRoute {
                 goalKm: 20,
                 days: 5,
                 rewardText: "У колодца аул нашёл отбившихся от чужого табуна лошадей",
-                reward: HerdDelta(horses: 5)
+                reward: HerdDelta(horses: 5),
+                weather: .sand
             ),
             RouteEvent(
                 id: "flood",
@@ -221,7 +224,8 @@ enum SpringRoute {
                 goalKm: 12,
                 days: 3,
                 rewardText: "Переправились до большой воды. Кузнец подарил двух верблюдов",
-                reward: HerdDelta(camels: 2)
+                reward: HerdDelta(camels: 2),
+                weather: .clear
             ),
             RouteEvent(
                 id: "wolves",
@@ -232,7 +236,8 @@ enum SpringRoute {
                 goalKm: 18,
                 days: 4,
                 rewardText: "Волки отстали. По дороге к стаду прибились чужие овцы",
-                reward: HerdDelta(sheep: 40)
+                reward: HerdDelta(sheep: 40),
+                weather: .clear
             )
         ]
     )

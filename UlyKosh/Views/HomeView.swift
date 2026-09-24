@@ -35,7 +35,7 @@ struct HomeView: View {
                             .font(.system(size: 12))
                             .foregroundStyle(Color.ash)
                             .padding(.top, 14)
-                        Text(engine.isFinished ? "Юрты стоят на склоне, кобылиц отпустили в табун. Кочевье окончено." : engine.trailNote)
+                        Text(engine.isFinished ? engine.route.outro : engine.trailNote)
                             .font(.system(size: 16))
                             .italic()
                             .multilineTextAlignment(.center)
@@ -54,6 +54,9 @@ struct HomeView: View {
                             if let next = engine.nextStop {
                                 Text("·")
                                 Text("до стоянки \(next.name) \(Fmt.km(engine.kmToNextStop)) км")
+                            } else {
+                                Text("·")
+                                Text("маршрут пройден")
                             }
                         }
                         .font(.system(size: 12))

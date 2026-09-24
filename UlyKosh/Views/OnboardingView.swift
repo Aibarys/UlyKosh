@@ -9,7 +9,7 @@ struct OnboardingView: View {
         GeometryReader { geo in
             ScrollView {
                 VStack(spacing: 0) {
-                    SceneView(terrain: .river, phase: .dawn, showCaravan: true)
+                    SceneView(terrain: engine.route.stops.first?.terrain ?? .river, phase: .dawn, showCaravan: true)
                         .frame(height: geo.size.height * 0.42)
 
                     VStack(spacing: 22) {
@@ -24,6 +24,11 @@ struct OnboardingView: View {
                         }
                         .padding(.top, 28)
 
+                        Text(engine.route.title)
+                            .font(.system(size: 11, weight: .semibold))
+                            .kerning(1.4)
+                            .textCase(.uppercase)
+                            .foregroundStyle(Color.gold.opacity(0.85))
                         Text(engine.route.intro)
                             .font(.system(size: 15))
                             .italic()

@@ -19,7 +19,7 @@ struct StopDetailView: View {
                                 .font(.display(32, weight: .regular))
                                 .foregroundStyle(Color.gold)
                                 .multilineTextAlignment(.center)
-                            Text("\(stop.subtitle) · \(Fmt.km(stop.km)) км от кыстау")
+                            Text("\(stop.subtitle) · \(Fmt.km(stop.km)) км от начала пути")
                                 .font(.system(size: 13))
                                 .foregroundStyle(Color.ash)
                         }

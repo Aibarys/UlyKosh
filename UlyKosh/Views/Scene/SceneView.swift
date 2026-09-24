@@ -15,7 +15,7 @@ enum Terrain: String, Codable, Hashable {
     }
 }
 
-enum SceneWeather { case clear, snow, sand }
+enum SceneWeather: String, Codable, Hashable { case clear, snow, sand }
 
 /// Силуэтный пейзаж: градиентное небо, дальний план, чёрная земля, фигуры каравана.
 struct SceneView: View {
@@ -124,7 +124,7 @@ struct SceneView: View {
         case .river:
             list += [Figure(t: 0.10, icon: .tree, size: 48, motion: .sway), Figure(t: 0.20, icon: .tree, size: 34, motion: .sway)]
         case .ruins:
-            list += [Figure(t: 0.16, icon: .tree, size: 50, motion: .sway)]
+            list += [Figure(t: 0.95, icon: .tree, size: 40, motion: .sway)]
         case .mountains:
             list += [Figure(t: 0.07, icon: .spruce, size: 38, motion: .sway), Figure(t: 0.13, icon: .spruce, size: 28, motion: .sway)]
         case .desert:
@@ -134,7 +134,8 @@ struct SceneView: View {
         case .mausoleum:
             break
         case .pasture:
-            list += [Figure(t: 0.72, icon: .tree, size: 34, motion: .sway), Figure(t: 0.95, icon: .horse, size: 20, flip: true)]
+            list += [Figure(t: 0.08, icon: .horse, size: 20, flip: true), Figure(t: 0.15, icon: .horse, size: 16, flip: true),
+                     Figure(t: 0.70, icon: .tree, size: 34, motion: .sway)]
         }
         if showCaravan {
             // Начало каравана на ровном участке; впереди всадник (это вы), за ним верблюды, позади овцы.
@@ -142,6 +143,7 @@ struct SceneView: View {
             switch terrain {
             case .ruins: start = 0.58
             case .pasture: start = 0.30
+            case .mausoleum: start = 0.10
             default: start = 0.36
             }
             list += [
@@ -255,8 +257,8 @@ struct StructuresShape: Shape {
             yurt(at: 0.80, width: w * 0.11)
             yurt(at: 0.91, width: w * 0.09)
         case .pasture:
-            yurt(at: 0.82, width: w * 0.10)
-            yurt(at: 0.90, width: w * 0.08)
+            yurt(at: 0.85, width: w * 0.10)
+            yurt(at: 0.94, width: w * 0.08)
         default:
             break
         }

@@ -136,3 +136,27 @@ struct SeasonSheetView: View {
         .background(Color.night.ignoresSafeArea())
     }
 }
+
+/// Отладочный лист: все местности с караваном днём, для поиска наложений.
+struct TerrainSheetView: View {
+    private let terrains: [Terrain] = [.river, .ruins, .mountains, .desert, .ford, .mausoleum, .pasture]
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 14) {
+                ForEach(terrains, id: \.self) { terrain in
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text(String(describing: terrain))
+                            .font(.system(size: 11))
+                            .foregroundStyle(Color.ash)
+                        SceneView(terrain: terrain, phase: .day, season: .current())
+                            .frame(height: 190)
+                            .clipShape(RoundedRectangle(cornerRadius: 10))
+                    }
+                }
+            }
+            .padding(16)
+        }
+        .background(Color.night.ignoresSafeArea())
+    }
+}
