@@ -8,12 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA374652C6F6D6E467AF0FA5 /* HomeView.swift */; };
+		0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617FA4D102727E0CC62F293 /* RouteMapView.swift */; };
 		2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */; };
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
+		5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
+		75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */ = {isa = PBXBuildFile; fileRef = B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */; };
 		79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */; };
 		7AD1615D54A5D5721D529FB6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD734DCCD061DD5E164CE25A /* RootView.swift */; };
+		8664C10F178D43AF437299C4 /* MapWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C8A1393060E44E6B227C8F /* MapWorld.swift */; };
+		880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */; };
 		8CCC08E719C5084DE25D8600 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A78890B7F7ED51971628D2E /* SettingsView.swift */; };
 		922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
+		95FD3480EBD3940C75704169 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */; };
 		9A91EA0BD6EB31E810F0DDD3 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD843740DD3290D6E37F3B /* Route.swift */; };
 		9C539DC345877EA6711534AD /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */; };
 		B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29D5081EB728FED8BF154E /* OnboardingView.swift */; };
@@ -37,14 +43,20 @@
 		39CD843740DD3290D6E37F3B /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		48A14E4FFB337A35451614EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		575F1C5AAC906C5C78F4DE5B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
+		8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KazakhstanMapView.swift; sourceTree = "<group>"; };
+		8994525A1EF735990AAE25FE /* Pictograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograms.swift; sourceTree = "<group>"; };
 		8C04906DC303EFA406662493 /* Herd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Herd.swift; sourceTree = "<group>"; };
 		8F75E0DC15E5323E9381F143 /* AulView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AulView.swift; sourceTree = "<group>"; };
 		9196C3239C4E23B179D5B5D8 /* UlyKosh.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UlyKosh.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9617FA4D102727E0CC62F293 /* RouteMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapView.swift; sourceTree = "<group>"; };
 		9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRoute.swift; sourceTree = "<group>"; };
 		AF29D5081EB728FED8BF154E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyKoshApp.swift; sourceTree = "<group>"; };
+		B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kazakhstan-map.json"; sourceTree = "<group>"; };
 		CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		D48EE511B542603879310EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		EA374652C6F6D6E467AF0FA5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		FD734DCCD061DD5E164CE25A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -84,12 +96,38 @@
 			path = App;
 			sourceTree = "<group>";
 		};
+		3A413AAAB6DA383E81A25953 /* Icons */ = {
+			isa = PBXGroup;
+			children = (
+				8994525A1EF735990AAE25FE /* Pictograms.swift */,
+			);
+			path = Icons;
+			sourceTree = "<group>";
+		};
 		3E7309C2AC20C0888DBDFC44 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
 				48A14E4FFB337A35451614EC /* Assets.xcassets */,
+				B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		7409508BF68394838071C2FA /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */,
+				82C8A1393060E44E6B227C8F /* MapWorld.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		A1580C7E8B362496D4C0DCDF /* Scene */ = {
+			isa = PBXGroup;
+			children = (
+				E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */,
+			);
+			path = Scene;
 			sourceTree = "<group>";
 		};
 		C477AE2E15F2CB4E7766B609 /* Services */ = {
@@ -132,10 +170,14 @@
 				EA374652C6F6D6E467AF0FA5 /* HomeView.swift */,
 				AF29D5081EB728FED8BF154E /* OnboardingView.swift */,
 				FD734DCCD061DD5E164CE25A /* RootView.swift */,
+				9617FA4D102727E0CC62F293 /* RouteMapView.swift */,
 				09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */,
 				1A78890B7F7ED51971628D2E /* SettingsView.swift */,
 				CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */,
 				2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */,
+				3A413AAAB6DA383E81A25953 /* Icons */,
+				7409508BF68394838071C2FA /* Map */,
+				A1580C7E8B362496D4C0DCDF /* Scene */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,6 +243,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */,
+				75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,10 +282,15 @@
 				79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */,
 				E01F7229EFB90E72A16BB95A /* Herd.swift in Sources */,
 				09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */,
+				880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */,
+				8664C10F178D43AF437299C4 /* MapWorld.swift in Sources */,
 				B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */,
+				5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */,
 				7AD1615D54A5D5721D529FB6 /* RootView.swift in Sources */,
 				9A91EA0BD6EB31E810F0DDD3 /* Route.swift in Sources */,
+				0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */,
 				9C539DC345877EA6711534AD /* RouteView.swift in Sources */,
+				95FD3480EBD3940C75704169 /* SceneView.swift in Sources */,
 				8CCC08E719C5084DE25D8600 /* SettingsView.swift in Sources */,
 				F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */,
 				C87C063ED198832D5886002C /* StateStore.swift in Sources */,

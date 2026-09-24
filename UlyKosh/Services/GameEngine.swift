@@ -191,6 +191,26 @@ final class GameEngine {
         return nil
     }
 
+    /// Стоянка, к которой идёт аул; после финиша — жайляу.
+    var targetStop: Stop { nextStop ?? currentStop }
+
+    var sceneTerrain: Terrain { targetStop.terrain }
+    var regionName: String { targetStop.region }
+
+    var trailNote: String {
+        let notes = targetStop.trailNotes
+        guard !notes.isEmpty else { return "" }
+        return notes[(dayNumber + reachedStops.count) % notes.count]
+    }
+
+    var sceneWeather: SceneWeather {
+        switch activeEvent?.event.id {
+        case "buran": return .snow
+        case "sandstorm": return .sand
+        default: return .clear
+        }
+    }
+
     /// Кого аул встретил сегодня: выбирается детерминированно по дате из фауны ближайшей стоянки.
     var encounterOfTheDay: Fauna? {
         let pool = (nextStop ?? currentStop).fauna

@@ -6,73 +6,90 @@ struct OnboardingView: View {
     @State private var isStarting = false
 
     var body: some View {
-        ZStack {
-            LinearGradient(colors: [.sky, .sand, .sand], startPoint: .top, endPoint: .bottom)
-                .ignoresSafeArea()
-
+        GeometryReader { geo in
             ScrollView {
-                VStack(spacing: 24) {
-                    Spacer(minLength: 40)
-                    Text("🏕️")
-                        .font(.system(size: 88))
-                    VStack(spacing: 6) {
-                        Text("Ұлы Көш")
-                            .font(.system(size: 42, weight: .bold, design: .serif))
-                        Text("Великое Кочевье")
-                            .font(.title3)
-                            .foregroundStyle(Color.inkSoft)
-                    }
+                VStack(spacing: 0) {
+                    SceneView(terrain: .river, phase: .dawn, showCaravan: true)
+                        .frame(height: geo.size.height * 0.42)
 
-                    Text(engine.route.intro)
-                        .font(.body)
-                        .multilineTextAlignment(.center)
-                        .foregroundStyle(Color.ink)
-                        .padding(.horizontal, 8)
-
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Как это работает")
-                            .font(.headline)
-                        Label("Ваши шаги превращаются в километры пути", systemImage: "figure.walk")
-                        Label("На стоянках к аулу присоединяются люди", systemImage: "person.2")
-                        Label("Стадо растёт с каждым километром", systemImage: "leaf")
-                        Label("Буран и половодье проверят аул на прочность", systemImage: "wind")
-                    }
-                    .font(.subheadline)
-                    .card()
-
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Как назвать аул?")
-                            .font(.headline)
-                        TextField("Например, аул Жақыпа", text: $aulName)
-                            .textFieldStyle(.roundedBorder)
-                            .submitLabel(.done)
-                    }
-                    .card()
-
-                    Button {
-                        isStarting = true
-                        Task {
-                            await engine.startJourney(aulName: aulName)
-                            isStarting = false
+                    VStack(spacing: 22) {
+                        VStack(spacing: 6) {
+                            Text("Ұлы Көш")
+                                .font(.display(44, weight: .regular))
+                                .foregroundStyle(Color.gold)
+                            Text("Великое Кочевье")
+                                .font(.system(size: 15))
+                                .kerning(1)
+                                .foregroundStyle(Color.ash)
                         }
-                    } label: {
-                        Text(isStarting ? "Собираем юрты…" : "Начать кочевье")
-                            .font(.headline)
-                            .frame(maxWidth: .infinity)
-                            .padding(.vertical, 6)
-                    }
-                    .buttonStyle(.borderedProminent)
-                    .disabled(isStarting)
+                        .padding(.top, 28)
 
-                    Text("Приложение попросит доступ к шагам в «Здоровье». Данные остаются на устройстве.")
-                        .font(.footnote)
-                        .foregroundStyle(Color.inkSoft)
-                        .multilineTextAlignment(.center)
+                        Text(engine.route.intro)
+                            .font(.system(size: 15))
+                            .italic()
+                            .multilineTextAlignment(.center)
+                            .foregroundStyle(Color.parchment)
+                            .lineSpacing(3)
+
+                        VStack(alignment: .leading, spacing: 12) {
+                            featureRow("figure.walk", "Ваши шаги превращаются в километры пути")
+                            featureRow("person.2", "На стоянках к аулу присоединяются люди")
+                            featureRow("leaf", "Стадо растёт с каждым километром")
+                            featureRow("wind.snow", "Буран и половодье проверят аул на прочность")
+                        }
+                        .panel()
+
+                        VStack(alignment: .leading, spacing: 10) {
+                            SectionTitle(text: "Как назвать аул")
+                            TextField("", text: $aulName, prompt: Text("Например, аул Жақыпа").foregroundStyle(Color.ash))
+                                .foregroundStyle(Color.parchment)
+                                .padding(12)
+                                .background(Color.black.opacity(0.4), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                .overlay(RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color.hairline))
+                                .submitLabel(.done)
+                        }
+
+                        Button {
+                            isStarting = true
+                            Task {
+                                await engine.startJourney(aulName: aulName)
+                                isStarting = false
+                            }
+                        } label: {
+                            Text(isStarting ? "Собираем юрты…" : "Начать кочевье")
+                                .font(.display(19, weight: .medium))
+                                .foregroundStyle(Color.night)
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 14)
+                                .background(Color.gold, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                        }
+                        .buttonStyle(.plain)
+                        .disabled(isStarting)
+
+                        Text("Приложение попросит доступ к шагам в «Здоровье». Данные остаются на устройстве.")
+                            .font(.system(size: 12))
+                            .foregroundStyle(Color.ash)
+                            .multilineTextAlignment(.center)
+                            .padding(.bottom, 24)
+                    }
+                    .padding(.horizontal, 24)
                 }
-                .padding(20)
             }
+            .ignoresSafeArea(edges: .top)
             .scrollDismissesKeyboard(.interactively)
         }
-        .foregroundStyle(Color.ink)
+        .background(Color.night.ignoresSafeArea())
+    }
+
+    private func featureRow(_ symbol: String, _ text: String) -> some View {
+        HStack(spacing: 12) {
+            Image(systemName: symbol)
+                .font(.system(size: 16, weight: .light))
+                .foregroundStyle(Color.gold)
+                .frame(width: 22)
+            Text(text)
+                .font(.system(size: 14))
+                .foregroundStyle(Color.parchment)
+        }
     }
 }

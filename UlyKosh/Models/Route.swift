@@ -4,7 +4,7 @@ import Foundation
 struct Fauna: Identifiable, Codable, Hashable {
     let id: String
     let name: String
-    let emoji: String
+    let icon: Pictogram
     let note: String
 }
 
@@ -13,8 +13,14 @@ struct Character: Identifiable, Codable, Hashable {
     let id: String
     let name: String
     let role: String
-    let emoji: String
+    let icon: Pictogram
     let story: String
+}
+
+/// Географическая точка в градусах.
+struct GeoPoint: Codable, Hashable {
+    let lat: Double
+    let lon: Double
 }
 
 /// Стоянка на маршруте. `km` — накопленное расстояние от кыстау.
@@ -23,8 +29,11 @@ struct Stop: Identifiable, Codable, Hashable {
     let name: String
     let subtitle: String
     let km: Double
-    let emoji: String
-    let terrain: String
+    let coordinate: GeoPoint
+    let region: String
+    let terrain: Terrain
+    /// Короткие фразы о том, как аул идёт к этой стоянке. Показываются на главном экране.
+    let trailNotes: [String]
     let legend: String
     let fauna: [Fauna]
     let character: Character?
@@ -34,7 +43,7 @@ struct Stop: Identifiable, Codable, Hashable {
 struct RouteEvent: Identifiable, Codable, Hashable {
     let id: String
     let title: String
-    let emoji: String
+    let icon: Pictogram
     let description: String
     let triggerKm: Double
     let goalKm: Double

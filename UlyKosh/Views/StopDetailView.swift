@@ -2,53 +2,77 @@ import SwiftUI
 
 struct StopDetailView: View {
     let stop: Stop
+    @State private var appeared = false
 
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
-                VStack(spacing: 6) {
-                    Text(stop.terrain).font(.system(size: 80))
-                    Text(stop.name).font(.title.weight(.bold))
-                    Text("\(stop.subtitle) · \(Fmt.km(stop.km)) км от кыстау")
-                        .font(.subheadline)
-                        .foregroundStyle(Color.inkSoft)
-                }
-                .frame(maxWidth: .infinity)
-                .padding(.vertical, 12)
+        GeometryReader { geo in
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    SceneView(terrain: stop.terrain, phase: .dusk, showCaravan: false)
+                        .frame(height: geo.size.height * 0.36)
+                        .opacity(appeared ? 1 : 0)
+                        .animation(.easeOut(duration: 0.6), value: appeared)
 
-                Text(stop.legend)
-                    .font(.body)
-                    .card()
+                    VStack(alignment: .leading, spacing: 20) {
+                        VStack(spacing: 6) {
+                            Text(stop.name)
+                                .font(.display(32, weight: .regular))
+                                .foregroundStyle(Color.gold)
+                                .multilineTextAlignment(.center)
+                            Text("\(stop.subtitle) · \(Fmt.km(stop.km)) км от кыстау")
+                                .font(.system(size: 13))
+                                .foregroundStyle(Color.ash)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 24)
 
-                if !stop.fauna.isEmpty {
-                    VStack(alignment: .leading, spacing: 12) {
-                        SectionTitle(text: "Кого здесь встретишь")
-                        ForEach(stop.fauna) { fauna in
-                            HStack(alignment: .top, spacing: 12) {
-                                Text(fauna.emoji).font(.title)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(fauna.name).font(.headline)
-                                    Text(fauna.note).font(.subheadline).foregroundStyle(Color.inkSoft)
+                        Text(stop.legend)
+                            .font(.system(size: 16))
+                            .lineSpacing(4)
+                            .foregroundStyle(Color.parchment)
+
+                        if !stop.fauna.isEmpty {
+                            VStack(alignment: .leading, spacing: 14) {
+                                SectionTitle(text: "Кого здесь встретишь")
+                                ForEach(stop.fauna) { fauna in
+                                    HStack(alignment: .top, spacing: 12) {
+                                        PictogramView(kind: fauna.icon, size: 30)
+                                            .frame(width: 34)
+                                        VStack(alignment: .leading, spacing: 2) {
+                                            Text(fauna.name)
+                                                .font(.display(17, weight: .regular))
+                                                .foregroundStyle(Color.parchment)
+                                            Text(fauna.note)
+                                                .font(.system(size: 13))
+                                                .foregroundStyle(Color.ash)
+                                        }
+                                    }
                                 }
                             }
+                            .padding(.top, 8)
+                        }
+
+                        if let person = stop.character {
+                            VStack(alignment: .leading, spacing: 14) {
+                                SectionTitle(text: "К аулу присоединяется")
+                                CharacterCard(character: person)
+                            }
+                            .padding(.top, 8)
                         }
                     }
-                    .card()
-                }
-
-                if let person = stop.character {
-                    VStack(alignment: .leading, spacing: 12) {
-                        SectionTitle(text: "К аулу присоединяется")
-                        CharacterCard(character: person)
-                    }
-                    .card()
+                    .padding(.horizontal, 24)
+                    .padding(.bottom, 32)
+                    .opacity(appeared ? 1 : 0)
+                    .offset(y: appeared ? 0 : 16)
+                    .animation(.easeOut(duration: 0.55).delay(0.15), value: appeared)
                 }
             }
-            .padding(16)
+            .ignoresSafeArea(edges: .top)
+            .onAppear { appeared = true }
         }
-        .background(Color.sand.ignoresSafeArea())
+        .background(Color.night.ignoresSafeArea())
         .navigationBarTitleDisplayMode(.inline)
-        .foregroundStyle(Color.ink)
+        .toolbarBackground(.hidden, for: .navigationBar)
     }
 }
 
@@ -56,15 +80,24 @@ struct CharacterCard: View {
     let character: Character
 
     var body: some View {
-        HStack(alignment: .top, spacing: 12) {
-            Text(character.emoji)
-                .font(.system(size: 34))
+        HStack(alignment: .top, spacing: 14) {
+            PictogramView(kind: character.icon, size: 30)
                 .frame(width: 52, height: 52)
-                .background(Color.sandDeep.opacity(0.5), in: Circle())
+                .background(Color.panel, in: Circle())
+                .overlay(Circle().stroke(Color.hairline))
             VStack(alignment: .leading, spacing: 4) {
-                Text(character.name).font(.headline)
-                Text(character.role).font(.caption.weight(.semibold)).foregroundStyle(Color.terracotta)
-                Text(character.story).font(.subheadline).foregroundStyle(Color.inkSoft)
+                Text(character.name)
+                    .font(.display(19, weight: .regular))
+                    .foregroundStyle(Color.parchment)
+                Text(character.role)
+                    .font(.system(size: 11, weight: .semibold))
+                    .kerning(1.2)
+                    .textCase(.uppercase)
+                    .foregroundStyle(Color.gold)
+                Text(character.story)
+                    .font(.system(size: 13))
+                    .foregroundStyle(Color.ash)
+                    .padding(.top, 2)
             }
         }
     }

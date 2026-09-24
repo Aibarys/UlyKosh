@@ -16,7 +16,7 @@ struct SettingsView: View {
                         HStack {
                             Text("Длина шага")
                             Spacer()
-                            Text(String(format: "%.2f м", stride)).foregroundStyle(.secondary)
+                            Text(String(format: "%.2f м", stride)).foregroundStyle(Color.ash)
                         }
                     }
                     .onChange(of: stride) { _, value in engine.setStride(value) }
@@ -34,7 +34,7 @@ struct SettingsView: View {
                         Task { await engine.syncSteps() }
                     }
                     if let error = engine.lastError {
-                        Text(error).font(.caption).foregroundStyle(.secondary)
+                        Text(error).font(.caption).foregroundStyle(Color.ash)
                     }
                 }
 
@@ -43,6 +43,7 @@ struct SettingsView: View {
                     Button("Добавить 1 000 шагов сегодня") { engine.addDebugSteps(1_000) }
                     Button("Добавить 10 000 шагов сегодня") { engine.addDebugSteps(10_000) }
                     Button("Добавить 50 000 шагов сегодня") { engine.addDebugSteps(50_000) }
+                    NavigationLink("Все пиктограммы") { PictogramSheetView() }
                 }
                 #endif
 
@@ -53,15 +54,22 @@ struct SettingsView: View {
                 }
 
                 Section("О приложении") {
-                    LabeledContent("Ұлы Көш", value: "MVP 0.1")
+                    LabeledContent("Ұлы Көш", value: "MVP 0.2")
                     Text("Аул проходит \(Fmt.km(GameEngine.passiveKmPerDay)) км в день сам по себе, остальное зависит от ваших шагов.")
                         .font(.footnote)
-                        .foregroundStyle(.secondary)
+                        .foregroundStyle(Color.ash)
                 }
             }
             .scrollContentBackground(.hidden)
-            .background(Color.sand.ignoresSafeArea())
-            .navigationTitle("Ещё")
+            .background(Color.night.ignoresSafeArea())
+            .safeAreaInset(edge: .top, spacing: 0) {
+                ScreenHeader(title: "Ещё")
+                    .padding(.horizontal, 24)
+                    .padding(.top, 16)
+                    .padding(.bottom, 4)
+                    .background(Color.night)
+            }
+            .toolbar(.hidden, for: .navigationBar)
             .onAppear {
                 aulName = engine.state?.aulName ?? ""
                 stride = engine.state?.strideMeters ?? 0.7
