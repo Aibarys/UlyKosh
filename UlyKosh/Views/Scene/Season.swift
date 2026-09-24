@@ -15,10 +15,10 @@ enum Season: CaseIterable {
 
     var title: String {
         switch self {
-        case .spring: return "Весна · көктем"
-        case .summer: return "Лето · жаз"
-        case .autumn: return "Осень · күз"
-        case .winter: return "Зима · қыс"
+        case .spring: return String(localized: "Весна · көктем")
+        case .summer: return String(localized: "Лето · жаз")
+        case .autumn: return String(localized: "Осень · күз")
+        case .winter: return String(localized: "Зима · қыс")
         }
     }
 

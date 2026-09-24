@@ -41,10 +41,10 @@ enum AppTab: CaseIterable {
 
     var title: String {
         switch self {
-        case .road: return "Дорога"
-        case .route: return "Маршрут"
-        case .aul: return "Аул"
-        case .more: return "Ещё"
+        case .road: return String(localized: "Дорога")
+        case .route: return String(localized: "Маршрут")
+        case .aul: return String(localized: "Аул")
+        case .more: return String(localized: "Ещё")
         }
     }
 }

@@ -14,6 +14,7 @@
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
 		3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
 		512D56B308A6A058C4C91494 /* UlyKoshWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 60C2DFB7119649968104366B /* UlyKoshWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		52C0096D2654C7744BC8DB37 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */; };
 		5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
 		5E0FECD2963BD1E8C667E5B4 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
 		5F24074A0B67928B27940BF3 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87330EE442BE509F530E870C /* NotificationService.swift */; };
@@ -24,6 +25,7 @@
 		880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */; };
 		8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFFF72D6D462522C9D5B2F1 /* WidgetViews.swift */; };
 		8CCC08E719C5084DE25D8600 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A78890B7F7ED51971628D2E /* SettingsView.swift */; };
+		8FDFAF61A7FD43CFAA8F4E40 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */; };
 		90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
 		922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
 		95FD3480EBD3940C75704169 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */; };
@@ -33,9 +35,12 @@
 		B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29D5081EB728FED8BF154E /* OnboardingView.swift */; };
 		C87C063ED198832D5886002C /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06702F7441D5CF31C7A774F3 /* StateStore.swift */; };
 		C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */; };
+		C9F1FC2E2C8833A5C27CA0B2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */; };
 		CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F1C5AAC906C5C78F4DE5B /* GameState.swift */; };
+		D9B8D4564419CC4A228FFAF0 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
 		E01F7229EFB90E72A16BB95A /* Herd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C04906DC303EFA406662493 /* Herd.swift */; };
 		E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */; };
+		ED559C6F72758549DE1A0AEA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
 		F5002506627A97E4F3DC8100 /* AulView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F75E0DC15E5323E9381F143 /* AulView.swift */; };
 		F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */; };
 		F85B3FEF8DC0D07DC4B07DC0 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
@@ -79,6 +84,7 @@
 		39CD843740DD3290D6E37F3B /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		48A14E4FFB337A35451614EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		575F1C5AAC906C5C78F4DE5B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		60C2DFB7119649968104366B /* UlyKoshWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = UlyKoshWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FCCF40899099CBFF3A80C30 /* UlyKoshWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKoshWidget.entitlements; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
@@ -98,10 +104,12 @@
 		B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kazakhstan-map.json"; sourceTree = "<group>"; };
 		CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		D48EE511B542603879310EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D82F50346CB5ACB44C8AA880 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		DEE61575FC44C1BDDB364FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		EA374652C6F6D6E467AF0FA5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutumnRoute.swift; sourceTree = "<group>"; };
+		F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		FD734DCCD061DD5E164CE25A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +145,7 @@
 		2510AB327E31C923B655A19C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				D82F50346CB5ACB44C8AA880 /* Localization.swift */,
 				269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */,
 			);
 			path = Shared;
@@ -162,7 +171,9 @@
 			isa = PBXGroup;
 			children = (
 				48A14E4FFB337A35451614EC /* Assets.xcassets */,
+				6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */,
 				B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */,
+				F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -280,6 +291,7 @@
 			buildConfigurationList = F7D8AE08DD754E35A1AF6A3B /* Build configuration list for PBXNativeTarget "UlyKoshWidget" */;
 			buildPhases = (
 				B23F668FEEEBEBC2B33F9252 /* Sources */,
+				379DAD59A3F89D1DC4557423 /* Resources */,
 				1BF3C1D339811741941E91C0 /* Strip extended attributes before codesign */,
 			);
 			buildRules = (
@@ -317,6 +329,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				kk,
 				ru,
 			);
 			mainGroup = 06D28CF2903B5A49F9490598;
@@ -333,11 +346,21 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		379DAD59A3F89D1DC4557423 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				52C0096D2654C7744BC8DB37 /* Localizable.xcstrings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		515D78F934C08DD2750496A6 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */,
+				8FDFAF61A7FD43CFAA8F4E40 /* InfoPlist.xcstrings in Resources */,
+				C9F1FC2E2C8833A5C27CA0B2 /* Localizable.xcstrings in Resources */,
 				75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -398,6 +421,7 @@
 				E01F7229EFB90E72A16BB95A /* Herd.swift in Sources */,
 				09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */,
 				880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */,
+				D9B8D4564419CC4A228FFAF0 /* Localization.swift in Sources */,
 				8664C10F178D43AF437299C4 /* MapWorld.swift in Sources */,
 				5F24074A0B67928B27940BF3 /* NotificationService.swift in Sources */,
 				B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */,
@@ -423,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				ED559C6F72758549DE1A0AEA /* Localization.swift in Sources */,
 				5E0FECD2963BD1E8C667E5B4 /* Pictograms.swift in Sources */,
 				3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */,
 				0D3DCE881ED66E02ED24A46D /* UlyKoshWidget.swift in Sources */,
@@ -496,6 +521,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
@@ -517,6 +543,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.ulykosh.UlyKosh.Widget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -535,6 +562,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = kz.ulykosh.UlyKosh.Widget;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -600,6 +628,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;

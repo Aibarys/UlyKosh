@@ -66,10 +66,8 @@ enum Fmt {
         value >= 100 ? String(format: "%.0f", value) : String(format: "%.1f", value)
     }
 
+    /// Множественное число задаётся правилами языка в Localizable.xcstrings.
     static func days(_ n: Int) -> String {
-        let rem10 = n % 10, rem100 = n % 100
-        if rem10 == 1 && rem100 != 11 { return "\(n) день" }
-        if (2...4).contains(rem10) && !(12...14).contains(rem100) { return "\(n) дня" }
-        return "\(n) дней"
+        String(localized: "\(n) дней")
     }
 }

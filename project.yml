@@ -5,9 +5,11 @@ options:
     iOS: "17.0"
   createIntermediateGroups: true
   developmentLanguage: ru
+  localizations: [ru, kk]
 settings:
   base:
     SWIFT_VERSION: "5.0"
+    SWIFT_EMIT_LOC_STRINGS: YES
     SWIFT_STRICT_CONCURRENCY: minimal
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: VTP9UAM5MH
@@ -26,6 +28,7 @@ targets:
       properties:
         CFBundleDisplayName: Ұлы Көш
         CFBundleDevelopmentRegion: ru
+        CFBundleLocalizations: [ru, kk]
         UILaunchScreen:
           UIColorName: LaunchBackground
           UIImageName: LaunchRider
@@ -57,6 +60,7 @@ targets:
     sources:
       - path: UlyKoshWidget
       - path: UlyKosh/Shared
+      - path: UlyKosh/Resources/Localizable.xcstrings
       - path: UlyKosh/Views/Theme.swift
       - path: UlyKosh/Views/Icons/Pictograms.swift
     info:
@@ -64,6 +68,7 @@ targets:
       properties:
         CFBundleDisplayName: Ұлы Көш
         CFBundleDevelopmentRegion: ru
+        CFBundleLocalizations: [ru, kk]
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:
@@ -72,6 +77,7 @@ targets:
         com.apple.security.application-groups: [group.kz.ulykosh]
     settings:
       base:
+        SWIFT_EMIT_LOC_STRINGS: YES
         PRODUCT_BUNDLE_IDENTIFIER: kz.ulykosh.UlyKosh.Widget
         SKIP_INSTALL: YES
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: ""

@@ -17,7 +17,7 @@ struct SettingsView: View {
 
                 Section("Шаги и расстояние") {
                     LabeledContent("Источник", value: healthText)
-                    LabeledContent("Расстояние", value: engine.usesHealthDistance ? "из «Здоровья»" : "по шагам")
+                    LabeledContent("Расстояние", value: engine.usesHealthDistance ? String(localized: "из «Здоровья»") : String(localized: "по шагам"))
                     if let sync = engine.lastSync {
                         LabeledContent("Синхронизация", value: sync.formatted(date: .omitted, time: .shortened))
                     }
@@ -32,8 +32,20 @@ struct SettingsView: View {
                     }
                 }
 
+                Section {
+                    Button {
+                        if let url = URL(string: UIApplication.openSettingsURLString) {
+                            UIApplication.shared.open(url)
+                        }
+                    } label: {
+                        LabeledContent("Язык приложения", value: Locale.current.language.languageCode?.identifier == "kk" ? "Қазақша" : "Русский")
+                    }
+                } footer: {
+                    Text("Язык меняется в настройках iOS. Доступны русский и казахский.")
+                }
+
                 Section("Уведомления") {
-                    LabeledContent("Статус", value: notifications.authorized ? "Разрешены" : "Не разрешены")
+                    LabeledContent("Статус", value: notifications.authorized ? String(localized: "Разрешены") : String(localized: "Не разрешены"))
                     Button("Разрешить уведомления") {
                         Task { await notifications.requestAuthorization() }
                     }
@@ -87,7 +99,7 @@ struct SettingsView: View {
             .scrollContentBackground(.hidden)
             .background(Color.night.ignoresSafeArea())
             .safeAreaInset(edge: .top, spacing: 0) {
-                ScreenHeader(title: "Ещё")
+                ScreenHeader(title: String(localized: "Ещё"))
                     .padding(.horizontal, 24)
                     .padding(.top, 16)
                     .padding(.bottom, 4)
@@ -108,9 +120,9 @@ struct SettingsView: View {
 
     private var healthText: String {
         switch engine.healthStatus {
-        case .unavailable: return "Здоровье недоступно"
-        case .requested: return "Здоровье"
-        case .unknown: return "Доступ не запрошен"
+        case .unavailable: return String(localized: "Здоровье недоступно")
+        case .requested: return String(localized: "Здоровье")
+        case .unknown: return String(localized: "Доступ не запрошен")
         }
     }
 }

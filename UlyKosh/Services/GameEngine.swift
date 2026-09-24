@@ -82,7 +82,7 @@ final class GameEngine {
         let name = aulName.trimmingCharacters(in: .whitespacesAndNewlines)
         state = GameState(
             routeId: Routes.forStart().id,
-            aulName: name.isEmpty ? "Аул Ұлы Көш" : name,
+            aulName: name.isEmpty ? String(localized: "Аул Ұлы Көш") : name,
             startDate: Calendar.current.startOfDay(for: .now)
         )
         persist()
@@ -305,10 +305,10 @@ final class GameEngine {
 
         let reached = route.stops.filter { $0.km > 0 && $0.km > oldKm && $0.km <= newKm }
         if reached.count == 1, let stop = reached.first {
-            let body = stop.character.map { "\($0.role) \($0.name) присоединяется к аулу. \(stop.subtitle)." } ?? stop.subtitle
-            notifications.post(id: "stop-\(stop.id)", title: "Аул дошёл до стоянки \(stop.name)", body: body)
+            let body = stop.character.map { String(localized: "\($0.role) \($0.name) присоединяется к аулу. \(stop.subtitle).") } ?? stop.subtitle
+            notifications.post(id: "stop-\(stop.id)", title: String(localized: "Аул дошёл до стоянки \(stop.name)"), body: body)
         } else if reached.count > 1, let last = reached.last {
-            notifications.post(id: "stop-\(last.id)", title: "Аул прошёл \(reached.count) стоянки", body: "Последняя: \(last.name). Загляните в маршрут.")
+            notifications.post(id: "stop-\(last.id)", title: String(localized: "Аул прошёл \(reached.count) стоянки"), body: String(localized: "Последняя: \(last.name). Загляните в маршрут."))
         }
 
         for event in route.events {
@@ -317,19 +317,19 @@ final class GameEngine {
             switch (was, now) {
             case (.none, .some(.active)):
                 notifications.post(id: "event-\(event.id)-start", title: event.title,
-                                   body: "\(event.description) Нужно пройти \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days)).")
+                                   body: String(localized: "\(event.description) Нужно пройти \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days))."))
             case (.some(.active), .some(.completed)):
-                notifications.post(id: "event-\(event.id)-done", title: "\(event.title): аул справился", body: event.rewardText)
+                notifications.post(id: "event-\(event.id)-done", title: String(localized: "\(event.title): аул справился"), body: event.rewardText)
             case (.some(.active), .some(.failed)):
-                notifications.post(id: "event-\(event.id)-fail", title: "\(event.title) позади",
-                                   body: "Не успели, но аул справился. Награды не будет, дорога продолжается.")
+                notifications.post(id: "event-\(event.id)-fail", title: String(localized: "\(event.title) позади"),
+                                   body: String(localized: "Не успели, но аул справился. Награды не будет, дорога продолжается."))
             default:
                 break
             }
         }
 
         if old.finishedAt == nil, new.finishedAt != nil {
-            notifications.post(id: "finish", title: "Кочевье окончено!", body: route.outro)
+            notifications.post(id: "finish", title: String(localized: "Кочевье окончено!"), body: route.outro)
         }
     }
 

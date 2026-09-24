@@ -37,15 +37,15 @@ struct OnboardingView: View {
                             .lineSpacing(3)
 
                         VStack(alignment: .leading, spacing: 12) {
-                            featureRow("figure.walk", "Ваши шаги превращаются в километры пути")
-                            featureRow("person.2", "На стоянках к аулу присоединяются люди")
-                            featureRow("leaf", "Стадо растёт с каждым километром")
-                            featureRow("wind.snow", "Буран и половодье проверят аул на прочность")
+                            featureRow("figure.walk", String(localized: "Ваши шаги превращаются в километры пути"))
+                            featureRow("person.2", String(localized: "На стоянках к аулу присоединяются люди"))
+                            featureRow("leaf", String(localized: "Стадо растёт с каждым километром"))
+                            featureRow("wind.snow", String(localized: "Буран и половодье проверят аул на прочность"))
                         }
                         .panel()
 
                         VStack(alignment: .leading, spacing: 10) {
-                            SectionTitle(text: "Как назвать аул")
+                            SectionTitle(text: String(localized: "Как назвать аул"))
                             TextField("", text: $aulName, prompt: Text("Например, аул Жақыпа").foregroundStyle(Color.ash))
                                 .foregroundStyle(Color.parchment)
                                 .padding(12)

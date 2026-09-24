@@ -1,0 +1,3442 @@
+{
+  "sourceLanguage": "ru",
+  "strings": {
+    "%@ %@ присоединяется к аулу. %@.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@ ауылға қосылды. %@."
+          }
+        }
+      }
+    },
+    "%@ · %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@"
+          }
+        }
+      }
+    },
+    "%@ · %@ из %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · %@ км, барлығы %@ км"
+          }
+        }
+      }
+    },
+    "%@ · %@ км от начала пути": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ · жол басынан %@ км"
+          }
+        }
+      }
+    },
+    "%@ Нужно пройти %@ км за %@.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@ ішінде %@ км жүру керек."
+          }
+        }
+      }
+    },
+    "%@ из %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км, барлығы %@"
+          }
+        }
+      }
+    },
+    "%@ из %@ км · %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км, барлығы %@ · %@"
+          }
+        }
+      }
+    },
+    "%@ км · аул здесь": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км · ауыл осында"
+          }
+        }
+      }
+    },
+    "%@ км · до %@ %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км · %@ дейін %@ км"
+          }
+        }
+      }
+    },
+    "%@ км · ещё %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км · тағы %@ км"
+          }
+        }
+      }
+    },
+    "%@ км · пройдено": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км · өтілді"
+          }
+        }
+      }
+    },
+    "%@ км сегодня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "бүгін %@ км"
+          }
+        }
+      }
+    },
+    "%@ позади": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ артта қалды"
+          }
+        }
+      }
+    },
+    "%@ шагов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ қадам"
+          }
+        }
+      }
+    },
+    "%@ шагов сегодня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "бүгін %@ қадам"
+          }
+        }
+      }
+    },
+    "%@: аул справился": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@: ауыл төтеп берді"
+          }
+        }
+      }
+    },
+    "%lld дней": {
+      "localizations": {
+        "ru": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld день"
+                }
+              },
+              "few": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld дня"
+                }
+              },
+              "many": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld дней"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld дней"
+                }
+              }
+            }
+          }
+        },
+        "kk": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld күн"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld км"
+          }
+        }
+      }
+    },
+    "·": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "·"
+          }
+        }
+      }
+    },
+    "Айсұлу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Айсұлу"
+          }
+        }
+      }
+    },
+    "Аксакал": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақсақал"
+          }
+        }
+      }
+    },
+    "Аксакал ищет старую тропу, по которой шёл его отец": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақсақал әкесі жүрген ескі соқпақты іздеп жүр"
+          }
+        }
+      }
+    },
+    "Аксакал рассказывает про Алаша-хана": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақсақал Алаша хан туралы әңгімелейді"
+          }
+        }
+      }
+    },
+    "Аксакал смотрит на юг: пора": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақсақал оңтүстікке қарайды: уақыт келді"
+          }
+        }
+      }
+    },
+    "Аксакал читает бата перед дорогой": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақсақал жол алдында бата беріп жатыр"
+          }
+        }
+      }
+    },
+    "Архар": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Арқар"
+          }
+        }
+      }
+    },
+    "Аул": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл"
+          }
+        }
+      }
+    },
+    "Аул вернулся на кыстау. Юрты стоят в тугаях у Сырдарьи, камыш заготовлен, стадо укрыто. До весны.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл қыстауға оралды. Киіз үйлер Сырдария тоғайында тұр, қамыс дайындалды, мал паналады. Көктемге дейін."
+          }
+        }
+      }
+    },
+    "Аул вернулся туда, откуда вышел весной. В тугаях у Сырдарьи ветер тише, камыш кормит скот, а река не замерзает до самых морозов. Здесь чинят загоны, режут согым и ждут зиму. Годовой круг кочевья замкнулся, и весной всё начнётся снова.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл көктемде шыққан жеріне оралды. Сырдария тоғайында жел тынышырақ, малды қамыс асырайды, өзен қатты аязға дейін қатпайды. Мұнда қора жөндеп, соғым сойып, қысты күтеді. Көштің жылдық шеңбері тұйықталды, көктемде бәрі қайта басталады."
+          }
+        }
+      }
+    },
+    "Аул дошёл до стоянки %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл %@ қонысына жетті"
+          }
+        }
+      }
+    },
+    "Аул проходит %@ км в день сам по себе, остальное зависит от ваших шагов.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл күніне өздігінен %@ км жүреді, қалғаны сіздің қадамыңызға байланысты."
+          }
+        }
+      }
+    },
+    "Аул прошёл %lld стоянки": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл %lld қоныстан өтті"
+          }
+        }
+      }
+    },
+    "Аул собирается в путь, юрты уже на верблюдах": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл жолға жиналуда, киіз үйлер түйеге артылды"
+          }
+        }
+      }
+    },
+    "Аул сообщит, когда дойдёт до стоянки, когда начнётся буран или половодье и когда испытание пройдено.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл қонысқа жеткенде, боран немесе су тасқыны басталғанда және сынақтан өткенде хабарлайды."
+          }
+        }
+      }
+    },
+    "Аул Ұлы Көш": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлы Көш ауылы"
+          }
+        }
+      }
+    },
+    "Ақын": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақын"
+          }
+        }
+      }
+    },
+    "Базарные собаки провожают аул до окраины.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Базар иттері ауылды қала шетіне дейін шығарып салады."
+          }
+        }
+      }
+    },
+    "Байбак": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Суыр"
+          }
+        }
+      }
+    },
+    "Балықшы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Балықшы"
+          }
+        }
+      }
+    },
+    "Бауыржан": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бауыржан"
+          }
+        }
+      }
+    },
+    "Бақсы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бақсы"
+          }
+        }
+      }
+    },
+    "Беркут": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бүркіт"
+          }
+        }
+      }
+    },
+    "Бетпақ-Дала": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бетпақдала"
+          }
+        }
+      }
+    },
+    "Бетпақ-Дала гонит навстречу стену песка. Колодец впереди, и до него нужно добраться, пока не засыпало тропу.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бетпақдала қарсы құм қабырғасын айдап келеді. Құдық алда, соқпақты басып қалғанша оған жету керек."
+          }
+        }
+      }
+    },
+    "Бетпақ-Дала переводят как «Злосчастная степь». Сто километров без рек, только колодцы, выкопанные предками и обложенные камнем. Кочевники шли здесь ночью, по звёздам, чтобы не терять воду на жаре. Весной по этой пустыне на север идут сотни тысяч сайгаков, и аул движется вместе с ними.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бетпақдала «сормаңдай дала» деген мағына береді. Жүз шақырым бойы өзен жоқ, тек ата-бабалар қазып, таспен қалаған құдықтар ғана. Көшпенділер ыстықта су жоғалтпау үшін мұнда түнде, жұлдызбен жүрген. Көктемде осы шөл арқылы солтүстікке жүз мыңдаған киік өтеді, ауыл да солармен бірге жүреді."
+          }
+        }
+      }
+    },
+    "Бетпақдала": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бетпақдала"
+          }
+        }
+      }
+    },
+    "Болат": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Болат"
+          }
+        }
+      }
+    },
+    "Буран и половодье проверят аул на прочность": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Боран мен су тасқыны ауылды сынайды"
+          }
+        }
+      }
+    },
+    "В камышах кабаны и фазаны, охотник доволен": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қамыста қабан мен қырғауыл, аңшы риза"
+          }
+        }
+      }
+    },
+    "В холмах видны старые копи, где брали медь ещё при саках": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Төбелерде сақтар заманында мыс алған ескі кеніштер көрінеді"
+          }
+        }
+      }
+    },
+    "Ваши шаги превращаются в километры пути": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қадамыңыз жол шақырымына айналады"
+          }
+        }
+      }
+    },
+    "Великое Кочевье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлы Көш"
+          }
+        }
+      }
+    },
+    "Верблюды ещё не привыкли к поклаже, останавливаемся часто": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түйелер жүкке әлі үйренбеген, жиі тоқтаймыз"
+          }
+        }
+      }
+    },
+    "Весенний буран": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көктемгі боран"
+          }
+        }
+      }
+    },
+    "Весна · көктем": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көктем"
+          }
+        }
+      }
+    },
+    "Весна · көктеу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көктем · көктеу"
+          }
+        }
+      }
+    },
+    "Ветер с севера уже холодный": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Солтүстіктен соққан жел суық"
+          }
+        }
+      }
+    },
+    "Вечером поставим юрты на зимнем месте": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кешке киіз үйлерді қысқы орнына тігеміз"
+          }
+        }
+      }
+    },
+    "Взлетает с треском из-под самых ног.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аяқ астынан сатырлап ұшып шығады."
+          }
+        }
+      }
+    },
+    "Виджет": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Виджет"
+          }
+        }
+      }
+    },
+    "Волки в Мойынқұме": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мойынқұмдағы қасқырлар"
+          }
+        }
+      }
+    },
+    "Волки отстали. Мерген Серік отбил у них чужих овец": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қасқырлар қалып қойды. Мерген Серік олардан бөтен қойларды тартып алды"
+          }
+        }
+      }
+    },
+    "Волки отстали. По дороге к стаду прибились чужие овцы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қасқырлар қалып қойды. Жолда малға бөтен қойлар қосылды"
+          }
+        }
+      }
+    },
+    "Волки у стада": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мал жанындағы қасқырлар"
+          }
+        }
+      }
+    },
+    "Вольный табун": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Еркін үйір"
+          }
+        }
+      }
+    },
+    "Впереди тёмная полоса тугаёв, это Шу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алда тоғайдың қара жолағы, бұл Шу"
+          }
+        }
+      }
+    },
+    "Впереди только колодцы, воду бережём": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алда тек құдықтар, суды үнемдейміз"
+          }
+        }
+      }
+    },
+    "Все пиктограммы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Барлық пиктограммалар"
+          }
+        }
+      }
+    },
+    "Всю зиму аул стоял в тугайных зарослях на берегу Сырдарьи: здесь ветер тише, а камыш кормит скот, когда степь под снегом. Юрты уже сложены на верблюдов, аксакал прочитал бата, и первый караван двинулся на север. Так начиналось каждое кочевье на протяжении тысячи лет.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қыс бойы ауыл Сырдария жағасындағы тоғайда тұрды: мұнда жел тынышырақ, ал дала қар астында жатқанда малды қамыс асырайды. Киіз үйлер түйеге артылды, ақсақал бата берді, алғашқы керуен солтүстікке қозғалды. Мың жыл бойы әрбір көш осылай басталатын."
+          }
+        }
+      }
+    },
+    "Выходит по ночам, когда песок остывает.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құм салқындаған түнде шығады."
+          }
+        }
+      }
+    },
+    "Вышли из снега. Погонщик Мұса подарил аулу двух верблюдов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қардан шықтық. Түйеші Мұса ауылға екі түйе сыйлады"
+          }
+        }
+      }
+    },
+    "Гнездится в глиняных стенах руин, его хохолок видно издалека.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қираған сазды қабырғаларға ұя салады, айдары алыстан көрінеді."
+          }
+        }
+      }
+    },
+    "Гнездится прямо на земле, среди полыни.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тікелей жерге, жусан арасына ұя салады."
+          }
+        }
+      }
+    },
+    "Голодная степь": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Аш дала"
+          }
+        }
+      }
+    },
+    "Горный баран с огромными рогами, держится на скалах над перевалом.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мүйізі алып тау қошқары, асу үстіндегі жартастарда жүреді."
+          }
+        }
+      }
+    },
+    "Горы в цвету": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Гүлдеген таулар"
+          }
+        }
+      }
+    },
+    "Горы Ұлытау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытау таулары"
+          }
+        }
+      }
+    },
+    "Горы Ұлытау, «Великие горы», хоть и невысоки, но летом здесь прохладно, ручьи не пересыхают, а трава по пояс. Аул ставит юрты на склоне, кобылиц пускают в табун, и через неделю будет первый кумыс. Кочевье окончено. Осенью, когда трава пожелтеет, аул двинется обратно на юг.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытау биік болмаса да, жазда мұнда салқын, бұлақтар құрғамайды, шөп белге жетеді. Ауыл киіз үйлерді беткейге тігеді, биелерді үйірге жібереді, бір аптадан кейін алғашқы қымыз болады. Көш аяқталды. Күзде шөп сарғайғанда ауыл оңтүстікке қайта қозғалады."
+          }
+        }
+      }
+    },
+    "Готовится к спячке под камнями.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тас астында қысқы ұйқыға дайындалып жатыр."
+          }
+        }
+      }
+    },
+    "Гранитные скалы с рисунками": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Суреті бар гранит жартастар"
+          }
+        }
+      }
+    },
+    "Гранитные сопки Сарыарқи": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сарыарқаның гранит шоқылары"
+          }
+        }
+      }
+    },
+    "Далеко на севере блестит Сарысу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алыста, солтүстікте Сарысу жарқырайды"
+          }
+        }
+      }
+    },
+    "День %lld": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-күн"
+          }
+        }
+      }
+    },
+    "День %lld · %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-күн · %@"
+          }
+        }
+      }
+    },
+    "День %lld · %@ км пути": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-күн · %@ км жол"
+          }
+        }
+      }
+    },
+    "Дети бегут впереди аула": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Балалар ауылдың алдында жүгіріп барады"
+          }
+        }
+      }
+    },
+    "Дети узнают старые загоны и бегут вперёд": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Балалар ескі қораларды танып, алға жүгіреді"
+          }
+        }
+      }
+    },
+    "Джейран": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қарақұйрық"
+          }
+        }
+      }
+    },
+    "Длина шага": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қадам ұзындығы"
+          }
+        }
+      }
+    },
+    "Добавить 1 000 шагов сегодня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бүгінге 1 000 қадам қосу"
+          }
+        }
+      }
+    },
+    "Добавить 10 000 шагов сегодня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бүгінге 10 000 қадам қосу"
+          }
+        }
+      }
+    },
+    "Добавить 50 000 шагов сегодня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бүгінге 50 000 қадам қосу"
+          }
+        }
+      }
+    },
+    "Долина Кеңгіра": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кеңгір аңғары"
+          }
+        }
+      }
+    },
+    "Долина Сырдарьи": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сырдария аңғары"
+          }
+        }
+      }
+    },
+    "Долина Шу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шу аңғары"
+          }
+        }
+      }
+    },
+    "Дорога": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жол"
+          }
+        }
+      }
+    },
+    "Доступ не запрошен": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рұқсат сұралмаған"
+          }
+        }
+      }
+    },
+    "Древняя антилопа с носом-хоботом, ровесник мамонтов. Бежит со скоростью 80 км/ч.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тұмсығы тұмсықша ежелгі бөкен, мамонттың замандасы. Сағатына 80 км жылдамдықпен жүгіреді."
+          }
+        }
+      }
+    },
+    "Дрофа": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дуадақ"
+          }
+        }
+      }
+    },
+    "Ещё": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тағы"
+          }
+        }
+      }
+    },
+    "Жайляу Ұлытау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытау жайлауы"
+          }
+        }
+      }
+    },
+    "Жақып-ата": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жақып ата"
+          }
+        }
+      }
+    },
+    "Ждёт на %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км-де күтеді"
+          }
+        }
+      }
+    },
+    "Живёт в стенах старого города.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ескі қала қабырғаларында тіршілік етеді."
+          }
+        }
+      }
+    },
+    "Живёт в тугаях вдоль реки, выдает себя громким криком на рассвете.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өзен бойындағы тоғайда тіршілік етеді, таңертең қатты дауысымен өзін білдіреді."
+          }
+        }
+      }
+    },
+    "Журавль-красавка": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақбас тырна"
+          }
+        }
+      }
+    },
+    "Запасной коэффициент": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қосалқы коэффициент"
+          }
+        }
+      }
+    },
+    "Запросить доступ к «Здоровью»": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Денсаулық» қолданбасына рұқсат сұрау"
+          }
+        }
+      }
+    },
+    "Здоровье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Денсаулық"
+          }
+        }
+      }
+    },
+    "Здоровье недоступно": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Денсаулық» қолжетімсіз"
+          }
+        }
+      }
+    },
+    "Земля снова зеленеет, стадо отъедается": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жер қайта көгереді, мал тойынып жатыр"
+          }
+        }
+      }
+    },
+    "Зима · қыс": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қыс"
+          }
+        }
+      }
+    },
+    "Зимняя стоянка у реки": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өзен жағасындағы қысқы қоныс"
+          }
+        }
+      }
+    },
+    "Зимовка в тугаях": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тоғайдағы қыстау"
+          }
+        }
+      }
+    },
+    "Зимует в камышах рядом с аулом.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауылдың жанындағы қамыста қыстайды."
+          }
+        }
+      }
+    },
+    "Идём вдоль реки, тугай редеет, впереди холмы Отырара": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өзен бойымен келеміз, тоғай сиреді, алда Отырар төбелері"
+          }
+        }
+      }
+    },
+    "Идём ночью по звёздам, днём слишком жарко": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түнде жұлдызбен жүреміз, күндіз тым ыстық"
+          }
+        }
+      }
+    },
+    "Идёт за сайгаками и за аулом.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Киіктердің де, ауылдың да соңынан ереді."
+          }
+        }
+      }
+    },
+    "Идёт за стадом на расстоянии, ночью его глаза видно у костра.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Малдың соңынан алыстан ереді, түнде оттың жанында көзі жылтырайды."
+          }
+        }
+      }
+    },
+    "Идёт сейчас: %@ км за %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қазір жүріп жатыр: %@ ішінде %@ км"
+          }
+        }
+      }
+    },
+    "Издалека виден бирюзовый купол Түркістана": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түркістанның көгілдір күмбезі алыстан көрінеді"
+          }
+        }
+      }
+    },
+    "Изящная газель, может неделями обходиться без воды.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сымбатты жейран, апталап сусыз жүре алады."
+          }
+        }
+      }
+    },
+    "Используется только для дней, за которые в «Здоровье» нет данных о расстоянии.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тек «Денсаулықта» қашықтық деректері жоқ күндер үшін қолданылады."
+          }
+        }
+      }
+    },
+    "Испытания": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сынақтар"
+          }
+        }
+      }
+    },
+    "Источник": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дереккөз"
+          }
+        }
+      }
+    },
+    "К аулу присоединяется": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауылға қосылады"
+          }
+        }
+      }
+    },
+    "Кабан": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қабан"
+          }
+        }
+      }
+    },
+    "Как назвать аул": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауылды қалай атаймыз"
+          }
+        }
+      }
+    },
+    "Карта недоступна": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Карта қолжетімсіз"
+          }
+        }
+      }
+    },
+    "Кенші": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кенші"
+          }
+        }
+      }
+    },
+    "Кеңгір течёт мимо Жезқазғана, «места, где копают медь». Руду здесь добывали три тысячи лет: сакские рудокопы, потом кыпчаки, потом джучиды. На берегах реки стоят древние плавильни и курганы. Осенью Кеңгір мелеет, и аул переходит его вброд, не замочив вьюков.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кеңгір Жезқазғанның, яғни «мыс қазатын жердің» жанынан ағып өтеді. Мұнда кенді үш мың жыл бойы қазған: сақ кеншілері, кейін қыпшақтар, кейін жошылықтар. Өзен жағасында көне балқыту пештері мен обалар тұр. Күзде Кеңгір таязданады, ауыл жүкті суламай өткелден өтеді."
+          }
+        }
+      }
+    },
+    "Километры дня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күн шақырымы"
+          }
+        }
+      }
+    },
+    "Кого здесь встретишь": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мұнда кімді кездестіресің"
+          }
+        }
+      }
+    },
+    "Колодец в Бетпақ-Дала": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бетпақдаладағы құдық"
+          }
+        }
+      }
+    },
+    "Колодцы Бетпақдалы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бетпақдала құдықтары"
+          }
+        }
+      }
+    },
+    "Кормится на стерне вдоль реки перед перелётом.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұшып кетер алдында өзен бойындағы аңызда қоректенеді."
+          }
+        }
+      }
+    },
+    "Кочевье окончено": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көш аяқталды"
+          }
+        }
+      }
+    },
+    "Кочевье окончено!": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көш аяқталды!"
+          }
+        }
+      }
+    },
+    "Красные тюльпаны по колено, лошади идут медленно": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қызыл қызғалдақ тізеге жетеді, жылқылар баяу жүреді"
+          }
+        }
+      }
+    },
+    "Кружит над ущельем, высматривая сурков.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Суыр аңдып, шатқал үстінде қалықтайды."
+          }
+        }
+      }
+    },
+    "Кузнец": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұста"
+          }
+        }
+      }
+    },
+    "Кузнец с переправы. Починил сломанную ось арбы и вместо платы попросил взять его к Ұлытау, где, по слухам, есть хорошая руда. С ним в ауле теперь всегда острые ножи и крепкие стремена.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өткелдегі ұста. Арбаның сынған білігін жөндеп, ақы орнына жақсы кені бар деген Ұлытауға өзін ала кетуді сұрады. Енді ауылда әрдайым өткір пышақ пен берік үзеңгі бар."
+          }
+        }
+      }
+    },
+    "Күзеу у Ұлытау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытаудағы күзеу"
+          }
+        }
+      }
+    },
+    "Күзеу это осенняя стоянка между летними и зимними пастбищами. Здесь аул задерживался на несколько недель: стригли овец, валяли войлок, забивали скот на согым и сушили мясо на зиму. Когда табуны выедали траву, а ночи становились морозными, аксакал объявлял день выхода, и аул поворачивал на юг.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзеу – жайлау мен қыстау арасындағы күзгі қоныс. Мұнда ауыл бірнеше апта аялдайтын: қой қырқып, киіз басып, соғымға мал сойып, қысқа ет кептіретін. Үйірлер шөпті жеп бітіріп, түндер аязды бола бастағанда ақсақал шығатын күнді жариялап, ауыл оңтүстікке бұрылатын."
+          }
+        }
+      }
+    },
+    "Летние пастбища": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жазғы жайылым"
+          }
+        }
+      }
+    },
+    "Лето · жаз": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жаз"
+          }
+        }
+      }
+    },
+    "Лошадей сгоняют с гор, жеребят отделяют от кобылиц.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жылқыларды таудан айдап түсіреді, құлындарды биеден бөледі."
+          }
+        }
+      }
+    },
+    "Лошади аула, отпущенные на лето, сами собираются в косяки.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жазға жіберілген ауыл жылқылары өздері үйірге жиналады."
+          }
+        }
+      }
+    },
+    "Луковицы тюльпанов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қызғалдақ түйнектері"
+          }
+        }
+      }
+    },
+    "Люди аула · %lld": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл адамдары · %lld"
+          }
+        }
+      }
+    },
+    "Мавзолей Алаша-хана": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алаша хан кесенесі"
+          }
+        }
+      }
+    },
+    "Мавзолей Қожа Ахмета Ясауи": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қожа Ахмет Ясауи кесенесі"
+          }
+        }
+      }
+    },
+    "Маленький": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кіші"
+          }
+        }
+      }
+    },
+    "Маршрут": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бағыт"
+          }
+        }
+      }
+    },
+    "Мастер колодцев. Живёт у последнего колодца перед Сарысу и чистит его каждую весну для проходящих аулов. Согласился идти дальше, чтобы посмотреть, стоят ли ещё колодцы его деда у Ұлытау.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құдық шебері. Сарысу алдындағы соңғы құдықтың жанында тұрады және өтетін ауылдар үшін оны әр көктемде тазалайды. Ұлытаудағы атасының құдықтары әлі бар ма екенін көру үшін әрі қарай жүруге келісті."
+          }
+        }
+      }
+    },
+    "Медные копи Жезқазғана": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жезқазғанның мыс кеніштері"
+          }
+        }
+      }
+    },
+    "Мерген": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мерген"
+          }
+        }
+      }
+    },
+    "Молодой певец с домброй. Сказал, что в Отыраре ему больше некому петь, и попросился с аулом. Теперь по вечерам у костра звучат жыры о батырах и о дороге.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Домбырасы бар жас әнші. Отырарда енді ән салатын ешкім қалмады деп, ауылмен бірге жүруге сұранды. Енді кешкісін от басында батырлар мен жол туралы жырлар естіледі."
+          }
+        }
+      }
+    },
+    "Мұса": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мұса"
+          }
+        }
+      }
+    },
+    "На базаре меняем шерсть на муку и чай": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Базарда жүнді ұн мен шайға айырбастаймыз"
+          }
+        }
+      }
+    },
+    "На камнях выбиты кони и охотники, им тысячи лет": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тастарда жылқы мен аңшылар қашалған, олар мыңдаған жылдық"
+          }
+        }
+      }
+    },
+    "На стоянках к аулу присоединяются люди": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қоныстарда ауылға адамдар қосылады"
+          }
+        }
+      }
+    },
+    "Название аула": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл атауы"
+          }
+        }
+      }
+    },
+    "Например, аул Жақыпа": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мысалы, Жақып ауылы"
+          }
+        }
+      }
+    },
+    "Начать кочевье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көшті бастау"
+          }
+        }
+      }
+    },
+    "Не разрешены": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рұқсат етілмеген"
+          }
+        }
+      }
+    },
+    "Не успели, но аул справился. Награды не будет, дорога продолжается.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үлгермедік, бірақ ауыл төтеп берді. Сыйлық болмайды, жол жалғасады."
+          }
+        }
+      }
+    },
+    "Не успели. Аул справился, но без награды": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үлгермедік. Ауыл төтеп берді, бірақ сыйлықсыз"
+          }
+        }
+      }
+    },
+    "Низовья Шу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шудың төменгі ағысы"
+          }
+        }
+      }
+    },
+    "Ночью у скал теплее, они отдают дневное солнце": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түнде жартас жаны жылырақ, олар күндізгі күнді қайтарады"
+          }
+        }
+      }
+    },
+    "Ночью ударил мороз, трава под инеем. Нужно быстрее спуститься в долину Кеңгіра, где теплее и есть корм.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түнде аяз түсті, шөп қырау астында. Жылырақ әрі жемі бар Кеңгір аңғарына тезірек түсу керек."
+          }
+        }
+      }
+    },
+    "Ночью холодно, костры жгут из саксаула": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түнде суық, отты сексеуілден жағады"
+          }
+        }
+      }
+    },
+    "Нужно пройти пустыню до первого снега": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алғашқы қарға дейін шөлден өту керек"
+          }
+        }
+      }
+    },
+    "Нұрлан": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нұрлан"
+          }
+        }
+      }
+    },
+    "О приложении": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қолданба туралы"
+          }
+        }
+      }
+    },
+    "Обновить шаги": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қадамдарды жаңарту"
+          }
+        }
+      }
+    },
+    "Оразбай": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Оразбай"
+          }
+        }
+      }
+    },
+    "Осенняя миграция: стада идут на юг к зимовкам.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзгі көш: үйірлер оңтүстікке, қыстауға барады."
+          }
+        }
+      }
+    },
+    "Осенняя стоянка": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзгі қоныс"
+          }
+        }
+      }
+    },
+    "Осень · күз": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күз"
+          }
+        }
+      }
+    },
+    "Осень · күзеу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күз · күзеу"
+          }
+        }
+      }
+    },
+    "Осенью Бетпақдала другая: жара спала, полынь пахнет горько, а по ночам уже подмораживает. Главная опасность теперь не жажда, а ранний снег: если он ляжет на пустыню, скот не найдёт корма. Аул идёт быстро, от колодца к колодцу, и вместе с ним на юг идут тысячные стада сайгаков.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзде Бетпақдала басқаша: аптап басылды, жусан ащы иіс шығарады, түнде аяз түсе бастады. Енді басты қауіп – шөлдеу емес, ерте қар: шөлге қар жатса, мал жем таппайды. Ауыл құдықтан құдыққа тез жүреді, онымен бірге оңтүстікке мыңдаған киік үйірі кетіп барады."
+          }
+        }
+      }
+    },
+    "Осенью беркутчи ловят молодых птиц для охоты.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзде бүркітшілер аңға салу үшін жас құстарды ұстайды."
+          }
+        }
+      }
+    },
+    "Осенью жирный, охотники ждут его у воды.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзде семіз, аңшылар оны су басында күтеді."
+          }
+        }
+      }
+    },
+    "Осенью у архаров гон, бараны бьются рогами на скалах.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзде арқарлардың күйек кезі, қошқарлар жартаста мүйіз сүзіседі."
+          }
+        }
+      }
+    },
+    "Осенью у оленей рёв, его слышно за рекой.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзде бұғылардың күркіреуі өзеннің арғы бетінен естіледі."
+          }
+        }
+      }
+    },
+    "Останавливается на пойме по пути к местам гнездования.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұялайтын жерге бара жатып жайылмаға тоқтайды."
+          }
+        }
+      }
+    },
+    "Откройте приложение и начните кочевье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қолданбаны ашып, көшті бастаңыз"
+          }
+        }
+      }
+    },
+    "Отладка": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жөндеу"
+          }
+        }
+      }
+    },
+    "Отмена": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Болдырмау"
+          }
+        }
+      }
+    },
+    "Отъелся за лето и уже готовится залечь в нору до весны.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жаз бойы семіріп, көктемге дейін інге жатуға дайындалып жатыр."
+          }
+        }
+      }
+    },
+    "Отырар": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отырар"
+          }
+        }
+      }
+    },
+    "Отырар был одним из крупнейших городов Шёлкового пути. Здесь родился философ Әбу Насыр әл-Фараби, здесь собиралась библиотека, о которой ходили легенды. В 1219 году город полгода держал осаду войск Чингисхана. Сегодня от него остались холмы, черепки и тишина, но кочевники до сих пор делают здесь первую остановку.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Отырар Жібек жолындағы ең ірі қалалардың бірі болған. Мұнда философ Әбу Насыр әл-Фараби дүниеге келген, мұнда аңызға айналған кітапхана жиналған. 1219 жылы қала Шыңғыс хан әскерінің қоршауына жарты жыл төтеп берді. Бүгінде одан төбелер, сынық ыдыс пен тыныштық қалды, бірақ көшпенділер әлі күнге дейін алғашқы аялдаманы осында жасайды."
+          }
+        }
+      }
+    },
+    "Охотник-стрелок. Живёт у скал и знает каждую тропу до Сырдарьи. Присоединился к аулу, чтобы добывать дичь в дороге. Говорит, что рисунки на камнях оставил его предок.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мерген аңшы. Жартас маңында тұрады, Сырдарияға дейінгі әр соқпақты біледі. Жолда аң аулау үшін ауылға қосылды. Тастағы суреттерді өз бабасы салған дейді."
+          }
+        }
+      }
+    },
+    "Пастух с тобетом по кличке Ақтөс. На перевале он помог собрать разбредшихся овец и остался с аулом. Говорит, что его собака чует волка за версту.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақтөс атты төбеті бар қойшы. Асуда ол тарап кеткен қойларды жинауға көмектесіп, ауылмен қалды. Иті қасқырды бір шақырымнан сезеді дейді."
+          }
+        }
+      }
+    },
+    "Первый заморозок": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алғашқы үсік"
+          }
+        }
+      }
+    },
+    "Первый караван выходит на север": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алғашқы керуен солтүстікке шығады"
+          }
+        }
+      }
+    },
+    "Перевал Қаратау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қаратау асуы"
+          }
+        }
+      }
+    },
+    "Перевалили Қаратау, впереди долина": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қаратаудан астық, алда аңғар"
+          }
+        }
+      }
+    },
+    "Переправа через Сарысу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сарысу өткелі"
+          }
+        }
+      }
+    },
+    "Переправились до большой воды. Кузнец подарил двух верблюдов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үлкен суға дейін өтіп үлгердік. Ұста екі түйе сыйлады"
+          }
+        }
+      }
+    },
+    "Песчаная буря": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құм дауылы"
+          }
+        }
+      }
+    },
+    "По утрам трава седая от инея": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таңертең шөп қыраудан ағарып тұрады"
+          }
+        }
+      }
+    },
+    "Погонщик верблюдов. Зимовал в Бетпақдале с караванами и знает, какой колодец не замерзает. Пришёл с двумя верблюдами и остался: «одному в пустыне осенью тоскливо».": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түйеші. Бетпақдалада керуендермен қыстаған, қай құдықтың қатпайтынын біледі. Екі түйемен келіп, қалып қойды: «күзде шөлде жалғыз жүру қиын»."
+          }
+        }
+      }
+    },
+    "Подножие Ұлытау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытау етегі"
+          }
+        }
+      }
+    },
+    "Пойма Сарысу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сарысу жайылмасы"
+          }
+        }
+      }
+    },
+    "Показались синие горы Ұлытау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытаудың көк таулары көрінді"
+          }
+        }
+      }
+    },
+    "Половодье на Сарысу": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сарысудағы су тасқыны"
+          }
+        }
+      }
+    },
+    "Последний переход, впереди тугаи Сырдарьи": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соңғы көш, алда Сырдария тоғайы"
+          }
+        }
+      }
+    },
+    "Последний переход, трава по пояс": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соңғы көш, шөп белге жетеді"
+          }
+        }
+      }
+    },
+    "Последняя: %@. Загляните в маршрут.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соңғысы: %@. Бағытты қараңыз."
+          }
+        }
+      }
+    },
+    "Предгорья Қаратау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қаратау бөктері"
+          }
+        }
+      }
+    },
+    "Приложение попросит доступ к шагам и расстоянию в «Здоровье» и разрешение на уведомления, чтобы сообщать о стоянках и испытаниях. Данные остаются на устройстве.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қолданба «Денсаулықтағы» қадам мен қашықтыққа рұқсат және қоныстар мен сынақтар туралы хабарлау үшін хабарландыруға рұқсат сұрайды. Деректер құрылғыда қалады."
+          }
+        }
+      }
+    },
+    "Прогресс, стадо и события будут удалены. Шаги в «Здоровье» не затрагиваются.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Прогресс, мал және оқиғалар жойылады. «Денсаулықтағы» қадамдар өзгермейді."
+          }
+        }
+      }
+    },
+    "Пройдено. %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өтілді. %@"
+          }
+        }
+      }
+    },
+    "Просыпается в апреле и спешит наесться до летней жары.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сәуірде оянып, жаздың аптабына дейін тойынуға асығады."
+          }
+        }
+      }
+    },
+    "Проходим мимо старых курганов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ескі обалардың жанынан өтеміз"
+          }
+        }
+      }
+    },
+    "Пусто": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бос"
+          }
+        }
+      }
+    },
+    "Пустыня перед снегом": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қар алдындағы шөл"
+          }
+        }
+      }
+    },
+    "Развалины древнего города": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көне қала қирандылары"
+          }
+        }
+      }
+    },
+    "Разрешены": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Рұқсат етілген"
+          }
+        }
+      }
+    },
+    "Разрешить уведомления": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хабарландыруға рұқсат беру"
+          }
+        }
+      }
+    },
+    "Ранний снег в Бетпақдале": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бетпақдаладағы ерте қар"
+          }
+        }
+      }
+    },
+    "Расстояние": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қашықтық"
+          }
+        }
+      }
+    },
+    "Река Кеңгір": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кеңгір өзені"
+          }
+        }
+      }
+    },
+    "Река в половодье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тасыған өзен"
+          }
+        }
+      }
+    },
+    "Река осенью мелкая, переходим по колено": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзде өзен таяз, тізеден өтеміз"
+          }
+        }
+      }
+    },
+    "Река поднимается с каждым часом. Если успеть к броду до пика половодья, переправа обойдётся без потерь.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өзен сағат сайын көтеріліп жатыр. Тасқынның шыңына дейін өткелге үлгерсек, шығынсыз өтеміз."
+          }
+        }
+      }
+    },
+    "Река теряется в песках": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өзен құмға сіңіп кетеді"
+          }
+        }
+      }
+    },
+    "Роет корни камыша в пойме.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жайылмада қамыс тамырын қазады."
+          }
+        }
+      }
+    },
+    "Рудокоп с медных копей. Сезон закончился, шахты затопит талая вода, и он идёт на юг вместе с аулом. Носит с собой кусок малахита «на счастье» и умеет чинить всё, что из металла.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мыс кенішінің кеншісі. Маусым бітті, шахталарды еріген су басады, сондықтан ол ауылмен бірге оңтүстікке келеді. Өзімен «бақыт үшін» бір кесек малахит алып жүреді және металдан жасалғанның бәрін жөндей алады."
+          }
+        }
+      }
+    },
+    "Рыбак с низовьев Шу. Знает броды и умеет плести сети из конского волоса. Идёт с аулом до Сырдарьи, где рыбы больше, а зима мягче.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шудың төменгі ағысындағы балықшы. Өткелдерді біледі, ат қылынан ау тоқи алады. Балығы көп, қысы жұмсақ Сырдарияға дейін ауылмен бірге келеді."
+          }
+        }
+      }
+    },
+    "С": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "С"
+          }
+        }
+      }
+    },
+    "С гор налетел поздний снег. Стадо нельзя оставлять на открытом месте: нужно быстро дойти до укрытия в ущелье.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таудан кешігіп келген қар соқты. Малды ашық жерде қалдыруға болмайды: шатқалдағы паналайтын жерге тез жету керек."
+          }
+        }
+      }
+    },
+    "Сайгак": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Киік"
+          }
+        }
+      }
+    },
+    "Сайгаки идут на юг рядом с аулом": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Киіктер ауылмен қатар оңтүстікке барады"
+          }
+        }
+      }
+    },
+    "Самая тяжёлая летающая птица степи, весной самцы устраивают танцы.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Даланың ең ауыр ұшатын құсы, көктемде еркектері би билейді."
+          }
+        }
+      }
+    },
+    "Самый крупный дикий тюльпан в мире, цветёт всего две недели в апреле.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Әлемдегі ең ірі жабайы қызғалдақ, сәуірде небәрі екі апта гүлдейді."
+          }
+        }
+      }
+    },
+    "Самый маленький журавль, гнездится прямо на пастбищах.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ең кішкентай тырна, тікелей жайылымға ұя салады."
+          }
+        }
+      }
+    },
+    "Сарысу, «Жёлтая вода», весной разливается на километр. Переправа занимает целый день: сначала переводят лошадей, потом на плотах из бурдюков перевозят юрты и детей, последними идут верблюды. На берегу аул отдыхает три дня, а над поймой кричат журавли, летящие на север.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сарысу көктемде бір шақырымға тасиды. Өткел күні бойы созылады: алдымен жылқыларды өткізеді, содан кейін торсықтан жасалған салмен киіз үйлер мен балаларды тасиды, ең соңында түйелер өтеді. Жағада ауыл үш күн демалады, ал жайылма үстінде солтүстікке ұшқан тырналар дауыстайды."
+          }
+        }
+      }
+    },
+    "Сбросить": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тастау"
+          }
+        }
+      }
+    },
+    "Сбросить кочевье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көшті тастау"
+          }
+        }
+      }
+    },
+    "Сбросить кочевье?": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көшті тастайсыз ба?"
+          }
+        }
+      }
+    },
+    "Сегодня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бүгін"
+          }
+        }
+      }
+    },
+    "Сердце степи": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Даланың жүрегі"
+          }
+        }
+      }
+    },
+    "Серый журавль": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сұр тырна"
+          }
+        }
+      }
+    },
+    "Серік": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Серік"
+          }
+        }
+      }
+    },
+    "Сидит на курганах и высматривает сусликов.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Обада отырып, сарышұнақ аңдиды."
+          }
+        }
+      }
+    },
+    "Синхронизация": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Синхрондау"
+          }
+        }
+      }
+    },
+    "Сколько аул прошёл сегодня и к какой стоянке идёт.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл бүгін қанша жүрді және қай қонысқа бара жатыр."
+          }
+        }
+      }
+    },
+    "Скоро поставим юрты, и будет кумыс": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жақында киіз үй тігеміз, қымыз болады"
+          }
+        }
+      }
+    },
+    "Следующим присоединится %@ на стоянке %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Келесі болып %2$@ қонысында %1$@ қосылады"
+          }
+        }
+      }
+    },
+    "Слышно журавлей, значит, река близко": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тырна дауысы естіледі, демек өзен жақын"
+          }
+        }
+      }
+    },
+    "Снег лёг на пустыню раньше срока, скот не достаёт до травы. До низовьев Шу, где снега нет, нужно дойти быстро.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қар шөлге мерзімінен бұрын жатты, мал шөпке жете алмайды. Қары жоқ Шудың төменгі ағысына тез жету керек."
+          }
+        }
+      }
+    },
+    "Снег сошёл, река вскрылась, трава на зимовке съедена. Пора поднимать аул и вести его на север, к прохладным пастбищам Ұлытау. Впереди 520 километров степи, гор и пустыни.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қар кетті, өзен ашылды, қыстаудағы шөп таусылды. Ауылды көтеріп, солтүстікке, Ұлытаудың салқын жайлауына бастайтын кез келді. Алда 520 шақырым дала, тау және шөл."
+          }
+        }
+      }
+    },
+    "Снова Бетпақдала, но теперь без жары": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тағы Бетпақдала, бірақ енді аптапсыз"
+          }
+        }
+      }
+    },
+    "Собираем юрты…": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Киіз үйлерді жинап жатырмыз…"
+          }
+        }
+      }
+    },
+    "Собирается в большие группы перед зимой.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қыс алдында үлкен топтарға жиналады."
+          }
+        }
+      }
+    },
+    "Собирается в стаи и уходит на юг раньше аула.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Топқа жиналып, ауылдан бұрын оңтүстікке кетеді."
+          }
+        }
+      }
+    },
+    "Спускаемся с гор, впереди блестит Кеңгір": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таудан түсіп келеміз, алда Кеңгір жарқырайды"
+          }
+        }
+      }
+    },
+    "Спустились вовремя, ягнята не замёрзли": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уақытында түстік, қозылар үсіген жоқ"
+          }
+        }
+      }
+    },
+    "Спят под землёй до апреля, когда Қаратау снова зацветёт.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қаратау қайта гүлдейтін сәуірге дейін жер астында ұйықтайды."
+          }
+        }
+      }
+    },
+    "Среди степи поднимаются красные гранитные глыбы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала ортасынан қызыл гранит жартастар көтеріледі"
+          }
+        }
+      }
+    },
+    "Средний": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Орташа"
+          }
+        }
+      }
+    },
+    "Стадо": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мал"
+          }
+        }
+      }
+    },
+    "Стадо растёт с каждым километром": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мал әр шақырым сайын өседі"
+          }
+        }
+      }
+    },
+    "Стадо растёт с каждым километром пути и за пройденные испытания.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мал әр шақырым сайын және өткен сынақтар үшін өседі."
+          }
+        }
+      }
+    },
+    "Стадо укрыто, ни одна овца не потеряна": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Мал паналады, бірде-бір қой жоғалған жоқ"
+          }
+        }
+      }
+    },
+    "Старейшина аула. Он помнит каждую стоянку на этом пути и знает, где вода стоит близко, а где до неё копать три дня. Его слово решает, когда сниматься с места.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл ақсақалы. Ол осы жолдағы әр қонысты есінде сақтаған және су қай жерде жақын, қай жерде оны үш күн қазу керек екенін біледі. Қашан көшетінін оның сөзі шешеді."
+          }
+        }
+      }
+    },
+    "Старейшина аула. Осенью он торопит: «Кто выйдет поздно, того догонит снег в Бетпақдале». Он помнит год, когда аул опоздал на две недели и потерял половину овец.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ауыл ақсақалы. Күзде ол асықтырады: «Кеш шыққанды Бетпақдалада қар қуып жетеді». Ол ауыл екі аптаға кешігіп, қойдың жартысынан айырылған жылды есінде сақтаған."
+          }
+        }
+      }
+    },
+    "Статус": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күйі"
+          }
+        }
+      }
+    },
+    "Стая идёт за аулом третью ночь. Пастухи не спят. Чем быстрее аул дойдёт до людных мест у мавзолея, тем скорее волки отстанут.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үйір ауылдың соңынан үшінші түн еріп келеді. Қойшылар ұйықтамайды. Ауыл кесене маңындағы адамы көп жерге неғұрлым тез жетсе, қасқырлар соғұрлым тез қалып қояды."
+          }
+        }
+      }
+    },
+    "Стая идёт за стадом через пески. Чем быстрее аул дойдёт до людных мест у Түркістана, тем скорее волки отстанут.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үйір малдың соңынан құм арқылы еріп келеді. Ауыл Түркістан маңындағы адамы көп жерге неғұрлым тез жетсе, қасқырлар соғұрлым тез қалып қояды."
+          }
+        }
+      }
+    },
+    "Степная черепаха": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала тасбақасы"
+          }
+        }
+      }
+    },
+    "Степной волк": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала қасқыры"
+          }
+        }
+      }
+    },
+    "Степной орёл": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала қыраны"
+          }
+        }
+      }
+    },
+    "Степной пожар": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала өрті"
+          }
+        }
+      }
+    },
+    "Степной сурок, только что вылез из зимней норы и свистит при виде аула.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала суыры, қысқы інінен жаңа шықты, ауылды көріп ысқырады."
+          }
+        }
+      }
+    },
+    "Степь поднимается, впереди синеет хребет Қаратау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала биіктеп барады, алда Қаратау жотасы көгереді"
+          }
+        }
+      }
+    },
+    "Стоянки": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қоныстар"
+          }
+        }
+      }
+    },
+    "Стригут последних овец, шерсть сушится на юртах": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Соңғы қойларды қырқып жатыр, жүн киіз үйлерде кеуіп тұр"
+          }
+        }
+      }
+    },
+    "Сухую степь подожгла молния, дым стоит стеной. Огонь идёт по ветру, нужно уйти за скалы Теректі, где гореть нечему.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құрғақ даланы найзағай тұтатты, түтін қабырғадай тұр. Өрт желмен келеді, жанатын ештеңесі жоқ Теректі жартастарының артына кету керек."
+          }
+        }
+      }
+    },
+    "Сцены по местности": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жер бедері бойынша көріністер"
+          }
+        }
+      }
+    },
+    "Сцены по сезонам": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Маусым бойынша көріністер"
+          }
+        }
+      }
+    },
+    "Сырдария → Ұлытау": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сырдария → Ұлытау"
+          }
+        }
+      }
+    },
+    "Сәкен": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сәкен"
+          }
+        }
+      }
+    },
+    "Табун": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үйір"
+          }
+        }
+      }
+    },
+    "Темір": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Темір"
+          }
+        }
+      }
+    },
+    "Теректі Әулие": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Теректі Әулие"
+          }
+        }
+      }
+    },
+    "Теректі Әулие это гранитные скалы посреди степи, священное место. На гладком камне древние люди выбили сотни рисунков: лошадей, верблюдов, всадников, охотников с луками. Кочевники останавливались здесь, чтобы переночевать и попросить у духов лёгкой дороги. Считается, что кто проведёт ночь у Теректі, тому приснится вещий сон.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Теректі Әулие – дала ортасындағы гранит жартастар, киелі жер. Тегіс тасқа ежелгі адамдар жүздеген сурет қашаған: жылқы, түйе, салт атты, садақшы аңшылар. Көшпенділер мұнда түнеп, аруақтардан жеңіл жол сұрау үшін аялдайтын. Теректіде түнеген адам аян түс көреді деседі."
+          }
+        }
+      }
+    },
+    "Тестовое уведомление через 5 с": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 секундтан кейін сынақ хабарландыруы"
+          }
+        }
+      }
+    },
+    "Тобет": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Төбет"
+          }
+        }
+      }
+    },
+    "Трава кончилась, начинается Бетпақ-Дала": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шөп бітті, Бетпақдала басталады"
+          }
+        }
+      }
+    },
+    "Трава на жайляу пожелтела, по утрам на юртах иней. Овцы острижены, кумыс допит, пора поворачивать на юг. Аул уходит с Ұлытау к тёплым тугаям Сырдарьи, пока степь не накрыл первый снег. Впереди 520 километров пути домой.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жайлаудағы шөп сарғайды, таңертең киіз үйлерде қырау. Қой қырқылды, қымыз ішілді, оңтүстікке бұрылатын кез. Даланы алғашқы қар басқанша ауыл Ұлытаудан Сырдарияның жылы тоғайына кетеді. Алда үйге дейін 520 шақырым жол."
+          }
+        }
+      }
+    },
+    "Тугайный олень": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тоғай бұғысы"
+          }
+        }
+      }
+    },
+    "Тюльпан Грейга": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Грейг қызғалдағы"
+          }
+        }
+      }
+    },
+    "Түйеші": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түйеші"
+          }
+        }
+      }
+    },
+    "Түркістан": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түркістан"
+          }
+        }
+      }
+    },
+    "Түркістан был духовной столицей степи. Мавзолей Қожа Ахмета Ясауи построил Тимур в конце XIV века: купол в 18 метров, двухтонный бронзовый казан, стены из глазурованного кирпича. Говорили, что три паломничества сюда равны одному хаджу. Кочевники осенью приходили в город на базар и к святыне, а потом расходились по зимовкам вдоль Сырдарьи.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түркістан даланың рухани астанасы болған. Қожа Ахмет Ясауи кесенесін XIV ғасырдың соңында Темір салдырған: 18 метрлік күмбез, екі тонналық қола тайқазан, сырлы кірпіштен қаланған қабырғалар. Мұнда үш рет зиярат ету бір қажылыққа тең деген. Күзде көшпенділер қалаға базарға және әулиеге келіп, кейін Сырдария бойындағы қыстауларға тарайтын."
+          }
+        }
+      }
+    },
+    "У колодца аул нашёл отбившихся от чужого табуна лошадей": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құдық жанынан ауыл бөтен үйірден адасқан жылқыларды тапты"
+          }
+        }
+      }
+    },
+    "У подножия Ұлытау стоят мавзолеи Алаша-хана и Жошы-хана, сына Чингисхана. По легенде, именно здесь Алаша-хан разделил народ на три жуза, и здесь поднимали на белой кошме казахских ханов. Каждый аул, проходя мимо, останавливается, чтобы прочитать молитву и повязать ленту на священное дерево.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытау етегінде Алаша хан мен Шыңғыс ханның ұлы Жошы ханның кесенелері тұр. Аңыз бойынша, дәл осында Алаша хан халықты үш жүзге бөлген және осында қазақ хандарын ақ киізге көтерген. Жанынан өткен әрбір ауыл дұға оқып, киелі ағашқа шүберек байлау үшін тоқтайды."
+          }
+        }
+      }
+    },
+    "Уведомления": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хабарландырулар"
+          }
+        }
+      }
+    },
+    "Удод": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бәбісек"
+          }
+        }
+      }
+    },
+    "Уже зарылась на зиму, увидеть её осенью удача.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қысқа қарай көміліп үлгерген, күзде оны көру – бақыт."
+          }
+        }
+      }
+    },
+    "Ученик медресе при мавзолее. Едет на зимовку к родне и по дороге учит детей аула читать. Носит с собой рукописный диван Ясауи и читает хикметы у костра.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кесене жанындағы медресе шәкірті. Қыстауға туыстарына бара жатыр, жолда ауыл балаларын оқуға үйретеді. Өзімен Ясауидің қолжазба диуанын алып жүреді және от басында хикметтер оқиды."
+          }
+        }
+      }
+    },
+    "Ушастый ёж": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құлақты кірпі"
+          }
+        }
+      }
+    },
+    "Ушли от огня. К аулу прибились лошади, бежавшие от пожара": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өрттен құтылдық. Ауылға өрттен қашқан жылқылар қосылды"
+          }
+        }
+      }
+    },
+    "Фазан": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қырғауыл"
+          }
+        }
+      }
+    },
+    "Хангул, редкий олень пойменных лесов Сырдарьи.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Хангул, Сырдария жайылма ормандарының сирек бұғысы."
+          }
+        }
+      }
+    },
+    "Ходит по тропам аула, как и весной.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Көктемдегідей ауыл соқпағымен жүреді."
+          }
+        }
+      }
+    },
+    "Хозяин камышовых зарослей, зимой ходит по тропам аула.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қамыс нуының иесі, қыста ауыл соқпағымен жүреді."
+          }
+        }
+      }
+    },
+    "Хребет Қаратау встречает аул красными полями тюльпанов Грейга: их родина именно здесь. На скалах ущелья Арпаөзен древние люди выбили тысячи рисунков с архарами, всадниками и колесницами. Перевал крутой, верблюдов ведут по одному, зато с вершины видно всю дорогу назад, до самой реки.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қаратау жотасы ауылды Грейг қызғалдағының қызыл алқабымен қарсы алады: олардың отаны дәл осы жер. Арпаөзен шатқалының жартастарында ежелгі адамдар арқар, салт атты және арба бейнеленген мыңдаған сурет қашаған. Асу тік, түйелерді бір-бірлеп жетелейді, есесіне шыңнан артқа қарай өзенге дейінгі бүкіл жол көрінеді."
+          }
+        }
+      }
+    },
+    "Целительница, живущая у мавзолея. Лечит травами и знает старые обряды. Присоединилась к аулу, потому что «у Ұлытау этим летом будет много детей, и кто-то должен их встретить».": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кесене жанында тұратын емші. Шөппен емдейді, ескі ырымдарды біледі. «Биыл жазда Ұлытауда бала көп туады, оларды біреу қарсы алуы керек» деп ауылға қосылды."
+          }
+        }
+      }
+    },
+    "Шаги и расстояние": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қадам мен қашықтық"
+          }
+        }
+      }
+    },
+    "Шопан": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шопан"
+          }
+        }
+      }
+    },
+    "Шу начинается в горах Тянь-Шаня, а здесь, на краю Мойынқұма, теряется в песках и солончаках. Осенью река мелеет, и переправа проста. В тугаях по берегам кочевники запасали камыш для зимних загонов и ловили рыбу. Дальше начинаются пески Мойынқұма, последний трудный переход перед Қаратау.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шу Тянь-Шань тауларынан басталып, мұнда, Мойынқұмның шетінде, құм мен сорға сіңіп кетеді. Күзде өзен таязданады, өткел оңай. Жағадағы тоғайда көшпенділер қысқы қораға қамыс дайындап, балық аулайтын. Әрі қарай Мойынқұм құмы басталады – Қаратау алдындағы соңғы қиын көш."
+          }
+        }
+      }
+    },
+    "Шәкірт": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шәкірт"
+          }
+        }
+      }
+    },
+    "Экран блокировки": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құлып экраны"
+          }
+        }
+      }
+    },
+    "Юрты стоят на склоне Ұлытау, кобылиц отпустили в табун, скоро первый кумыс. Кочевье окончено.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Киіз үйлер Ұлытау беткейінде тұр, биелер үйірге жіберілді, жақында алғашқы қымыз. Көш аяқталды."
+          }
+        }
+      }
+    },
+    "Язык меняется в настройках iOS. Доступны русский и казахский.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Тіл iOS баптауларында өзгертіледі. Орыс және қазақ тілдері бар."
+          }
+        }
+      }
+    },
+    "Язык приложения": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қолданба тілі"
+          }
+        }
+      }
+    },
+    "верблюды": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "түйе"
+          }
+        }
+      }
+    },
+    "до %@ %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ дейін %@ км"
+          }
+        }
+      }
+    },
+    "до стоянки %@ %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ қонысына дейін %@ км"
+          }
+        }
+      }
+    },
+    "из %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "барлығы %@ км"
+          }
+        }
+      }
+    },
+    "из «Здоровья»": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Денсаулықтан»"
+          }
+        }
+      }
+    },
+    "км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "км"
+          }
+        }
+      }
+    },
+    "лошади": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "жылқы"
+          }
+        }
+      }
+    },
+    "маршрут пройден": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "бағыт өтілді"
+          }
+        }
+      }
+    },
+    "овцы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "қой"
+          }
+        }
+      }
+    },
+    "осталось %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ қалды"
+          }
+        }
+      }
+    },
+    "по шагам": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "қадам бойынша"
+          }
+        }
+      }
+    },
+    "последний день": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "соңғы күн"
+          }
+        }
+      }
+    },
+    "через %@ км · %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км-ден кейін · %@"
+          }
+        }
+      }
+    },
+    "Қайрат": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қайрат"
+          }
+        }
+      }
+    },
+    "Қыстау на Сырдарье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сырдариядағы қыстау"
+          }
+        }
+      }
+    },
+    "Құдықшы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құдықшы"
+          }
+        }
+      }
+    },
+    "Ұлы Көш": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлы Көш"
+          }
+        }
+      }
+    },
+    "Ұлы Көш: начните кочевье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлы Көш: көшті бастаңыз"
+          }
+        }
+      }
+    },
+    "Ұлытау → Сырдария": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытау → Сырдария"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

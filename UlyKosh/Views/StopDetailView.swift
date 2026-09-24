@@ -33,7 +33,7 @@ struct StopDetailView: View {
 
                         if !stop.fauna.isEmpty {
                             VStack(alignment: .leading, spacing: 14) {
-                                SectionTitle(text: "Кого здесь встретишь")
+                                SectionTitle(text: String(localized: "Кого здесь встретишь"))
                                 ForEach(stop.fauna) { fauna in
                                     HStack(alignment: .top, spacing: 12) {
                                         PictogramView(kind: fauna.icon, size: 30)
@@ -54,7 +54,7 @@ struct StopDetailView: View {
 
                         if let person = stop.character {
                             VStack(alignment: .leading, spacing: 14) {
-                                SectionTitle(text: "К аулу присоединяется")
+                                SectionTitle(text: String(localized: "К аулу присоединяется"))
                                 CharacterCard(character: person)
                             }
                             .padding(.top, 8)

@@ -17,7 +17,7 @@ struct HomeView: View {
                             .font(.display(20, weight: .regular))
                             .foregroundStyle(Color.parchment.opacity(0.85))
                             .padding(.top, 22)
-                        Text("\(Date.now.formatted(.dateTime.day().month(.wide).locale(Locale(identifier: "ru_RU")))) · \(Season.current().title)")
+                        Text("\(Date.now.formatted(.dateTime.day().month(.wide))) · \(Season.current().title)")
                             .font(.system(size: 12))
                             .foregroundStyle(Color.ash)
 

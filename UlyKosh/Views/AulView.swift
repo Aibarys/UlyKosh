@@ -7,7 +7,7 @@ struct AulView: View {
         NavigationStack {
             ScrollView {
                 VStack(alignment: .leading, spacing: 28) {
-                    ScreenHeader(title: engine.state?.aulName ?? "Аул", subtitle: "День \(engine.dayNumber) · \(Fmt.km(engine.totalKm)) км пути")
+                    ScreenHeader(title: engine.state?.aulName ?? "Аул", subtitle: String(localized: "День \(engine.dayNumber) · \(Fmt.km(engine.totalKm)) км пути"))
 
                     herdSection
                     peopleSection
@@ -24,11 +24,11 @@ struct AulView: View {
 
     private var herdSection: some View {
         VStack(alignment: .leading, spacing: 14) {
-            SectionTitle(text: "Стадо")
+            SectionTitle(text: String(localized: "Стадо"))
             HStack(spacing: 0) {
-                HerdTile(icon: .sheep, count: engine.herd.sheep, name: "овцы")
-                HerdTile(icon: .horse, count: engine.herd.horses, name: "лошади")
-                HerdTile(icon: .camel, count: engine.herd.camels, name: "верблюды")
+                HerdTile(icon: .sheep, count: engine.herd.sheep, name: String(localized: "овцы"))
+                HerdTile(icon: .horse, count: engine.herd.horses, name: String(localized: "лошади"))
+                HerdTile(icon: .camel, count: engine.herd.camels, name: String(localized: "верблюды"))
             }
             .panel()
             Text("Стадо растёт с каждым километром пути и за пройденные испытания.")
@@ -39,7 +39,7 @@ struct AulView: View {
 
     private var peopleSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionTitle(text: "Люди аула · \(engine.joinedCharacters.count)")
+            SectionTitle(text: String(localized: "Люди аула · \(engine.joinedCharacters.count)"))
             ForEach(engine.joinedCharacters) { person in
                 CharacterCard(character: person)
                 if person.id != engine.joinedCharacters.last?.id {
@@ -59,7 +59,7 @@ struct AulView: View {
 
     private var eventsSection: some View {
         VStack(alignment: .leading, spacing: 16) {
-            SectionTitle(text: "Испытания")
+            SectionTitle(text: String(localized: "Испытания"))
             ForEach(engine.route.events) { event in
                 HStack(alignment: .top, spacing: 12) {
                     PictogramView(kind: event.icon, size: 24, tint: statusColor(for: event))
@@ -79,10 +79,10 @@ struct AulView: View {
 
     private func statusText(for event: RouteEvent) -> String {
         switch engine.status(of: event) {
-        case .none: return "Ждёт на \(Fmt.km(event.triggerKm)) км"
-        case .active: return "Идёт сейчас: \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days))"
-        case .completed: return "Пройдено. \(event.rewardText)"
-        case .failed: return "Не успели. Аул справился, но без награды"
+        case .none: return String(localized: "Ждёт на \(Fmt.km(event.triggerKm)) км")
+        case .active: return String(localized: "Идёт сейчас: \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days))")
+        case .completed: return String(localized: "Пройдено. \(event.rewardText)")
+        case .failed: return String(localized: "Не успели. Аул справился, но без награды")
         }
     }
 
