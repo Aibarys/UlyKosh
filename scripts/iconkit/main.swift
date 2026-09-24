@@ -62,6 +62,7 @@ func riderPath() -> CGPath {
 }
 
 func render(variant: String) -> CGImage {
+    if variant == "launch" { return renderLaunch() }
     let cs = CGColorSpace(name: CGColorSpace.sRGB)!
     let ctx = CGContext(data: nil, width: Int(size), height: Int(size), bitsPerComponent: 8, bytesPerRow: 0, space: cs,
                         bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
@@ -79,18 +80,8 @@ func render(variant: String) -> CGImage {
         ctx.drawRadialGradient(grad, startCenter: CGPoint(x: size / 2, y: size * 0.55), startRadius: 0, endCenter: CGPoint(x: size / 2, y: size * 0.55), endRadius: size * 0.7, options: [])
     }
 
-    // рамка: двойная линия с отступом, как на карте
-    let outer = CGRect(x: 0, y: 0, width: size, height: size).insetBy(dx: size * 0.075, dy: size * 0.075)
-    let inner = outer.insetBy(dx: size * 0.018, dy: size * 0.018)
-    ctx.setStrokeColor(ink.copy(alpha: 0.9)!)
-    ctx.setLineWidth(size * 0.010)
-    ctx.stroke(outer)
-    ctx.setStrokeColor(ink.copy(alpha: 0.45)!)
-    ctx.setLineWidth(size * 0.005)
-    ctx.stroke(inner)
-
     // всадник: система 100×100 в квадрат 62% иконки, смотрит вправо
-    let scale = size * 0.62 / 100
+    let scale = size * 0.66 / 100
     ctx.saveGState()
     ctx.translateBy(x: (size - 100 * scale) / 2, y: (size - 100 * scale) / 2 + size * 0.02)
     ctx.scaleBy(x: scale, y: scale)
@@ -111,12 +102,40 @@ func render(variant: String) -> CGImage {
     return ctx.makeImage()!
 }
 
+/// Экран запуска: чёрный фон, небольшой всадник и линия земли, центр чуть выше середины.
+func renderLaunch() -> CGImage {
+    let cs = CGColorSpace(name: CGColorSpace.sRGB)!
+    let side: CGFloat = 1024
+    let ctx = CGContext(data: nil, width: Int(side), height: Int(side), bitsPerComponent: 8, bytesPerRow: 0, space: cs,
+                        bitmapInfo: CGImageAlphaInfo.premultipliedLast.rawValue)!
+    ctx.translateBy(x: 0, y: side)
+    ctx.scaleBy(x: 1, y: -1)
+    // прозрачный фон: цвет фона задаёт сам экран запуска
+    let scale = side * 0.34 / 100
+    ctx.saveGState()
+    ctx.translateBy(x: (side - 100 * scale) / 2, y: (side - 100 * scale) / 2)
+    ctx.scaleBy(x: scale, y: scale)
+    ctx.setFillColor(gold)
+    ctx.addPath(riderPath())
+    ctx.fillPath(using: .winding)
+    ctx.restoreGState()
+    ctx.setStrokeColor(gold.copy(alpha: 0.7)!)
+    ctx.setLineWidth(side * 0.004)
+    ctx.setLineCap(.round)
+    let groundY = (side - 100 * scale) / 2 + 92 * scale + side * 0.008
+    ctx.move(to: CGPoint(x: side * 0.34, y: groundY))
+    ctx.addLine(to: CGPoint(x: side * 0.66, y: groundY))
+    ctx.strokePath()
+    return ctx.makeImage()!
+}
+
 let outDir = CommandLine.arguments.dropFirst().first ?? "."
-for variant in ["light", "dark", "tinted"] {
+for variant in ["light", "dark", "tinted", "launch"] {
     let img = render(variant: variant)
     let rep = NSBitmapImageRep(cgImage: img)
     let data = rep.representation(using: .png, properties: [:])!
-    let url = URL(fileURLWithPath: outDir).appendingPathComponent("AppIcon-\(variant).png")
+    let name = variant == "launch" ? "LaunchRider.png" : "AppIcon-\(variant).png"
+    let url = URL(fileURLWithPath: outDir).appendingPathComponent(name)
     try! data.write(to: url)
     print("wrote", url.path)
 }

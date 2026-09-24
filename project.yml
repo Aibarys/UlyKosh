@@ -25,7 +25,10 @@ targets:
       properties:
         CFBundleDisplayName: Ұлы Көш
         CFBundleDevelopmentRegion: ru
-        UILaunchScreen: {}
+        UILaunchScreen:
+          UIColorName: LaunchBackground
+          UIImageName: LaunchRider
+          UIImageRespectsSafeAreaInsets: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         NSHealthShareUsageDescription: "Ұлы Көш читает количество шагов, чтобы превращать их в километры пути вашего аула."
         NSHealthUpdateUsageDescription: "Приложение не записывает данные в Здоровье."
