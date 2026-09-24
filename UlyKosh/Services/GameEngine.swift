@@ -56,7 +56,13 @@ final class GameEngine {
         } else if state?.healthRequested == true {
             healthStatus = .requested
         }
-        if state != nil { await syncSteps() }
+        if state != nil {
+            // Повторный запрос ничего не показывает, если доступ уже определён, но подхватывает новые типы данных.
+            if health.isAvailable, state?.healthRequested == true {
+                try? await health.requestAuthorization()
+            }
+            await syncSteps()
+        }
     }
 
     private func startObservingIfPossible() {
@@ -105,18 +111,29 @@ final class GameEngine {
     func syncSteps() async {
         guard let snapshot = state else { return }
         if health.isAvailable {
-            do {
-                let perDay = try await health.stepsPerDay(from: snapshot.startDate, to: .now)
-                // Пока ждали HealthKit, состояние могло измениться, поэтому перечитываем.
-                guard var current = state else { return }
-                for (day, steps) in perDay {
-                    current.healthSteps[DayKey.key(day)] = steps
-                }
-                state = current
+            // Шаги и расстояние читаем независимо: отказ по одному типу не должен ломать другой.
+            async let stepsResult: Result<[Date: Int], Error> = {
+                do { return .success(try await health.stepsPerDay(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
+            }()
+            async let distanceResult: Result<[Date: Double], Error> = {
+                do { return .success(try await health.distanceKmPerDay(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
+            }()
+            let (steps, distance) = await (stepsResult, distanceResult)
+            // Пока ждали HealthKit, состояние могло измениться, поэтому перечитываем.
+            guard var current = state else { return }
+            if case let .success(perDay) = steps {
+                for (day, n) in perDay { current.healthSteps[DayKey.key(day)] = n }
+            }
+            if case let .success(perDay) = distance {
+                for (day, km) in perDay { current.healthDistanceKm[DayKey.key(day)] = km }
+            }
+            state = current
+            switch (steps, distance) {
+            case (.failure(let e), .failure):
+                lastError = e.localizedDescription
+            default:
                 lastSync = .now
                 lastError = nil
-            } catch {
-                lastError = error.localizedDescription
             }
         }
         evaluateAndNotify()
@@ -154,10 +171,28 @@ final class GameEngine {
 
     // MARK: - Производные величины
 
+    /// Километры за день: расстояние из «Здоровья», а если его за этот день нет — шаги × длина шага.
+    /// Отладочные шаги всегда добавляются через длину шага.
+    private static func walkedKm(on key: String, in s: GameState) -> Double {
+        let health: Double
+        if let km = s.healthDistanceKm[key], km > 0 {
+            health = km
+        } else {
+            health = Double(s.healthSteps[key] ?? 0) * s.strideMeters / 1000
+        }
+        return health + Double(s.debugSteps[key] ?? 0) * s.strideMeters / 1000
+    }
+
     private func rawKm(_ s: GameState) -> Double {
-        let steps = s.healthSteps.values.reduce(0, +) + s.debugSteps.values.reduce(0, +)
-        let stepKm = Double(steps) * s.strideMeters / 1000
-        return stepKm + Double(daysElapsed(s)) * Self.passiveKmPerDay
+        let keys = Set(s.healthSteps.keys).union(s.healthDistanceKm.keys).union(s.debugSteps.keys)
+        let walked = keys.reduce(0.0) { $0 + Self.walkedKm(on: $1, in: s) }
+        return walked + Double(daysElapsed(s)) * Self.passiveKmPerDay
+    }
+
+    /// Есть ли за сегодня данные о расстоянии из «Здоровья».
+    var usesHealthDistance: Bool {
+        guard let s = state else { return false }
+        return (s.healthDistanceKm[DayKey.key(.now)] ?? 0) > 0
     }
 
     private func daysElapsed(_ s: GameState) -> Int {
@@ -178,7 +213,10 @@ final class GameEngine {
         return (s.healthSteps[key] ?? 0) + (s.debugSteps[key] ?? 0)
     }
 
-    var kmToday: Double { Double(stepsToday) * (state?.strideMeters ?? 0.7) / 1000 }
+    var kmToday: Double {
+        guard let s = state else { return 0 }
+        return Self.walkedKm(on: DayKey.key(.now), in: s)
+    }
 
     var reachedStops: [Stop] { route.stops.filter { $0.km <= totalKm } }
     var currentStop: Stop { reachedStops.last ?? route.stops[0] }

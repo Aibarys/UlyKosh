@@ -13,18 +13,11 @@ struct SettingsView: View {
                 Section("Аул") {
                     TextField("Название аула", text: $aulName)
                         .onSubmit { engine.rename(aulName) }
-                    Stepper(value: $stride, in: 0.5...0.9, step: 0.05) {
-                        HStack {
-                            Text("Длина шага")
-                            Spacer()
-                            Text(String(format: "%.2f м", stride)).foregroundStyle(Color.ash)
-                        }
-                    }
-                    .onChange(of: stride) { _, value in engine.setStride(value) }
                 }
 
-                Section("Шаги") {
+                Section("Шаги и расстояние") {
                     LabeledContent("Источник", value: healthText)
+                    LabeledContent("Расстояние", value: engine.usesHealthDistance ? "из «Здоровья»" : "по шагам")
                     if let sync = engine.lastSync {
                         LabeledContent("Синхронизация", value: sync.formatted(date: .omitted, time: .shortened))
                     }
@@ -68,6 +61,20 @@ struct SettingsView: View {
                     Button("Сбросить кочевье", role: .destructive) { showResetConfirm = true }
                 } footer: {
                     Text("Прогресс, стадо и события будут удалены. Шаги в «Здоровье» не затрагиваются.")
+                }
+
+                Section("Длина шага") {
+                    Stepper(value: $stride, in: 0.5...0.9, step: 0.05) {
+                        HStack {
+                            Text("Запасной коэффициент")
+                            Spacer()
+                            Text(String(format: "%.2f м", stride)).foregroundStyle(Color.ash)
+                        }
+                    }
+                    .onChange(of: stride) { _, value in engine.setStride(value) }
+                    Text("Используется только для дней, за которые в «Здоровье» нет данных о расстоянии.")
+                        .font(.footnote)
+                        .foregroundStyle(Color.ash)
                 }
 
                 Section("О приложении") {

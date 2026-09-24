@@ -23,7 +23,7 @@
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Ұлы Көш читает количество шагов, чтобы превращать их в километры пути вашего аула.</string>
+	<string>Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего аула.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Приложение не записывает данные в Здоровье.</string>
 	<key>UILaunchScreen</key>

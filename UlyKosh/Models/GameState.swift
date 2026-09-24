@@ -11,9 +11,12 @@ struct GameState: Codable {
     var routeId: String
     var aulName: String
     var startDate: Date
+    /// Запасной коэффициент: используется только для дней без данных о расстоянии и для отладочных шагов.
     var strideMeters: Double = 0.7
     /// Шаги по дням из HealthKit, ключ — "yyyy-MM-dd".
     var healthSteps: [String: Int] = [:]
+    /// Пройденные километры по дням из HealthKit. Основной источник расстояния.
+    var healthDistanceKm: [String: Double] = [:]
     /// Шаги, добавленные вручную в отладочном режиме.
     var debugSteps: [String: Int] = [:]
     var eventStatus: [String: EventStatus] = [:]
@@ -36,6 +39,7 @@ struct GameState: Codable {
         startDate = try c.decode(Date.self, forKey: .startDate)
         strideMeters = try c.decodeIfPresent(Double.self, forKey: .strideMeters) ?? 0.7
         healthSteps = try c.decodeIfPresent([String: Int].self, forKey: .healthSteps) ?? [:]
+        healthDistanceKm = try c.decodeIfPresent([String: Double].self, forKey: .healthDistanceKm) ?? [:]
         debugSteps = try c.decodeIfPresent([String: Int].self, forKey: .debugSteps) ?? [:]
         eventStatus = try c.decodeIfPresent([String: EventStatus].self, forKey: .eventStatus) ?? [:]
         herdBonus = try c.decodeIfPresent(HerdDelta.self, forKey: .herdBonus) ?? .zero
