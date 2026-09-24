@@ -86,9 +86,10 @@ struct SceneView: View {
 
                     ForEach(figures) { figure in
                         let motion = figure.motion(at: time)
+                        let slope = Self.slopeDegrees(ground, at: figure.t, width: w, height: h)
                         PictogramView(kind: figure.icon, size: figure.size, tint: .black)
                             .scaleEffect(x: figure.flip ? -1 : 1)
-                            .rotationEffect(.degrees(motion.tilt), anchor: .bottom)
+                            .rotationEffect(.degrees(motion.tilt + slope), anchor: .bottom)
                             .position(x: w * figure.t, y: h * ground(figure.t) - figure.size * 0.5 + 2 + motion.lift)
                     }
 
@@ -105,6 +106,15 @@ struct SceneView: View {
             }
         }
         .clipped()
+    }
+
+    /// Уклон земли под фигурой в градусах, чтобы она стояла вдоль склона, а не висела над ним.
+    private static func slopeDegrees(_ ground: (Double) -> Double, at t: Double, width: CGFloat, height: CGFloat) -> Double {
+        let eps = 0.012
+        let dy = (ground(min(1, t + eps)) - ground(max(0, t - eps))) * Double(height)
+        let dx = 2 * eps * Double(width)
+        let degrees = atan2(dy, dx) * 180 / .pi
+        return max(-16, min(16, degrees))
     }
 
     private struct Figure: Identifiable {
@@ -147,12 +157,19 @@ struct SceneView: View {
             list += [Figure(t: 0.72, icon: .tree, size: 34, motion: .sway), Figure(t: 0.95, icon: .horse, size: 20, flip: true)]
         }
         if showCaravan {
+            // Начало каравана на ровном участке; впереди всадник (это вы), за ним верблюды, позади овцы.
+            let start: Double
+            switch terrain {
+            case .ruins: start = 0.58
+            case .pasture: start = 0.30
+            default: start = 0.36
+            }
             list += [
-                Figure(t: 0.40, icon: .camel, size: 30),
-                Figure(t: 0.47, icon: .camel, size: 27),
-                Figure(t: 0.54, icon: .horse, size: 24),
-                Figure(t: 0.595, icon: .sheep, size: 14),
-                Figure(t: 0.625, icon: .sheep, size: 13)
+                Figure(t: start, icon: .sheep, size: 13),
+                Figure(t: start + 0.03, icon: .sheep, size: 14),
+                Figure(t: start + 0.09, icon: .camel, size: 27),
+                Figure(t: start + 0.16, icon: .camel, size: 30),
+                Figure(t: start + 0.25, icon: .rider, size: 32)
             ]
         }
         return list
@@ -165,9 +182,12 @@ enum TerrainProfile {
         switch terrain {
         case .river: return { 0.80 + 0.015 * sin($0 * 7) }
         case .ruins: return { x in
-            if x < 0.28 { return 0.60 }
-            if x < 0.46 { return 0.60 + (x - 0.28) / 0.18 * 0.22 }
-            return 0.82 + 0.012 * sin(x * 12)
+            if x < 0.24 { return 0.66 }
+            if x < 0.52 {
+                let f = (x - 0.24) / 0.28
+                return 0.66 + (0.5 - 0.5 * cos(f * .pi)) * 0.15
+            }
+            return 0.81 + 0.01 * sin(x * 12)
         }
         case .mountains: return { 0.70 + 0.10 * $0 + 0.02 * sin($0 * 9) }
         case .desert: return { 0.82 + 0.03 * sin($0 * 4 + 1) }
@@ -238,10 +258,10 @@ struct StructuresShape: Shape {
 
         switch terrain {
         case .ruins:
-            let top = h * 0.60
-            path.addRect(CGRect(x: w * 0.05, y: top - h * 0.08, width: w * 0.20, height: h * 0.09))
-            path.addRect(CGRect(x: w * 0.09, y: top - h * 0.15, width: w * 0.05, height: h * 0.08))
-            for i in 0..<5 {
+            let top = h * 0.66
+            path.addRect(CGRect(x: w * 0.04, y: top - h * 0.08, width: w * 0.18, height: h * 0.09))
+            path.addRect(CGRect(x: w * 0.08, y: top - h * 0.15, width: w * 0.05, height: h * 0.08))
+            for i in 0..<4 {
                 path.addRect(CGRect(x: w * (0.05 + Double(i) * 0.045), y: top - h * 0.10, width: w * 0.02, height: h * 0.025))
             }
         case .mausoleum:

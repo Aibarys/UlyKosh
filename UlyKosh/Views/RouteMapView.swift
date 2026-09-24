@@ -91,7 +91,7 @@ struct CaravanMarker: View {
                     .fill(Color.gold.opacity(0.35))
                     .frame(width: 30, height: 30)
                     .blur(radius: 8)
-                PictogramView(kind: .camel, size: 24, tint: .gold)
+                PictogramView(kind: .rider, size: 26, tint: .gold)
                     .offset(y: CGFloat(sin(t * 5)) * 1.2)
                     .rotationEffect(.degrees(sin(t * 2.5) * 2))
             }

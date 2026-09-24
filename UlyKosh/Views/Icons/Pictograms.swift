@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Пиктограммы в духе петроглифов Тамғалы. Рисуются в квадрате 100×100, ось Y вниз, животные смотрят вправо.
 enum Pictogram: String, Codable, CaseIterable {
-    case camel, horse, sheep, ram, saiga, gazelle, deer, wolf, boar, dog
+    case camel, horse, rider, sheep, ram, saiga, gazelle, deer, wolf, boar, dog
     case eagle, crane, bird, tortoise, hedgehog, marmot
     case yurt, tree, spruce, reeds, mausoleum, ruins, tulip
     case elder, dombra, well, hammer, crescent
@@ -15,6 +15,7 @@ enum Pictogram: String, Codable, CaseIterable {
         switch self {
         case .camel: return "Верблюд"
         case .horse: return "Лошадь"
+        case .rider: return "Всадник"
         case .sheep: return "Овца"
         case .ram: return "Архар"
         case .saiga: return "Сайгак"
@@ -145,31 +146,32 @@ private enum PictogramLibrary {
                     (52, 32), (58, 26), (64, 28), (70, 38), (76, 42),
                     (80, 36), (84, 26), (88, 18), (94, 16), (100, 20), (98, 26), (92, 30), (88, 34), (84, 44), (80, 54),
                     (74, 60), (60, 64), (40, 64), (24, 62), (14, 62)])
-            b.leg(66, 60, 92, width: 6, lean: 0)
-            b.leg(76, 58, 92, width: 6, lean: 3)
-            b.leg(22, 60, 92, width: 6, lean: -3)
-            b.leg(32, 62, 92, width: 6, lean: 0)
+            b.leg(66, 53, 92, width: 6, lean: 0)
+            b.leg(76, 51, 92, width: 6, lean: 3)
+            b.leg(22, 53, 92, width: 6, lean: -3)
+            b.leg(32, 55, 92, width: 6, lean: 0)
             b.poly([(10, 56), (15, 56), (11, 70), (7, 69)])
 
         case .horse:
-            b.poly([(14, 50), (22, 44), (34, 40), (50, 38), (64, 40), (72, 36), (78, 26), (84, 18), (90, 16), (98, 20), (100, 26), (94, 30),
-                    (88, 34), (82, 42), (78, 52), (70, 58), (50, 60), (30, 60), (20, 58)])
-            b.poly([(70, 38), (69, 31), (74, 26), (79, 20), (84, 17), (87, 21), (82, 25), (78, 31), (76, 38)])
-            b.poly([(85, 18), (87, 11), (90, 17)])
-            b.poly([(90, 17), (93, 11), (95, 17)])
-            b.poly([(14, 50), (20, 50), (17, 64), (15, 78), (8, 77), (9, 62)])
-            b.leg(24, 58, 92, width: 6, lean: -3)
-            b.leg(32, 58, 92, width: 6, lean: 1)
-            b.leg(62, 58, 92, width: 6, lean: -1)
-            b.leg(70, 56, 92, width: 6, lean: 3)
+            horseBody(&b)
+
+        case .rider:
+            horseBody(&b)
+            // Седок: торс, голова в колпаке, рука с поводом, нога вдоль бока
+            b.poly([(45, 42), (58, 42), (56, 20), (47, 20)])
+            b.ellipse(52, 13, 6, 6)
+            b.poly([(45, 12), (52, 1), (59, 12)])
+            b.bar((55, 25), (69, 32), width: 4)
+            b.bar((48, 41), (45, 62), width: 4.5)
+            b.poly([(41, 60), (50, 60), (50, 64), (41, 64)])
 
         case .sheep, .ram:
             b.poly([(18, 52), (24, 42), (40, 36), (60, 36), (74, 40), (80, 46), (84, 44), (92, 44), (96, 50), (94, 58), (86, 60), (80, 56),
                     (76, 62), (60, 66), (38, 66), (22, 64)])
-            b.leg(26, 64, 90, width: 5)
-            b.leg(34, 64, 90, width: 5)
-            b.leg(62, 64, 90, width: 5)
-            b.leg(70, 64, 90, width: 5)
+            b.leg(26, 57, 90, width: 5)
+            b.leg(34, 57, 90, width: 5)
+            b.leg(62, 57, 90, width: 5)
+            b.leg(70, 57, 90, width: 5)
             if kind == .ram {
                 b.ellipse(84, 40, 10, 10)
                 b.ellipse(84, 40, 5, 5, hole: true)
@@ -189,10 +191,10 @@ private enum PictogramLibrary {
                 b.poly([(80, 27), (73, 10), (77, 8), (85, 26)])
                 b.poly([(86, 26), (84, 8), (88, 8), (91, 26)])
             }
-            b.leg(24, 62, 92, width: 5, lean: -2)
-            b.leg(32, 62, 92, width: 5, lean: 1)
-            b.leg(60, 62, 92, width: 5, lean: -1)
-            b.leg(68, 62, 92, width: 5, lean: 2)
+            b.leg(24, 55, 92, width: 5, lean: -2)
+            b.leg(32, 55, 92, width: 5, lean: 1)
+            b.leg(60, 55, 92, width: 5, lean: -1)
+            b.leg(68, 55, 92, width: 5, lean: 2)
 
         case .deer:
             b.poly([(14, 50), (22, 44), (34, 40), (52, 38), (66, 40), (74, 36), (78, 28), (84, 24), (92, 24), (98, 30), (96, 36), (90, 38),
@@ -204,10 +206,10 @@ private enum PictogramLibrary {
             b.bar((91, 15), (100, 10), width: 3)
             b.bar((92, 9), (98, 3), width: 3)
             b.poly([(14, 50), (20, 50), (14, 62), (10, 60)])
-            b.leg(24, 60, 92, width: 5, lean: -2)
-            b.leg(32, 60, 92, width: 5, lean: 1)
-            b.leg(60, 60, 92, width: 5, lean: -1)
-            b.leg(68, 60, 92, width: 5, lean: 2)
+            b.leg(24, 53, 92, width: 5, lean: -2)
+            b.leg(32, 53, 92, width: 5, lean: 1)
+            b.leg(60, 53, 92, width: 5, lean: -1)
+            b.leg(68, 53, 92, width: 5, lean: 2)
 
         case .wolf, .dog:
             b.poly([(10, 52), (20, 44), (36, 40), (56, 40), (70, 42), (78, 38), (86, 34), (88, 26), (92, 34), (100, 40), (98, 46), (90, 48),
@@ -219,10 +221,10 @@ private enum PictogramLibrary {
                 b.poly([(84, 34), (80, 44), (87, 44)])
                 b.poly([(10, 52), (16, 48), (12, 34), (6, 30), (2, 36), (6, 44), (8, 52)])
             }
-            b.leg(22, 58, 90, width: 5, lean: -2)
-            b.leg(30, 58, 90, width: 5, lean: 1)
-            b.leg(58, 58, 90, width: 5, lean: -1)
-            b.leg(66, 58, 90, width: 5, lean: 2)
+            b.leg(22, 51, 90, width: 5, lean: -2)
+            b.leg(30, 51, 90, width: 5, lean: 1)
+            b.leg(58, 51, 90, width: 5, lean: -1)
+            b.leg(66, 51, 90, width: 5, lean: 2)
 
         case .boar:
             b.poly([(12, 52), (18, 40), (30, 32), (48, 30), (64, 32), (74, 36), (84, 40), (94, 48), (100, 56), (96, 60), (86, 60), (80, 64),
@@ -231,10 +233,10 @@ private enum PictogramLibrary {
             b.poly([(40, 30), (42, 21), (47, 30)])
             b.poly([(50, 30), (52, 21), (57, 30)])
             b.poly([(94, 55), (98, 49), (100, 55)])
-            b.leg(22, 66, 90, width: 6, lean: -1)
-            b.leg(30, 66, 90, width: 6, lean: 1)
-            b.leg(60, 66, 90, width: 6, lean: -1)
-            b.leg(68, 66, 90, width: 6, lean: 1)
+            b.leg(22, 59, 90, width: 6, lean: -1)
+            b.leg(30, 59, 90, width: 6, lean: 1)
+            b.leg(60, 59, 90, width: 6, lean: -1)
+            b.leg(68, 59, 90, width: 6, lean: 1)
 
         case .eagle:
             b.poly([(2, 44), (14, 34), (28, 30), (40, 32), (48, 28), (52, 20), (58, 17), (66, 19), (71, 26), (63, 28), (72, 34), (86, 36),
@@ -412,6 +414,19 @@ private enum PictogramLibrary {
         }
     }
     // swiftlint:enable function_body_length
+
+    private static func horseBody(_ b: inout PathBuilder) {
+        b.poly([(14, 50), (22, 44), (34, 40), (50, 38), (64, 40), (72, 36), (78, 26), (84, 18), (90, 16), (98, 20), (100, 26), (94, 30),
+                (88, 34), (82, 42), (78, 52), (70, 58), (50, 60), (30, 60), (20, 58)])
+        b.poly([(70, 38), (69, 31), (74, 26), (79, 20), (84, 17), (87, 21), (82, 25), (78, 31), (76, 38)])
+        b.poly([(85, 18), (87, 11), (90, 17)])
+        b.poly([(90, 17), (93, 11), (95, 17)])
+        b.poly([(14, 50), (20, 50), (17, 64), (15, 78), (8, 77), (9, 62)])
+        b.leg(24, 51, 92, width: 6, lean: -3)
+        b.leg(32, 51, 92, width: 6, lean: 1)
+        b.leg(62, 50, 92, width: 6, lean: -1)
+        b.leg(69, 47, 92, width: 6, lean: 3)
+    }
 }
 
 /// Отладочный лист со всеми пиктограммами.
