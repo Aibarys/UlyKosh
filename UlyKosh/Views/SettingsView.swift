@@ -60,6 +60,7 @@ struct SettingsView: View {
                     NavigationLink("Все пиктограммы") { PictogramSheetView() }
                     NavigationLink("Сцены по сезонам") { SeasonSheetView() }
                     NavigationLink("Сцены по местности") { TerrainSheetView() }
+                    NavigationLink("Виджет") { WidgetPreviewSheet() }
                 }
                 #endif
 

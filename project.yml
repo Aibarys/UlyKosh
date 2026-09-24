@@ -20,6 +20,7 @@ targets:
     platform: iOS
     sources:
       - path: UlyKosh
+      - path: UlyKoshWidget/WidgetViews.swift
     info:
       path: UlyKosh/Info.plist
       properties:
@@ -39,9 +40,43 @@ targets:
         com.apple.developer.healthkit: true
         com.apple.developer.healthkit.access: []
         com.apple.developer.healthkit.background-delivery: true
+        com.apple.security.application-groups: [group.kz.ulykosh]
+    dependencies:
+      - target: UlyKoshWidget
+        embed: true
     postBuildScripts:
       - name: Strip extended attributes before codesign
         script: |
           # macOS помечает файлы com.apple.provenance, а codesign отказывается подписывать бандл с такими атрибутами.
+          xattr -cr "${CODESIGNING_FOLDER_PATH}" 2>/dev/null || true
+        basedOnDependencyAnalysis: false
+
+  UlyKoshWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: UlyKoshWidget
+      - path: UlyKosh/Shared
+      - path: UlyKosh/Views/Theme.swift
+      - path: UlyKosh/Views/Icons/Pictograms.swift
+    info:
+      path: UlyKoshWidget/Info.plist
+      properties:
+        CFBundleDisplayName: Ұлы Көш
+        CFBundleDevelopmentRegion: ru
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    entitlements:
+      path: UlyKoshWidget/UlyKoshWidget.entitlements
+      properties:
+        com.apple.security.application-groups: [group.kz.ulykosh]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: kz.ulykosh.UlyKosh.Widget
+        SKIP_INSTALL: YES
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: ""
+    postBuildScripts:
+      - name: Strip extended attributes before codesign
+        script: |
           xattr -cr "${CODESIGNING_FOLDER_PATH}" 2>/dev/null || true
         basedOnDependencyAnalysis: false

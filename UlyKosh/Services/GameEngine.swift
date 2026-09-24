@@ -1,5 +1,6 @@
 import Foundation
 import Observation
+import WidgetKit
 
 struct ActiveEvent {
     let event: RouteEvent
@@ -125,6 +126,7 @@ final class GameEngine {
     func resetJourney() {
         state = nil
         store.clear()
+        publishWidgetSnapshot()
     }
 
     // MARK: - Настройки и отладка
@@ -324,5 +326,29 @@ final class GameEngine {
 
     private func persist() {
         if let s = state { store.save(s) }
+        publishWidgetSnapshot()
+    }
+
+    /// Складывает срез прогресса в общий контейнер и просит систему обновить виджеты.
+    private func publishWidgetSnapshot() {
+        if let s = state {
+            WidgetSnapshot(
+                aulName: s.aulName,
+                routeTitle: route.title,
+                dayNumber: dayNumber,
+                kmToday: kmToday,
+                kmTotal: totalKm,
+                routeTotalKm: route.totalKm,
+                stepsToday: stepsToday,
+                nextStopName: nextStop?.name,
+                kmToNextStop: kmToNextStop,
+                regionName: regionName,
+                isFinished: isFinished,
+                updatedAt: .now
+            ).save()
+        } else {
+            WidgetSnapshot.clear()
+        }
+        WidgetCenter.shared.reloadAllTimelines()
     }
 }

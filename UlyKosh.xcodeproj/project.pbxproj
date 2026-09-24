@@ -8,17 +8,23 @@
 
 /* Begin PBXBuildFile section */
 		09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA374652C6F6D6E467AF0FA5 /* HomeView.swift */; };
+		0D3DCE881ED66E02ED24A46D /* UlyKoshWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FD2AE73AE601439C91069 /* UlyKoshWidget.swift */; };
 		0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617FA4D102727E0CC62F293 /* RouteMapView.swift */; };
 		2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */; };
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
+		3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
+		512D56B308A6A058C4C91494 /* UlyKoshWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 60C2DFB7119649968104366B /* UlyKoshWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
+		5E0FECD2963BD1E8C667E5B4 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
 		5F24074A0B67928B27940BF3 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87330EE442BE509F530E870C /* NotificationService.swift */; };
 		75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */ = {isa = PBXBuildFile; fileRef = B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */; };
 		79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */; };
 		7AD1615D54A5D5721D529FB6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD734DCCD061DD5E164CE25A /* RootView.swift */; };
 		8664C10F178D43AF437299C4 /* MapWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C8A1393060E44E6B227C8F /* MapWorld.swift */; };
 		880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */; };
+		8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFFF72D6D462522C9D5B2F1 /* WidgetViews.swift */; };
 		8CCC08E719C5084DE25D8600 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A78890B7F7ED51971628D2E /* SettingsView.swift */; };
+		90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
 		922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
 		95FD3480EBD3940C75704169 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */; };
 		9A91EA0BD6EB31E810F0DDD3 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD843740DD3290D6E37F3B /* Route.swift */; };
@@ -32,8 +38,34 @@
 		E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */; };
 		F5002506627A97E4F3DC8100 /* AulView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F75E0DC15E5323E9381F143 /* AulView.swift */; };
 		F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */; };
+		F85B3FEF8DC0D07DC4B07DC0 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
 		F9A940E803A636F8F171D365 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EFFB53CA4198660D33705 /* GameEngine.swift */; };
+		FD88EAEF50CB753DB3156F75 /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFFF72D6D462522C9D5B2F1 /* WidgetViews.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4DB37034FA7FC57EC5277007 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7169AD03A9E97DB5738F53C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 468566073E1A469A57C5B7E9;
+			remoteInfo = UlyKoshWidget;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		05C91D7A601AC320DF947BFE /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				512D56B308A6A058C4C91494 /* UlyKoshWidget.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		06702F7441D5CF31C7A774F3 /* StateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStore.swift; sourceTree = "<group>"; };
@@ -41,11 +73,14 @@
 		174EFFB53CA4198660D33705 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		1A78890B7F7ED51971628D2E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStepSource.swift; sourceTree = "<group>"; };
+		269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
 		297D5DBDE162C378FA024F52 /* UlyKosh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKosh.entitlements; sourceTree = "<group>"; };
 		2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		39CD843740DD3290D6E37F3B /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		48A14E4FFB337A35451614EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		575F1C5AAC906C5C78F4DE5B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
+		60C2DFB7119649968104366B /* UlyKoshWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = UlyKoshWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6FCCF40899099CBFF3A80C30 /* UlyKoshWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKoshWidget.entitlements; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
 		87330EE442BE509F530E870C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KazakhstanMapView.swift; sourceTree = "<group>"; };
@@ -56,11 +91,14 @@
 		9617FA4D102727E0CC62F293 /* RouteMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapView.swift; sourceTree = "<group>"; };
 		9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRoute.swift; sourceTree = "<group>"; };
 		AAF139901566A4D74C8AB674 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
+		AEFFF72D6D462522C9D5B2F1 /* WidgetViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViews.swift; sourceTree = "<group>"; };
 		AF29D5081EB728FED8BF154E /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyKoshApp.swift; sourceTree = "<group>"; };
+		B33FD2AE73AE601439C91069 /* UlyKoshWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyKoshWidget.swift; sourceTree = "<group>"; };
 		B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kazakhstan-map.json"; sourceTree = "<group>"; };
 		CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		D48EE511B542603879310EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		DEE61575FC44C1BDDB364FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
 		EA374652C6F6D6E467AF0FA5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutumnRoute.swift; sourceTree = "<group>"; };
@@ -81,6 +119,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EC1DDB8C843F6ED6F2CC34 /* UlyKosh */,
+				9586448E155A8F1E2C60373D /* UlyKoshWidget */,
 				E1764D3129A217F6120B5589 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -93,6 +132,14 @@
 				39CD843740DD3290D6E37F3B /* Route.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		2510AB327E31C923B655A19C /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */,
+			);
+			path = Shared;
 			sourceTree = "<group>";
 		};
 		3A126D46EA3549250F031D85 /* App */ = {
@@ -129,6 +176,17 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		9586448E155A8F1E2C60373D /* UlyKoshWidget */ = {
+			isa = PBXGroup;
+			children = (
+				DEE61575FC44C1BDDB364FB3 /* Info.plist */,
+				6FCCF40899099CBFF3A80C30 /* UlyKoshWidget.entitlements */,
+				B33FD2AE73AE601439C91069 /* UlyKoshWidget.swift */,
+				AEFFF72D6D462522C9D5B2F1 /* WidgetViews.swift */,
+			);
+			path = UlyKoshWidget;
+			sourceTree = "<group>";
+		};
 		A1580C7E8B362496D4C0DCDF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
@@ -153,6 +211,7 @@
 			isa = PBXGroup;
 			children = (
 				9196C3239C4E23B179D5B5D8 /* UlyKosh.app */,
+				60C2DFB7119649968104366B /* UlyKoshWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -167,6 +226,7 @@
 				1375E8720321B40DC2235691 /* Models */,
 				3E7309C2AC20C0888DBDFC44 /* Resources */,
 				C477AE2E15F2CB4E7766B609 /* Services */,
+				2510AB327E31C923B655A19C /* Shared */,
 				FBC7D4915384604DBDFAFB17 /* Views */,
 			);
 			path = UlyKosh;
@@ -200,11 +260,13 @@
 			buildPhases = (
 				4301D47CEAB931476D9EA6D7 /* Sources */,
 				515D78F934C08DD2750496A6 /* Resources */,
+				05C91D7A601AC320DF947BFE /* Embed Foundation Extensions */,
 				DFE94FBC9677F0DF9BD82CCE /* Strip extended attributes before codesign */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E7C970571DC7C83E31D94B9A /* PBXTargetDependency */,
 			);
 			name = UlyKosh;
 			packageProductDependencies = (
@@ -212,6 +274,24 @@
 			productName = UlyKosh;
 			productReference = 9196C3239C4E23B179D5B5D8 /* UlyKosh.app */;
 			productType = "com.apple.product-type.application";
+		};
+		468566073E1A469A57C5B7E9 /* UlyKoshWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F7D8AE08DD754E35A1AF6A3B /* Build configuration list for PBXNativeTarget "UlyKoshWidget" */;
+			buildPhases = (
+				B23F668FEEEBEBC2B33F9252 /* Sources */,
+				1BF3C1D339811741941E91C0 /* Strip extended attributes before codesign */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UlyKoshWidget;
+			packageProductDependencies = (
+			);
+			productName = UlyKoshWidget;
+			productReference = 60C2DFB7119649968104366B /* UlyKoshWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -223,6 +303,10 @@
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					13405D1367D0D680C2AAA318 = {
+						DevelopmentTeam = VTP9UAM5MH;
+						ProvisioningStyle = Automatic;
+					};
+					468566073E1A469A57C5B7E9 = {
 						DevelopmentTeam = VTP9UAM5MH;
 						ProvisioningStyle = Automatic;
 					};
@@ -243,6 +327,7 @@
 			projectRoot = "";
 			targets = (
 				13405D1367D0D680C2AAA318 /* UlyKosh */,
+				468566073E1A469A57C5B7E9 /* UlyKoshWidget */,
 			);
 		};
 /* End PBXProject section */
@@ -260,6 +345,25 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		1BF3C1D339811741941E91C0 /* Strip extended attributes before codesign */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Strip extended attributes before codesign";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "xattr -cr \"${CODESIGNING_FOLDER_PATH}\" 2>/dev/null || true\n";
+		};
 		DFE94FBC9677F0DF9BD82CCE /* Strip extended attributes before codesign */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -310,10 +414,32 @@
 				E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */,
 				922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */,
 				2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */,
+				90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */,
+				8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B23F668FEEEBEBC2B33F9252 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5E0FECD2963BD1E8C667E5B4 /* Pictograms.swift in Sources */,
+				3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */,
+				0D3DCE881ED66E02ED24A46D /* UlyKoshWidget.swift in Sources */,
+				F85B3FEF8DC0D07DC4B07DC0 /* WidgetSnapshot.swift in Sources */,
+				FD88EAEF50CB753DB3156F75 /* WidgetViews.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E7C970571DC7C83E31D94B9A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 468566073E1A469A57C5B7E9 /* UlyKoshWidget */;
+			targetProxy = 4DB37034FA7FC57EC5277007 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		1201F8A67366A319E41D1FB5 /* Release */ = {
@@ -374,6 +500,42 @@
 				SWIFT_STRICT_CONCURRENCY = minimal;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		1FA97C6A6EB6385F1A334DFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = UlyKoshWidget/UlyKoshWidget.entitlements;
+				INFOPLIST_FILE = UlyKoshWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kz.ulykosh.UlyKosh.Widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		3A2CD64E7A742E6447434083 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = UlyKoshWidget/UlyKoshWidget.entitlements;
+				INFOPLIST_FILE = UlyKoshWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kz.ulykosh.UlyKosh.Widget;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -496,6 +658,15 @@
 			buildConfigurations = (
 				9AB7EC3A1A95833D570DDD9D /* Debug */,
 				1201F8A67366A319E41D1FB5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		F7D8AE08DD754E35A1AF6A3B /* Build configuration list for PBXNativeTarget "UlyKoshWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1FA97C6A6EB6385F1A334DFC /* Debug */,
+				3A2CD64E7A742E6447434083 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
