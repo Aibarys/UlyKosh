@@ -2,6 +2,7 @@ import SwiftUI
 
 struct SettingsView: View {
     @Environment(GameEngine.self) private var engine
+    private var notifications: NotificationService { NotificationService.shared }
     @State private var aulName = ""
     @State private var stride = 0.7
     @State private var showResetConfirm = false
@@ -38,8 +39,21 @@ struct SettingsView: View {
                     }
                 }
 
+                Section("Уведомления") {
+                    LabeledContent("Статус", value: notifications.authorized ? "Разрешены" : "Не разрешены")
+                    Button("Разрешить уведомления") {
+                        Task { await notifications.requestAuthorization() }
+                    }
+                    Text("Аул сообщит, когда дойдёт до стоянки, когда начнётся буран или половодье и когда испытание пройдено.")
+                        .font(.footnote)
+                        .foregroundStyle(Color.ash)
+                }
+
                 #if DEBUG
                 Section("Отладка") {
+                    Button("Тестовое уведомление через 5 с") {
+                        notifications.post(id: "test", title: "Аул дошёл до стоянки Отырар", body: "Ақын Сәкен присоединяется к аулу.", delay: 5)
+                    }
                     Button("Добавить 1 000 шагов сегодня") { engine.addDebugSteps(1_000) }
                     Button("Добавить 10 000 шагов сегодня") { engine.addDebugSteps(10_000) }
                     Button("Добавить 50 000 шагов сегодня") { engine.addDebugSteps(50_000) }
@@ -73,6 +87,7 @@ struct SettingsView: View {
             .onAppear {
                 aulName = engine.state?.aulName ?? ""
                 stride = engine.state?.strideMeters ?? 0.7
+                Task { await notifications.refreshStatus() }
             }
             .confirmationDialog("Сбросить кочевье?", isPresented: $showResetConfirm, titleVisibility: .visible) {
                 Button("Сбросить", role: .destructive) { engine.resetJourney() }

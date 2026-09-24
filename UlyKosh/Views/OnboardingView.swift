@@ -66,7 +66,7 @@ struct OnboardingView: View {
                         .buttonStyle(.plain)
                         .disabled(isStarting)
 
-                        Text("Приложение попросит доступ к шагам в «Здоровье». Данные остаются на устройстве.")
+                        Text("Приложение попросит доступ к шагам в «Здоровье» и разрешение на уведомления, чтобы сообщать о стоянках и испытаниях. Данные остаются на устройстве.")
                             .font(.system(size: 12))
                             .foregroundStyle(Color.ash)
                             .multilineTextAlignment(.center)

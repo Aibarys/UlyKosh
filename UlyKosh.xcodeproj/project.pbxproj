@@ -12,6 +12,7 @@
 		2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */; };
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
 		5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
+		5F24074A0B67928B27940BF3 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87330EE442BE509F530E870C /* NotificationService.swift */; };
 		75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */ = {isa = PBXBuildFile; fileRef = B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */; };
 		79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */; };
 		7AD1615D54A5D5721D529FB6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD734DCCD061DD5E164CE25A /* RootView.swift */; };
@@ -44,6 +45,7 @@
 		48A14E4FFB337A35451614EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		575F1C5AAC906C5C78F4DE5B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
+		87330EE442BE509F530E870C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KazakhstanMapView.swift; sourceTree = "<group>"; };
 		8994525A1EF735990AAE25FE /* Pictograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograms.swift; sourceTree = "<group>"; };
 		8C04906DC303EFA406662493 /* Herd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Herd.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			children = (
 				174EFFB53CA4198660D33705 /* GameEngine.swift */,
 				24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */,
+				87330EE442BE509F530E870C /* NotificationService.swift */,
 				06702F7441D5CF31C7A774F3 /* StateStore.swift */,
 			);
 			path = Services;
@@ -284,6 +287,7 @@
 				09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */,
 				880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */,
 				8664C10F178D43AF437299C4 /* MapWorld.swift in Sources */,
+				5F24074A0B67928B27940BF3 /* NotificationService.swift in Sources */,
 				B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */,
 				5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */,
 				7AD1615D54A5D5721D529FB6 /* RootView.swift in Sources */,

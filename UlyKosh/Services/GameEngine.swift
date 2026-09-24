@@ -28,10 +28,21 @@ final class GameEngine {
     let route: Route = SpringRoute.route
     private let store = StateStore()
     private let health = HealthKitStepSource()
+    private let notifications = NotificationService.shared
+    private var loaded = false
+    private var suppressNotificationsOnce = false
 
     // MARK: - Жизненный цикл
 
+    /// Вызывается и из App.init (в том числе при фоновом запуске системой), и из RootView. Выполняется один раз.
+    func bootstrap() async {
+        await load()
+        startObservingIfPossible()
+    }
+
     func load() async {
+        guard !loaded else { return }
+        loaded = true
         state = store.load()
         isLoading = false
         if !health.isAvailable {
@@ -42,6 +53,19 @@ final class GameEngine {
         if state != nil { await syncSteps() }
     }
 
+    private func startObservingIfPossible() {
+        guard state != nil, health.isAvailable else { return }
+        Task { await health.enableBackgroundDelivery() }
+        health.startObserving { [weak self] in
+            await self?.backgroundSync()
+        }
+    }
+
+    private func backgroundSync() async {
+        await load()
+        await syncSteps()
+    }
+
     func startJourney(aulName: String) async {
         let name = aulName.trimmingCharacters(in: .whitespacesAndNewlines)
         state = GameState(
@@ -50,7 +74,10 @@ final class GameEngine {
             startDate: Calendar.current.startOfDay(for: .now)
         )
         persist()
+        suppressNotificationsOnce = true
         await requestHealthAccess()
+        await notifications.requestAuthorization()
+        startObservingIfPossible()
     }
 
     func requestHealthAccess() async {
@@ -86,7 +113,7 @@ final class GameEngine {
                 lastError = error.localizedDescription
             }
         }
-        evaluate()
+        evaluateAndNotify()
         persist()
     }
 
@@ -106,7 +133,7 @@ final class GameEngine {
 
     func setStride(_ meters: Double) {
         state?.strideMeters = meters
-        evaluate()
+        evaluateAndNotify()
         persist()
     }
 
@@ -114,7 +141,7 @@ final class GameEngine {
         guard var current = state else { return }
         current.debugSteps[DayKey.key(.now), default: 0] += steps
         state = current
-        evaluate()
+        evaluateAndNotify()
         persist()
     }
 
@@ -220,6 +247,53 @@ final class GameEngine {
     }
 
     // MARK: - Внутреннее
+
+    private func evaluateAndNotify() {
+        let before = state
+        evaluate()
+        if suppressNotificationsOnce {
+            suppressNotificationsOnce = false
+            return
+        }
+        notifyTransitions(from: before, to: state)
+    }
+
+    /// Сравнивает состояние до и после пересчёта и шлёт уведомления о том, что изменилось в пути.
+    private func notifyTransitions(from old: GameState?, to new: GameState?) {
+        guard let old, let new else { return }
+        let oldKm = min(rawKm(old), route.totalKm)
+        let newKm = min(rawKm(new), route.totalKm)
+
+        let reached = route.stops.filter { $0.km > 0 && $0.km > oldKm && $0.km <= newKm }
+        if reached.count == 1, let stop = reached.first {
+            let body = stop.character.map { "\($0.role) \($0.name) присоединяется к аулу. \(stop.subtitle)." } ?? stop.subtitle
+            notifications.post(id: "stop-\(stop.id)", title: "Аул дошёл до стоянки \(stop.name)", body: body)
+        } else if reached.count > 1, let last = reached.last {
+            notifications.post(id: "stop-\(last.id)", title: "Аул прошёл \(reached.count) стоянки", body: "Последняя: \(last.name). Загляните в маршрут.")
+        }
+
+        for event in route.events {
+            let was = old.eventStatus[event.id]
+            let now = new.eventStatus[event.id]
+            switch (was, now) {
+            case (.none, .some(.active)):
+                notifications.post(id: "event-\(event.id)-start", title: event.title,
+                                   body: "\(event.description) Нужно пройти \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days)).")
+            case (.some(.active), .some(.completed)):
+                notifications.post(id: "event-\(event.id)-done", title: "\(event.title): аул справился", body: event.rewardText)
+            case (.some(.active), .some(.failed)):
+                notifications.post(id: "event-\(event.id)-fail", title: "\(event.title) позади",
+                                   body: "Не успели, но аул справился. Награды не будет, дорога продолжается.")
+            default:
+                break
+            }
+        }
+
+        if old.finishedAt == nil, new.finishedAt != nil {
+            notifications.post(id: "finish", title: "Аул дошёл до жайляу!",
+                               body: "Кочевье окончено. Юрты стоят на склонах Ұлытау, вечером будет той.")
+        }
+    }
 
     private func evaluate() {
         guard var s = state else { return }

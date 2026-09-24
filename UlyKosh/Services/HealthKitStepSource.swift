@@ -5,8 +5,32 @@ import HealthKit
 final class HealthKitStepSource {
     private let store = HKHealthStore()
     private let stepType = HKQuantityType(.stepCount)
+    private var observerQuery: HKObserverQuery?
 
     var isAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
+
+    /// Просим систему будить приложение, когда в «Здоровье» появляются новые шаги. Для шагов минимум раз в час.
+    func enableBackgroundDelivery() async {
+        guard isAvailable else { return }
+        try? await store.enableBackgroundDelivery(for: stepType, frequency: .hourly)
+    }
+
+    /// Наблюдатель срабатывает и в фоне, и когда приложение открыто. `handler` должен закончить работу до вызова completion.
+    func startObserving(_ handler: @escaping @Sendable () async -> Void) {
+        guard isAvailable, observerQuery == nil else { return }
+        let query = HKObserverQuery(sampleType: stepType, predicate: nil) { _, completion, error in
+            guard error == nil else {
+                completion()
+                return
+            }
+            Task {
+                await handler()
+                completion()
+            }
+        }
+        observerQuery = query
+        store.execute(query)
+    }
 
     func requestAuthorization() async throws {
         guard isAvailable else { return }
