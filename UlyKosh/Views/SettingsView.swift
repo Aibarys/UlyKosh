@@ -27,6 +27,7 @@ struct SettingsView: View {
                     Button("Обновить шаги") {
                         Task { await engine.syncSteps() }
                     }
+                    NavigationLink("Источники шагов") { SourcesView() }
                     if let error = engine.lastError {
                         Text(error).font(.caption).foregroundStyle(Color.ash)
                     }
@@ -124,5 +125,54 @@ struct SettingsView: View {
         case .requested: return String(localized: "Здоровье")
         case .unknown: return String(localized: "Доступ не запрошен")
         }
+    }
+}
+
+
+/// Какие приложения и устройства учитывать при подсчёте километров.
+struct SourcesView: View {
+    @Environment(GameEngine.self) private var engine
+
+    var body: some View {
+        Form {
+            if engine.healthSources.isEmpty {
+                Text("В «Здоровье» пока нет данных о шагах. Источники появятся после первой прогулки.")
+                    .foregroundStyle(Color.ash)
+            }
+            ForEach(engine.healthSources) { source in
+                let setting = engine.setting(for: source)
+                Section {
+                    Toggle(isOn: Binding(
+                        get: { setting.enabled },
+                        set: { value in engine.updateSetting(for: source) { $0.enabled = value } }
+                    )) {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(source.name)
+                            Text("сегодня \((engine.stepsTodayBySource[source.id] ?? 0).formatted()) шагов")
+                                .font(.footnote)
+                                .foregroundStyle(Color.ash)
+                        }
+                    }
+                    if setting.enabled {
+                        Toggle(isOn: Binding(
+                            get: { setting.nightFilter },
+                            set: { value in engine.updateSetting(for: source) { $0.nightFilter = value } }
+                        )) {
+                            Text("Ночной фильтр, 23:00–06:00")
+                        }
+                    }
+                }
+            }
+            Section {
+                Text("Если несколько устройств считали одну прогулку, за каждый час берётся наибольшее значение. Расстояние берётся от устройств, которые его пишут, например iPhone и Apple Watch. Шаги браслета, которых нет у телефона, например на беговой дорожке, переводятся в километры по длине шага. Ночной фильтр отбрасывает шаги устройства с 23:00 до 06:00.")
+                    .font(.footnote)
+                    .foregroundStyle(Color.ash)
+            }
+        }
+        .scrollContentBackground(.hidden)
+        .background(Color.night.ignoresSafeArea())
+        .navigationTitle("Источники шагов")
+        .navigationBarTitleDisplayMode(.inline)
+        .task { await engine.syncSteps() }
     }
 }

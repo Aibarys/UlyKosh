@@ -1,5 +1,12 @@
 import Foundation
 
+/// Как учитывать источник шагов из «Здоровья».
+struct SourceSetting: Codable, Hashable {
+    var enabled: Bool = true
+    /// Отбрасывать шаги этого источника в тихие часы (23:00–06:00).
+    var nightFilter: Bool = false
+}
+
 enum EventStatus: Codable, Hashable {
     case active(startedAt: Date, startKm: Double)
     case completed(at: Date)
@@ -15,8 +22,10 @@ struct GameState: Codable {
     var strideMeters: Double = 0.7
     /// Шаги по дням из HealthKit, ключ — "yyyy-MM-dd".
     var healthSteps: [String: Int] = [:]
-    /// Пройденные километры по дням из HealthKit. Основной источник расстояния.
+    /// Километры по дням, рассчитанные из «Здоровья» с учётом источников. Основной источник расстояния.
     var healthDistanceKm: [String: Double] = [:]
+    /// Настройки по источникам, ключ — bundle identifier источника.
+    var sourceSettings: [String: SourceSetting] = [:]
     /// Шаги, добавленные вручную в отладочном режиме.
     var debugSteps: [String: Int] = [:]
     var eventStatus: [String: EventStatus] = [:]
@@ -40,6 +49,7 @@ struct GameState: Codable {
         strideMeters = try c.decodeIfPresent(Double.self, forKey: .strideMeters) ?? 0.7
         healthSteps = try c.decodeIfPresent([String: Int].self, forKey: .healthSteps) ?? [:]
         healthDistanceKm = try c.decodeIfPresent([String: Double].self, forKey: .healthDistanceKm) ?? [:]
+        sourceSettings = try c.decodeIfPresent([String: SourceSetting].self, forKey: .sourceSettings) ?? [:]
         debugSteps = try c.decodeIfPresent([String: Int].self, forKey: .debugSteps) ?? [:]
         eventStatus = try c.decodeIfPresent([String: EventStatus].self, forKey: .eventStatus) ?? [:]
         herdBonus = try c.decodeIfPresent(HerdDelta.self, forKey: .herdBonus) ?? .zero

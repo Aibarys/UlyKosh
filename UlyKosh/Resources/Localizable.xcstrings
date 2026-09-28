@@ -1,12 +1,13 @@
 {
   "sourceLanguage": "ru",
   "strings": {
-    "%@ %@ присоединяется к аулу. %@.": {
+    "": {},
+    "·": {
       "localizations": {
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ %@ ауылға қосылды. %@."
+            "value": "·"
           }
         }
       }
@@ -41,12 +42,12 @@
         }
       }
     },
-    "%@ Нужно пройти %@ км за %@.": {
+    "%@ %@ присоединяется к аулу. %@.": {
       "localizations": {
         "kk": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ %@ ішінде %@ км жүру керек."
+            "value": "%@ %@ ауылға қосылды. %@."
           }
         }
       }
@@ -121,6 +122,16 @@
         }
       }
     },
+    "%@ Нужно пройти %@ км за %@.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ %@ ішінде %@ км жүру керек."
+          }
+        }
+      }
+    },
     "%@ позади": {
       "localizations": {
         "kk": {
@@ -163,15 +174,21 @@
     },
     "%lld дней": {
       "localizations": {
+        "kk": {
+          "variations": {
+            "plural": {
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld күн"
+                }
+              }
+            }
+          }
+        },
         "ru": {
           "variations": {
             "plural": {
-              "one": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld день"
-                }
-              },
               "few": {
                 "stringUnit": {
                   "state": "translated",
@@ -184,22 +201,16 @@
                   "value": "%lld дней"
                 }
               },
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld день"
+                }
+              },
               "other": {
                 "stringUnit": {
                   "state": "translated",
                   "value": "%lld дней"
-                }
-              }
-            }
-          }
-        },
-        "kk": {
-          "variations": {
-            "plural": {
-              "other": {
-                "stringUnit": {
-                  "state": "translated",
-                  "value": "%lld күн"
                 }
               }
             }
@@ -213,16 +224,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld км"
-          }
-        }
-      }
-    },
-    "·": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "·"
           }
         }
       }
@@ -283,6 +284,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ақсақал жол алдында бата беріп жатыр"
+          }
+        }
+      }
+    },
+    "Ақын": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ақын"
           }
         }
       }
@@ -387,16 +398,6 @@
         }
       }
     },
-    "Ақын": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ақын"
-          }
-        }
-      }
-    },
     "Базарные собаки провожают аул до окраины.": {
       "localizations": {
         "kk": {
@@ -417,6 +418,16 @@
         }
       }
     },
+    "Бақсы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бақсы"
+          }
+        }
+      }
+    },
     "Балықшы": {
       "localizations": {
         "kk": {
@@ -433,16 +444,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Бауыржан"
-          }
-        }
-      }
-    },
-    "Бақсы": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Бақсы"
           }
         }
       }
@@ -517,6 +518,16 @@
         }
       }
     },
+    "В «Здоровье» пока нет данных о шагах. Источники появятся после первой прогулки.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Денсаулықта» әзірге қадам деректері жоқ. Дереккөздер алғашқы серуеннен кейін пайда болады."
+          }
+        }
+      }
+    },
     "В камышах кабаны и фазаны, охотник доволен": {
       "localizations": {
         "kk": {
@@ -553,6 +564,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Ұлы Көш"
+          }
+        }
+      }
+    },
+    "верблюды": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "түйе"
           }
         }
       }
@@ -927,6 +948,26 @@
         }
       }
     },
+    "до %@ %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ дейін %@ км"
+          }
+        }
+      }
+    },
+    "до стоянки %@ %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ қонысына дейін %@ км"
+          }
+        }
+      }
+    },
     "Добавить 1 000 шагов сегодня": {
       "localizations": {
         "kk": {
@@ -1023,6 +1064,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Дуадақ"
+          }
+        }
+      }
+    },
+    "Если несколько устройств считали одну прогулку, за каждый час берётся наибольшее значение. Расстояние берётся от устройств, которые его пишут, например iPhone и Apple Watch. Шаги браслета, которых нет у телефона, например на беговой дорожке, переводятся в километры по длине шага. Ночной фильтр отбрасывает шаги устройства с 23:00 до 06:00.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бір серуенді бірнеше құрылғы санаса, әр сағат үшін ең үлкен мән алынады. Қашықтық оны жазатын құрылғылардан, мысалы iPhone мен Apple Watch-тан алынады. Телефонда жоқ білезік қадамдары, мысалы жүгіру жолындағы, қадам ұзындығы бойынша шақырымға айналдырылады. Түнгі сүзгі құрылғының 23:00-ден 06:00-ге дейінгі қадамдарын есепке алмайды."
           }
         }
       }
@@ -1237,6 +1288,26 @@
         }
       }
     },
+    "из «Здоровья»": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "«Денсаулықтан»"
+          }
+        }
+      }
+    },
+    "из %@ км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "барлығы %@ км"
+          }
+        }
+      }
+    },
     "Издалека виден бирюзовый купол Түркістана": {
       "localizations": {
         "kk": {
@@ -1283,6 +1354,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Дереккөз"
+          }
+        }
+      }
+    },
+    "Источники шагов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қадам дереккөздері"
           }
         }
       }
@@ -1353,6 +1434,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Күн шақырымы"
+          }
+        }
+      }
+    },
+    "км": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "км"
           }
         }
       }
@@ -1477,6 +1568,36 @@
         }
       }
     },
+    "Қайрат": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қайрат"
+          }
+        }
+      }
+    },
+    "Құдықшы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Құдықшы"
+          }
+        }
+      }
+    },
+    "Қыстау на Сырдарье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сырдариядағы қыстау"
+          }
+        }
+      }
+    },
     "Летние пастбища": {
       "localizations": {
         "kk": {
@@ -1503,6 +1624,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Жылқыларды таудан айдап түсіреді, құлындарды биеден бөледі."
+          }
+        }
+      }
+    },
+    "лошади": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "жылқы"
           }
         }
       }
@@ -1573,6 +1704,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Бағыт"
+          }
+        }
+      }
+    },
+    "маршрут пройден": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "бағыт өтілді"
           }
         }
       }
@@ -1727,6 +1868,16 @@
         }
       }
     },
+    "Ночной фильтр, 23:00–06:00": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түнгі сүзгі, 23:00–06:00"
+          }
+        }
+      }
+    },
     "Ночью у скал теплее, они отдают дневное солнце": {
       "localizations": {
         "kk": {
@@ -1797,6 +1948,16 @@
         }
       }
     },
+    "овцы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "қой"
+          }
+        }
+      }
+    },
     "Оразбай": {
       "localizations": {
         "kk": {
@@ -1847,22 +2008,22 @@
         }
       }
     },
-    "Осенью Бетпақдала другая: жара спала, полынь пахнет горько, а по ночам уже подмораживает. Главная опасность теперь не жажда, а ранний снег: если он ляжет на пустыню, скот не найдёт корма. Аул идёт быстро, от колодца к колодцу, и вместе с ним на юг идут тысячные стада сайгаков.": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Күзде Бетпақдала басқаша: аптап басылды, жусан ащы иіс шығарады, түнде аяз түсе бастады. Енді басты қауіп – шөлдеу емес, ерте қар: шөлге қар жатса, мал жем таппайды. Ауыл құдықтан құдыққа тез жүреді, онымен бірге оңтүстікке мыңдаған киік үйірі кетіп барады."
-          }
-        }
-      }
-    },
     "Осенью беркутчи ловят молодых птиц для охоты.": {
       "localizations": {
         "kk": {
           "stringUnit": {
             "state": "translated",
             "value": "Күзде бүркітшілер аңға салу үшін жас құстарды ұстайды."
+          }
+        }
+      }
+    },
+    "Осенью Бетпақдала другая: жара спала, полынь пахнет горько, а по ночам уже подмораживает. Главная опасность теперь не жажда, а ранний снег: если он ляжет на пустыню, скот не найдёт корма. Аул идёт быстро, от колодца к колодцу, и вместе с ним на юг идут тысячные стада сайгаков.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күзде Бетпақдала басқаша: аптап басылды, жусан ащы иіс шығарады, түнде аяз түсе бастады. Енді басты қауіп – шөлдеу емес, ерте қар: шөлге қар жатса, мал жем таппайды. Ауыл құдықтан құдыққа тез жүреді, онымен бірге оңтүстікке мыңдаған киік үйірі кетіп барады."
           }
         }
       }
@@ -1893,6 +2054,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Күзде бұғылардың күркіреуі өзеннің арғы бетінен естіледі."
+          }
+        }
+      }
+    },
+    "осталось %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ қалды"
           }
         }
       }
@@ -2067,6 +2238,16 @@
         }
       }
     },
+    "по шагам": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "қадам бойынша"
+          }
+        }
+      }
+    },
     "Погонщик верблюдов. Зимовал в Бетпақдале с караванами и знает, какой колодец не замерзает. Пришёл с двумя верблюдами и остался: «одному в пустыне осенью тоскливо».": {
       "localizations": {
         "kk": {
@@ -2113,6 +2294,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Сарысудағы су тасқыны"
+          }
+        }
+      }
+    },
+    "последний день": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "соңғы күн"
           }
         }
       }
@@ -2277,22 +2468,22 @@
         }
       }
     },
-    "Река Кеңгір": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Кеңгір өзені"
-          }
-        }
-      }
-    },
     "Река в половодье": {
       "localizations": {
         "kk": {
           "stringUnit": {
             "state": "translated",
             "value": "Тасыған өзен"
+          }
+        }
+      }
+    },
+    "Река Кеңгір": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кеңгір өзені"
           }
         }
       }
@@ -2437,6 +2628,16 @@
         }
       }
     },
+    "Сәкен": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сәкен"
+          }
+        }
+      }
+    },
     "Сбросить": {
       "localizations": {
         "kk": {
@@ -2477,6 +2678,16 @@
         }
       }
     },
+    "сегодня %@ шагов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "бүгін %@ қадам"
+          }
+        }
+      }
+    },
     "Сердце степи": {
       "localizations": {
         "kk": {
@@ -2487,22 +2698,22 @@
         }
       }
     },
-    "Серый журавль": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Сұр тырна"
-          }
-        }
-      }
-    },
     "Серік": {
       "localizations": {
         "kk": {
           "stringUnit": {
             "state": "translated",
             "value": "Серік"
+          }
+        }
+      }
+    },
+    "Серый журавль": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сұр тырна"
           }
         }
       }
@@ -2887,16 +3098,6 @@
         }
       }
     },
-    "Сәкен": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Сәкен"
-          }
-        }
-      }
-    },
     "Табун": {
       "localizations": {
         "kk": {
@@ -2987,16 +3188,6 @@
         }
       }
     },
-    "Тюльпан Грейга": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Грейг қызғалдағы"
-          }
-        }
-      }
-    },
     "Түйеші": {
       "localizations": {
         "kk": {
@@ -3023,6 +3214,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Түркістан даланың рухани астанасы болған. Қожа Ахмет Ясауи кесенесін XIV ғасырдың соңында Темір салдырған: 18 метрлік күмбез, екі тонналық қола тайқазан, сырлы кірпіштен қаланған қабырғалар. Мұнда үш рет зиярат ету бір қажылыққа тең деген. Күзде көшпенділер қалаға базарға және әулиеге келіп, кейін Сырдария бойындағы қыстауларға тарайтын."
+          }
+        }
+      }
+    },
+    "Тюльпан Грейга": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Грейг қызғалдағы"
           }
         }
       }
@@ -3107,6 +3308,36 @@
         }
       }
     },
+    "Ұлы Көш": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлы Көш"
+          }
+        }
+      }
+    },
+    "Ұлы Көш: начните кочевье": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлы Көш: көшті бастаңыз"
+          }
+        }
+      }
+    },
+    "Ұлытау → Сырдария": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ұлытау → Сырдария"
+          }
+        }
+      }
+    },
     "Фазан": {
       "localizations": {
         "kk": {
@@ -3167,12 +3398,32 @@
         }
       }
     },
+    "через %@ км · %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ км-ден кейін · %@"
+          }
+        }
+      }
+    },
     "Шаги и расстояние": {
       "localizations": {
         "kk": {
           "stringUnit": {
             "state": "translated",
             "value": "Қадам мен қашықтық"
+          }
+        }
+      }
+    },
+    "Шәкірт": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Шәкірт"
           }
         }
       }
@@ -3193,16 +3444,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Шу Тянь-Шань тауларынан басталып, мұнда, Мойынқұмның шетінде, құм мен сорға сіңіп кетеді. Күзде өзен таязданады, өткел оңай. Жағадағы тоғайда көшпенділер қысқы қораға қамыс дайындап, балық аулайтын. Әрі қарай Мойынқұм құмы басталады – Қаратау алдындағы соңғы қиын көш."
-          }
-        }
-      }
-    },
-    "Шәкірт": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Шәкірт"
           }
         }
       }
@@ -3243,196 +3484,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Қолданба тілі"
-          }
-        }
-      }
-    },
-    "верблюды": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "түйе"
-          }
-        }
-      }
-    },
-    "до %@ %@ км": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ дейін %@ км"
-          }
-        }
-      }
-    },
-    "до стоянки %@ %@ км": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ қонысына дейін %@ км"
-          }
-        }
-      }
-    },
-    "из %@ км": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "барлығы %@ км"
-          }
-        }
-      }
-    },
-    "из «Здоровья»": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "«Денсаулықтан»"
-          }
-        }
-      }
-    },
-    "км": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "км"
-          }
-        }
-      }
-    },
-    "лошади": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "жылқы"
-          }
-        }
-      }
-    },
-    "маршрут пройден": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "бағыт өтілді"
-          }
-        }
-      }
-    },
-    "овцы": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "қой"
-          }
-        }
-      }
-    },
-    "осталось %@": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ қалды"
-          }
-        }
-      }
-    },
-    "по шагам": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "қадам бойынша"
-          }
-        }
-      }
-    },
-    "последний день": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "соңғы күн"
-          }
-        }
-      }
-    },
-    "через %@ км · %@": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%@ км-ден кейін · %@"
-          }
-        }
-      }
-    },
-    "Қайрат": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Қайрат"
-          }
-        }
-      }
-    },
-    "Қыстау на Сырдарье": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Сырдариядағы қыстау"
-          }
-        }
-      }
-    },
-    "Құдықшы": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Құдықшы"
-          }
-        }
-      }
-    },
-    "Ұлы Көш": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ұлы Көш"
-          }
-        }
-      }
-    },
-    "Ұлы Көш: начните кочевье": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ұлы Көш: көшті бастаңыз"
-          }
-        }
-      }
-    },
-    "Ұлытау → Сырдария": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ұлытау → Сырдария"
           }
         }
       }

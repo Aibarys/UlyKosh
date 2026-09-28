@@ -1,58 +1,76 @@
 {
-  "sourceLanguage": "ru",
-  "version": "1.0",
-  "strings": {
-    "CFBundleDisplayName": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ұлы Көш"
-          }
-        }
-      }
-    },
-    "CFBundleName": {
-      "localizations": {
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ұлы Көш"
-          }
-        }
-      }
-    },
-    "NSHealthShareUsageDescription": {
-      "localizations": {
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего аула."
+  "sourceLanguage" : "ru",
+  "strings" : {
+    "CFBundleDisplayName" : {
+      "comment" : "Bundle display name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "kk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ұлы Көш"
           }
         },
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Ұлы Көш қадам мен жүрілген қашықтықты оқып, оларды ауылыңыздың жол шақырымына айналдырады."
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "Ұлы Көш"
           }
         }
       }
     },
-    "NSHealthUpdateUsageDescription": {
-      "localizations": {
-        "ru": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Приложение не записывает данные в Здоровье."
+    "CFBundleName" : {
+      "comment" : "Bundle name",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "kk" : {
+          "stringUnit" : {
+            "state" : "needs_review",
+            "value" : "Ұлы Көш"
           }
         },
-        "kk": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Қолданба «Денсаулыққа» дерек жазбайды."
+        "ru" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "UlyKosh"
+          }
+        }
+      }
+    },
+    "NSHealthShareUsageDescription" : {
+      "comment" : "Privacy - Health Share Usage Description",
+      "localizations" : {
+        "kk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ұлы Көш қадам мен жүрілген қашықтықты оқып, оларды ауылыңыздың жол шақырымына айналдырады."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего аула."
+          }
+        }
+      }
+    },
+    "NSHealthUpdateUsageDescription" : {
+      "comment" : "Privacy - Health Update Usage Description",
+      "localizations" : {
+        "kk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Қолданба «Денсаулыққа» дерек жазбайды."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Приложение не записывает данные в Здоровье."
           }
         }
       }
     }
-  }
+  },
+  "version" : "1.0"
 }

@@ -25,6 +25,11 @@ final class GameEngine {
     private(set) var healthStatus: HealthStatus = .unknown
     private(set) var lastSync: Date?
     var lastError: String?
+    /// Источники, которые видны в «Здоровье», и их шаги за сегодня (для экрана настроек).
+    private(set) var healthSources: [HealthSource] = []
+    private(set) var stepsTodayBySource: [String: Int] = [:]
+
+    static let quietHours: Range<Int> = 23..<30 // 23:00–06:00, часы после полуночи считаем как 24+
 
     private let store = StateStore()
     private let health = HealthKitStepSource()
@@ -112,21 +117,22 @@ final class GameEngine {
         guard let snapshot = state else { return }
         if health.isAvailable {
             // Шаги и расстояние читаем независимо: отказ по одному типу не должен ломать другой.
-            async let stepsResult: Result<[Date: Int], Error> = {
-                do { return .success(try await health.stepsPerDay(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
+            async let stepsResult: Result<[Date: [String: Double]], Error> = {
+                do { return .success(try await health.hourlyStepsBySource(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
             }()
-            async let distanceResult: Result<[Date: Double], Error> = {
-                do { return .success(try await health.distanceKmPerDay(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
+            async let distanceResult: Result<[Date: [String: Double]], Error> = {
+                do { return .success(try await health.hourlyDistanceKmBySource(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
             }()
             let (steps, distance) = await (stepsResult, distanceResult)
+            if let list = try? await health.sources() { healthSources = list }
             // Пока ждали HealthKit, состояние могло измениться, поэтому перечитываем.
             guard var current = state else { return }
-            if case let .success(perDay) = steps {
-                for (day, n) in perDay { current.healthSteps[DayKey.key(day)] = n }
-            }
-            if case let .success(perDay) = distance {
-                for (day, km) in perDay { current.healthDistanceKm[DayKey.key(day)] = km }
-            }
+            let hourlySteps = (try? steps.get()) ?? [:]
+            let hourlyKm = (try? distance.get()) ?? [:]
+            let daily = Self.aggregate(steps: hourlySteps, km: hourlyKm, settings: current.sourceSettings, stride: current.strideMeters)
+            current.healthSteps = daily.steps
+            current.healthDistanceKm = daily.km
+            stepsTodayBySource = daily.todayBySource
             state = current
             switch (steps, distance) {
             case (.failure(let e), .failure):
@@ -159,6 +165,7 @@ final class GameEngine {
         state?.strideMeters = meters
         evaluateAndNotify()
         persist()
+        Task { await syncSteps() }
     }
 
     func addDebugSteps(_ steps: Int) {
@@ -167,6 +174,72 @@ final class GameEngine {
         state = current
         evaluateAndNotify()
         persist()
+    }
+
+    // MARK: - Учёт источников
+
+    private struct DailyTotals {
+        var steps: [String: Int] = [:]
+        var km: [String: Double] = [:]
+        var todayBySource: [String: Int] = [:]
+    }
+
+    /// Сводит почасовые данные по источникам в дневные шаги и километры.
+    /// За час берётся наибольшее число шагов среди включённых источников (несколько устройств считают одну прогулку).
+    /// Расстояние берётся от источников, которые его пишут; шаги сверх их шагов (дорожка, браслет без телефона)
+    /// переводятся по длине шага. Источники с ночным фильтром не учитываются в тихие часы.
+    private static func aggregate(steps: [Date: [String: Double]], km: [Date: [String: Double]],
+                                  settings: [String: SourceSetting], stride: Double) -> DailyTotals {
+        var totals = DailyTotals()
+        let calendar = Calendar.current
+        let todayKey = DayKey.key(.now)
+        let distanceSources = Set(km.values.flatMap(\.keys))
+        let hours = Set(steps.keys).union(km.keys)
+
+        func allowed(_ source: String, at hour: Date) -> Bool {
+            let setting = settings[source] ?? SourceSetting()
+            guard setting.enabled else { return false }
+            if setting.nightFilter {
+                let h = calendar.component(.hour, from: hour)
+                if h >= 23 || h < 6 { return false }
+            }
+            return true
+        }
+
+        for hour in hours {
+            let dayKey = DayKey.key(hour)
+            let stepsHere = (steps[hour] ?? [:]).filter { allowed($0.key, at: hour) }
+            let kmHere = (km[hour] ?? [:]).filter { allowed($0.key, at: hour) }
+
+            let dedupedSteps = stepsHere.values.max() ?? 0
+            let distanceKm = kmHere.values.reduce(0, +)
+            let stepsCoveredByDistance = stepsHere.filter { distanceSources.contains($0.key) }.values.max() ?? 0
+            let extraSteps = max(0, dedupedSteps - stepsCoveredByDistance)
+            let kmHour = distanceKm + extraSteps * stride / 1000
+
+            totals.steps[dayKey, default: 0] += Int(dedupedSteps.rounded())
+            totals.km[dayKey, default: 0] += kmHour
+            if dayKey == todayKey {
+                for (source, value) in steps[hour] ?? [:] {
+                    totals.todayBySource[source, default: 0] += Int(value.rounded())
+                }
+            }
+        }
+        return totals
+    }
+
+    func setting(for source: HealthSource) -> SourceSetting {
+        state?.sourceSettings[source.id] ?? SourceSetting()
+    }
+
+    func updateSetting(for source: HealthSource, _ change: (inout SourceSetting) -> Void) {
+        guard var current = state else { return }
+        var setting = current.sourceSettings[source.id] ?? SourceSetting()
+        change(&setting)
+        current.sourceSettings[source.id] = setting
+        state = current
+        persist()
+        Task { await syncSteps() }
     }
 
     // MARK: - Производные величины
