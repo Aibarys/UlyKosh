@@ -86,3 +86,29 @@ targets:
         script: |
           xattr -cr "${CODESIGNING_FOLDER_PATH}" 2>/dev/null || true
         basedOnDependencyAnalysis: false
+
+  UlyKoshTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: UlyKoshTests
+    dependencies:
+      - target: UlyKosh
+    settings:
+      base:
+        GENERATE_INFOPLIST_FILE: YES
+        PRODUCT_BUNDLE_IDENTIFIER: kz.ulykosh.UlyKoshTests
+
+schemes:
+  UlyKosh:
+    build:
+      targets:
+        UlyKosh: all
+        UlyKoshWidget: all
+        UlyKoshTests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - UlyKoshTests

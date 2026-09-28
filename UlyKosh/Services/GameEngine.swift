@@ -29,16 +29,37 @@ final class GameEngine {
     private(set) var healthSources: [HealthSource] = []
     private(set) var stepsTodayBySource: [String: Int] = [:]
 
-    static let quietHours: Range<Int> = 23..<30 // 23:00–06:00, часы после полуночи считаем как 24+
-
-    private let store = StateStore()
+    private let store: StateStore
     private let health = HealthKitStepSource()
     private let notifications = NotificationService.shared
+    /// Текущее время; в тестах подменяется.
+    let clock: () -> Date
+    /// Канал уведомлений; в тестах перехватывается.
+    var notify: (_ id: String, _ title: String, _ body: String) -> Void
+    /// В тестах отключает обращение к HealthKit и виджету.
+    private let isolated: Bool
+
+    init() {
+        store = StateStore()
+        clock = { .now }
+        isolated = false
+        notify = { id, title, body in NotificationService.shared.post(id: id, title: title, body: body) }
+    }
+
+    /// Изолированный движок для тестов: своя папка состояния, свои часы, без HealthKit.
+    init(storeDirectory: URL, clock: @escaping () -> Date) {
+        store = StateStore(directory: storeDirectory)
+        self.clock = clock
+        isolated = true
+        notify = { _, _, _ in }
+    }
+
+    private var now: Date { clock() }
 
     /// Маршрут текущего кочевья; до старта — тот, что подходит по сезону.
     var route: Route {
         if let id = state?.routeId, let r = Routes.byId(id) { return r }
-        return Routes.forStart()
+        return Routes.forStart(now)
     }
     private var loaded = false
     private var suppressNotificationsOnce = false
@@ -56,6 +77,7 @@ final class GameEngine {
         loaded = true
         state = store.load()
         isLoading = false
+        if isolated { return }
         if !health.isAvailable {
             healthStatus = .unavailable
         } else if state?.healthRequested == true {
@@ -71,7 +93,7 @@ final class GameEngine {
     }
 
     private func startObservingIfPossible() {
-        guard state != nil, health.isAvailable else { return }
+        guard state != nil, health.isAvailable, !isolated else { return }
         Task { await health.enableBackgroundDelivery() }
         health.startObserving { [weak self] in
             await self?.backgroundSync()
@@ -86,12 +108,13 @@ final class GameEngine {
     func startJourney(aulName: String) async {
         let name = aulName.trimmingCharacters(in: .whitespacesAndNewlines)
         state = GameState(
-            routeId: Routes.forStart().id,
+            routeId: Routes.forStart(now).id,
             aulName: name.isEmpty ? String(localized: "Аул Ұлы Көш") : name,
-            startDate: Calendar.current.startOfDay(for: .now)
+            startDate: Calendar.current.startOfDay(for: now)
         )
         persist()
         suppressNotificationsOnce = true
+        guard !isolated else { evaluateAndNotify(); persist(); return }
         await requestHealthAccess()
         await notifications.requestAuthorization()
         startObservingIfPossible()
@@ -115,7 +138,7 @@ final class GameEngine {
 
     func syncSteps() async {
         guard let snapshot = state else { return }
-        if health.isAvailable {
+        if health.isAvailable, !isolated {
             // Шаги и расстояние читаем независимо: отказ по одному типу не должен ломать другой.
             async let stepsResult: Result<[Date: [String: Double]], Error> = {
                 do { return .success(try await health.hourlyStepsBySource(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
@@ -129,7 +152,7 @@ final class GameEngine {
             guard var current = state else { return }
             let hourlySteps = (try? steps.get()) ?? [:]
             let hourlyKm = (try? distance.get()) ?? [:]
-            let daily = Self.aggregate(steps: hourlySteps, km: hourlyKm, settings: current.sourceSettings, stride: current.strideMeters)
+            let daily = Self.aggregate(steps: hourlySteps, km: hourlyKm, settings: current.sourceSettings, stride: current.strideMeters, today: now)
             current.healthSteps = daily.steps
             current.healthDistanceKm = daily.km
             stepsTodayBySource = daily.todayBySource
@@ -170,7 +193,7 @@ final class GameEngine {
 
     func addDebugSteps(_ steps: Int) {
         guard var current = state else { return }
-        current.debugSteps[DayKey.key(.now), default: 0] += steps
+        current.debugSteps[DayKey.key(now), default: 0] += steps
         state = current
         evaluateAndNotify()
         persist()
@@ -178,7 +201,7 @@ final class GameEngine {
 
     // MARK: - Учёт источников
 
-    private struct DailyTotals {
+    struct DailyTotals {
         var steps: [String: Int] = [:]
         var km: [String: Double] = [:]
         var todayBySource: [String: Int] = [:]
@@ -188,11 +211,11 @@ final class GameEngine {
     /// За час берётся наибольшее число шагов среди включённых источников (несколько устройств считают одну прогулку).
     /// Расстояние берётся от источников, которые его пишут; шаги сверх их шагов (дорожка, браслет без телефона)
     /// переводятся по длине шага. Источники с ночным фильтром не учитываются в тихие часы.
-    private static func aggregate(steps: [Date: [String: Double]], km: [Date: [String: Double]],
-                                  settings: [String: SourceSetting], stride: Double) -> DailyTotals {
+    static func aggregate(steps: [Date: [String: Double]], km: [Date: [String: Double]],
+                          settings: [String: SourceSetting], stride: Double, today: Date = .now) -> DailyTotals {
         var totals = DailyTotals()
         let calendar = Calendar.current
-        let todayKey = DayKey.key(.now)
+        let todayKey = DayKey.key(today)
         let distanceSources = Set(km.values.flatMap(\.keys))
         let hours = Set(steps.keys).union(km.keys)
 
@@ -226,6 +249,18 @@ final class GameEngine {
             }
         }
         return totals
+    }
+
+    /// Подаёт данные «Здоровья» напрямую, минуя HealthKit. Для тестов.
+    func ingest(hourlySteps: [Date: [String: Double]], hourlyKm: [Date: [String: Double]]) {
+        guard var current = state else { return }
+        let daily = Self.aggregate(steps: hourlySteps, km: hourlyKm, settings: current.sourceSettings, stride: current.strideMeters, today: now)
+        current.healthSteps = daily.steps
+        current.healthDistanceKm = daily.km
+        stepsTodayBySource = daily.todayBySource
+        state = current
+        evaluateAndNotify()
+        persist()
     }
 
     func setting(for source: HealthSource) -> SourceSetting {
@@ -265,11 +300,11 @@ final class GameEngine {
     /// Есть ли за сегодня данные о расстоянии из «Здоровья».
     var usesHealthDistance: Bool {
         guard let s = state else { return false }
-        return (s.healthDistanceKm[DayKey.key(.now)] ?? 0) > 0
+        return (s.healthDistanceKm[DayKey.key(now)] ?? 0) > 0
     }
 
     private func daysElapsed(_ s: GameState) -> Int {
-        let today = Calendar.current.startOfDay(for: .now)
+        let today = Calendar.current.startOfDay(for: now)
         return max(0, Calendar.current.dateComponents([.day], from: s.startDate, to: today).day ?? 0)
     }
 
@@ -282,13 +317,13 @@ final class GameEngine {
 
     var stepsToday: Int {
         guard let s = state else { return 0 }
-        let key = DayKey.key(.now)
+        let key = DayKey.key(now)
         return (s.healthSteps[key] ?? 0) + (s.debugSteps[key] ?? 0)
     }
 
     var kmToday: Double {
         guard let s = state else { return 0 }
-        return Self.walkedKm(on: DayKey.key(.now), in: s)
+        return Self.walkedKm(on: DayKey.key(now), in: s)
     }
 
     var reachedStops: [Stop] { route.stops.filter { $0.km <= totalKm } }
@@ -323,7 +358,7 @@ final class GameEngine {
         for event in route.events {
             if case let .active(startedAt, startKm) = s.eventStatus[event.id] {
                 let deadline = startedAt.addingTimeInterval(Double(event.days) * 86_400)
-                let secondsLeft = deadline.timeIntervalSince(.now)
+                let secondsLeft = deadline.timeIntervalSince(now)
                 return ActiveEvent(
                     event: event,
                     startedAt: startedAt,
@@ -354,7 +389,7 @@ final class GameEngine {
     var encounterOfTheDay: Fauna? {
         let pool = (nextStop ?? currentStop).fauna
         guard !pool.isEmpty else { return nil }
-        let day = Calendar.current.ordinality(of: .day, in: .year, for: .now) ?? 0
+        let day = Calendar.current.ordinality(of: .day, in: .year, for: now) ?? 0
         return pool[day % pool.count]
     }
 
@@ -363,25 +398,29 @@ final class GameEngine {
     private func evaluateAndNotify() {
         let before = state
         evaluate()
+        guard var current = state else { return }
+        let newKm = min(rawKm(current), route.totalKm)
+        // Стоянки сравниваем не с прошлым состоянием (шаги в него уже записаны), а с километражем последнего уведомления.
+        let oldKm = current.lastNotifiedKm ?? newKm
+        current.lastNotifiedKm = newKm
+        state = current
         if suppressNotificationsOnce {
             suppressNotificationsOnce = false
             return
         }
-        notifyTransitions(from: before, to: state)
+        notifyTransitions(from: before, to: current, oldKm: oldKm, newKm: newKm)
     }
 
     /// Сравнивает состояние до и после пересчёта и шлёт уведомления о том, что изменилось в пути.
-    private func notifyTransitions(from old: GameState?, to new: GameState?) {
-        guard let old, let new else { return }
-        let oldKm = min(rawKm(old), route.totalKm)
-        let newKm = min(rawKm(new), route.totalKm)
+    private func notifyTransitions(from old: GameState?, to new: GameState, oldKm: Double, newKm: Double) {
+        guard let old else { return }
 
         let reached = route.stops.filter { $0.km > 0 && $0.km > oldKm && $0.km <= newKm }
         if reached.count == 1, let stop = reached.first {
             let body = stop.character.map { String(localized: "\($0.role) \($0.name) присоединяется к аулу. \(stop.subtitle).") } ?? stop.subtitle
-            notifications.post(id: "stop-\(stop.id)", title: String(localized: "Аул дошёл до стоянки \(stop.name)"), body: body)
+            notify("stop-\(stop.id)", String(localized: "Аул дошёл до стоянки \(stop.name)"), body)
         } else if reached.count > 1, let last = reached.last {
-            notifications.post(id: "stop-\(last.id)", title: String(localized: "Аул прошёл \(reached.count) стоянки"), body: String(localized: "Последняя: \(last.name). Загляните в маршрут."))
+            notify("stop-\(last.id)", String(localized: "Аул прошёл \(reached.count) стоянки"), String(localized: "Последняя: \(last.name). Загляните в маршрут."))
         }
 
         for event in route.events {
@@ -389,27 +428,25 @@ final class GameEngine {
             let now = new.eventStatus[event.id]
             switch (was, now) {
             case (.none, .some(.active)):
-                notifications.post(id: "event-\(event.id)-start", title: event.title,
-                                   body: String(localized: "\(event.description) Нужно пройти \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days))."))
+                notify("event-\(event.id)-start", event.title, String(localized: "\(event.description) Нужно пройти \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days))."))
             case (.some(.active), .some(.completed)):
-                notifications.post(id: "event-\(event.id)-done", title: String(localized: "\(event.title): аул справился"), body: event.rewardText)
+                notify("event-\(event.id)-done", String(localized: "\(event.title): аул справился"), event.rewardText)
             case (.some(.active), .some(.failed)):
-                notifications.post(id: "event-\(event.id)-fail", title: String(localized: "\(event.title) позади"),
-                                   body: String(localized: "Не успели, но аул справился. Награды не будет, дорога продолжается."))
+                notify("event-\(event.id)-fail", String(localized: "\(event.title) позади"), String(localized: "Не успели, но аул справился. Награды не будет, дорога продолжается."))
             default:
                 break
             }
         }
 
         if old.finishedAt == nil, new.finishedAt != nil {
-            notifications.post(id: "finish", title: String(localized: "Кочевье окончено!"), body: route.outro)
+            notify("finish", String(localized: "Кочевье окончено!"), route.outro)
         }
     }
 
     private func evaluate() {
         guard var s = state else { return }
         let km = rawKm(s)
-        let now = Date.now
+        let now = self.now
 
         for event in route.events {
             switch s.eventStatus[event.id] {
@@ -455,11 +492,11 @@ final class GameEngine {
                 kmToNextStop: kmToNextStop,
                 regionName: regionName,
                 isFinished: isFinished,
-                updatedAt: .now
+                updatedAt: now
             ).save()
         } else {
             WidgetSnapshot.clear()
         }
-        WidgetCenter.shared.reloadAllTimelines()
+        if !isolated { WidgetCenter.shared.reloadAllTimelines() }
     }
 }

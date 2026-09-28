@@ -33,6 +33,8 @@ struct GameState: Codable {
     var finishedAt: Date?
     /// HealthKit не сообщает статус чтения, поэтому запоминаем сами, что диалог уже показывали.
     var healthRequested: Bool = false
+    /// Километраж, по которому уже отправлены уведомления о стоянках. nil — ещё не инициализирован.
+    var lastNotifiedKm: Double?
 
     init(routeId: String, aulName: String, startDate: Date) {
         self.routeId = routeId
@@ -55,6 +57,7 @@ struct GameState: Codable {
         herdBonus = try c.decodeIfPresent(HerdDelta.self, forKey: .herdBonus) ?? .zero
         finishedAt = try c.decodeIfPresent(Date.self, forKey: .finishedAt)
         healthRequested = try c.decodeIfPresent(Bool.self, forKey: .healthRequested) ?? false
+        lastNotifiedKm = try c.decodeIfPresent(Double.self, forKey: .lastNotifiedKm)
     }
 }
 

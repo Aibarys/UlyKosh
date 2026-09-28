@@ -1,11 +1,16 @@
 import Foundation
 
-/// Сохраняет состояние игры в JSON-файл в Application Support.
+/// Сохраняет состояние игры в JSON-файл. По умолчанию в Application Support, в тестах — во временную папку.
 struct StateStore {
+    private let directory: URL
+
+    init(directory: URL? = nil) {
+        self.directory = directory ?? FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+    }
+
     private var url: URL {
-        let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
-        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
-        return dir.appendingPathComponent("ulykosh-state.json")
+        try? FileManager.default.createDirectory(at: directory, withIntermediateDirectories: true)
+        return directory.appendingPathComponent("ulykosh-state.json")
     }
 
     func load() -> GameState? {

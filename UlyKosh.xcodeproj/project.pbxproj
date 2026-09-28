@@ -13,8 +13,11 @@
 		2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */; };
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
 		3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
+		441907A1BDA8E7D94D250EAD /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A46CC9B7CF6243CFC3837F /* TestSupport.swift */; };
+		4DB9ABEEAB11C608E3DC4AF3 /* EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34994C08915FFC40EDD08F99 /* EngineTests.swift */; };
 		512D56B308A6A058C4C91494 /* UlyKoshWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 60C2DFB7119649968104366B /* UlyKoshWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52C0096D2654C7744BC8DB37 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */; };
+		54EA1B4348DEFEE749BAAAAD /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A70BF8FEC05D068B7C205 /* CalendarTests.swift */; };
 		5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
 		5E0FECD2963BD1E8C667E5B4 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
 		5F24074A0B67928B27940BF3 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87330EE442BE509F530E870C /* NotificationService.swift */; };
@@ -41,6 +44,7 @@
 		E01F7229EFB90E72A16BB95A /* Herd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C04906DC303EFA406662493 /* Herd.swift */; };
 		E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */; };
 		ED559C6F72758549DE1A0AEA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
+		EED6AFFFF2F005736C950887 /* AggregationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B4CEA357F74A573EBC1179 /* AggregationTests.swift */; };
 		F5002506627A97E4F3DC8100 /* AulView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F75E0DC15E5323E9381F143 /* AulView.swift */; };
 		F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */; };
 		F85B3FEF8DC0D07DC4B07DC0 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
@@ -49,6 +53,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		1870C88E5783E5CE41B19304 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F7169AD03A9E97DB5738F53C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13405D1367D0D680C2AAA318;
+			remoteInfo = UlyKosh;
+		};
 		4DB37034FA7FC57EC5277007 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = F7169AD03A9E97DB5738F53C /* Project object */;
@@ -77,15 +88,19 @@
 		09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
 		174EFFB53CA4198660D33705 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		1A78890B7F7ED51971628D2E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		226A70BF8FEC05D068B7C205 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStepSource.swift; sourceTree = "<group>"; };
 		269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
 		297D5DBDE162C378FA024F52 /* UlyKosh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKosh.entitlements; sourceTree = "<group>"; };
 		2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		34994C08915FFC40EDD08F99 /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
 		39CD843740DD3290D6E37F3B /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		48A14E4FFB337A35451614EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		56B4CEA357F74A573EBC1179 /* AggregationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationTests.swift; sourceTree = "<group>"; };
 		575F1C5AAC906C5C78F4DE5B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		60C2DFB7119649968104366B /* UlyKoshWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = UlyKoshWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F6C09FB3A8BD52FCE249C93 /* UlyKoshTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UlyKoshTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FCCF40899099CBFF3A80C30 /* UlyKoshWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKoshWidget.entitlements; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
 		87330EE442BE509F530E870C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -110,6 +125,7 @@
 		EA374652C6F6D6E467AF0FA5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutumnRoute.swift; sourceTree = "<group>"; };
 		F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
+		F6A46CC9B7CF6243CFC3837F /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
 		FD734DCCD061DD5E164CE25A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				F8EC1DDB8C843F6ED6F2CC34 /* UlyKosh */,
+				48C3E881FFA10F9EC830D915 /* UlyKoshTests */,
 				9586448E155A8F1E2C60373D /* UlyKoshWidget */,
 				E1764D3129A217F6120B5589 /* Products */,
 			);
@@ -178,6 +195,17 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		48C3E881FFA10F9EC830D915 /* UlyKoshTests */ = {
+			isa = PBXGroup;
+			children = (
+				56B4CEA357F74A573EBC1179 /* AggregationTests.swift */,
+				226A70BF8FEC05D068B7C205 /* CalendarTests.swift */,
+				34994C08915FFC40EDD08F99 /* EngineTests.swift */,
+				F6A46CC9B7CF6243CFC3837F /* TestSupport.swift */,
+			);
+			path = UlyKoshTests;
+			sourceTree = "<group>";
+		};
 		7409508BF68394838071C2FA /* Map */ = {
 			isa = PBXGroup;
 			children = (
@@ -222,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				9196C3239C4E23B179D5B5D8 /* UlyKosh.app */,
+				6F6C09FB3A8BD52FCE249C93 /* UlyKoshTests.xctest */,
 				60C2DFB7119649968104366B /* UlyKoshWidget.appex */,
 			);
 			name = Products;
@@ -265,6 +294,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		03336D1A75E1F887E4CC5265 /* UlyKoshTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BEB60C8EBC7942A79DA31CC4 /* Build configuration list for PBXNativeTarget "UlyKoshTests" */;
+			buildPhases = (
+				86AEEAD8A024477E0F22CED7 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				15258FB8F1A00346CB71F910 /* PBXTargetDependency */,
+			);
+			name = UlyKoshTests;
+			packageProductDependencies = (
+			);
+			productName = UlyKoshTests;
+			productReference = 6F6C09FB3A8BD52FCE249C93 /* UlyKoshTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		13405D1367D0D680C2AAA318 /* UlyKosh */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7256475CB7D992AC71A1FD49 /* Build configuration list for PBXNativeTarget "UlyKosh" */;
@@ -314,6 +361,10 @@
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					03336D1A75E1F887E4CC5265 = {
+						DevelopmentTeam = VTP9UAM5MH;
+						ProvisioningStyle = Automatic;
+					};
 					13405D1367D0D680C2AAA318 = {
 						DevelopmentTeam = VTP9UAM5MH;
 						ProvisioningStyle = Automatic;
@@ -341,6 +392,7 @@
 			targets = (
 				13405D1367D0D680C2AAA318 /* UlyKosh */,
 				468566073E1A469A57C5B7E9 /* UlyKoshWidget */,
+				03336D1A75E1F887E4CC5265 /* UlyKoshTests */,
 			);
 		};
 /* End PBXProject section */
@@ -443,6 +495,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		86AEEAD8A024477E0F22CED7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EED6AFFFF2F005736C950887 /* AggregationTests.swift in Sources */,
+				54EA1B4348DEFEE749BAAAAD /* CalendarTests.swift in Sources */,
+				4DB9ABEEAB11C608E3DC4AF3 /* EngineTests.swift in Sources */,
+				441907A1BDA8E7D94D250EAD /* TestSupport.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B23F668FEEEBEBC2B33F9252 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -459,6 +522,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		15258FB8F1A00346CB71F910 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13405D1367D0D680C2AAA318 /* UlyKosh */;
+			targetProxy = 1870C88E5783E5CE41B19304 /* PBXContainerItemProxy */;
+		};
 		E7C970571DC7C83E31D94B9A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 468566073E1A469A57C5B7E9 /* UlyKoshWidget */;
@@ -567,6 +635,23 @@
 			};
 			name = Release;
 		};
+		4452EF6203162DA562E5B8DE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kz.ulykosh.UlyKoshTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UlyKosh.app/UlyKosh";
+			};
+			name = Release;
+		};
 		9AB7EC3A1A95833D570DDD9D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -670,6 +755,23 @@
 			};
 			name = Release;
 		};
+		E719A2BDD0621426B5AD60CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = kz.ulykosh.UlyKoshTests;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UlyKosh.app/UlyKosh";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -678,6 +780,15 @@
 			buildConfigurations = (
 				B8B8B9D1FE72E5A26E8B8675 /* Debug */,
 				D92EDBC60F7CAE8193F7A792 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		BEB60C8EBC7942A79DA31CC4 /* Build configuration list for PBXNativeTarget "UlyKoshTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E719A2BDD0621426B5AD60CA /* Debug */,
+				4452EF6203162DA562E5B8DE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Debug;
