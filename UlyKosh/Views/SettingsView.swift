@@ -55,7 +55,7 @@ struct SettingsView: View {
                         .foregroundStyle(Color.ash)
                 }
 
-                #if DEBUG
+                if BuildEnvironment.showsDebugTools {
                 Section("Отладка") {
                     Button("Тестовое уведомление через 5 с") {
                         notifications.post(id: "test", title: "Аул дошёл до стоянки Отырар", body: "Ақын Сәкен присоединяется к аулу.", delay: 5)
@@ -77,7 +77,7 @@ struct SettingsView: View {
                         }
                     }
                 }
-                #endif
+                }
 
                 Section {
                     Button("Сбросить кочевье", role: .destructive) { showResetConfirm = true }
@@ -101,6 +101,9 @@ struct SettingsView: View {
 
                 Section("О приложении") {
                     LabeledContent("Ұлы Көш", value: Self.versionString)
+                    if BuildEnvironment.current != .appStore {
+                        LabeledContent("Сборка", value: BuildEnvironment.current.title)
+                    }
                     Text("Аул проходит \(Fmt.km(GameEngine.passiveKmPerDay)) км в день сам по себе, остальное зависит от ваших шагов.")
                         .font(.footnote)
                         .foregroundStyle(Color.ash)

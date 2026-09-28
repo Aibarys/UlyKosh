@@ -30,6 +30,7 @@
 		880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */; };
 		8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFFF72D6D462522C9D5B2F1 /* WidgetViews.swift */; };
 		8CCC08E719C5084DE25D8600 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A78890B7F7ED51971628D2E /* SettingsView.swift */; };
+		8E380A027F6D4221C1EF1E4D /* BuildEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70390BF0FD707FF0C429BCB9 /* BuildEnvironment.swift */; };
 		8FDFAF61A7FD43CFAA8F4E40 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */; };
 		90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
 		9121F88EDA93D73B83B648E8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F888AF3C2A86756E8C5AAC40 /* PrivacyInfo.xcprivacy */; };
@@ -49,6 +50,7 @@
 		E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */; };
 		ED559C6F72758549DE1A0AEA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
 		EED6AFFFF2F005736C950887 /* AggregationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B4CEA357F74A573EBC1179 /* AggregationTests.swift */; };
+		F017E88E1A9CCA6C30035180 /* BuildEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70390BF0FD707FF0C429BCB9 /* BuildEnvironment.swift */; };
 		F5002506627A97E4F3DC8100 /* AulView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F75E0DC15E5323E9381F143 /* AulView.swift */; };
 		F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */; };
 		F85B3FEF8DC0D07DC4B07DC0 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
@@ -106,6 +108,7 @@
 		60C2DFB7119649968104366B /* UlyKoshWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = UlyKoshWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6C09FB3A8BD52FCE249C93 /* UlyKoshTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UlyKoshTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FCCF40899099CBFF3A80C30 /* UlyKoshWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKoshWidget.entitlements; sourceTree = "<group>"; };
+		70390BF0FD707FF0C429BCB9 /* BuildEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildEnvironment.swift; sourceTree = "<group>"; };
 		7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterRoute.swift; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
 		87330EE442BE509F530E870C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
@@ -172,6 +175,7 @@
 		2510AB327E31C923B655A19C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				70390BF0FD707FF0C429BCB9 /* BuildEnvironment.swift */,
 				D82F50346CB5ACB44C8AA880 /* Localization.swift */,
 				269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */,
 			);
@@ -479,6 +483,7 @@
 			files = (
 				F5002506627A97E4F3DC8100 /* AulView.swift in Sources */,
 				C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */,
+				F017E88E1A9CCA6C30035180 /* BuildEnvironment.swift in Sources */,
 				F9A940E803A636F8F171D365 /* GameEngine.swift in Sources */,
 				CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */,
 				79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */,
@@ -524,6 +529,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E380A027F6D4221C1EF1E4D /* BuildEnvironment.swift in Sources */,
 				ED559C6F72758549DE1A0AEA /* Localization.swift in Sources */,
 				5E0FECD2963BD1E8C667E5B4 /* Pictograms.swift in Sources */,
 				3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */,

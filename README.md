@@ -19,3 +19,15 @@ open UlyKosh.xcodeproj
 - `UlyKosh/Services/GameEngine.swift` — игровая логика: шаги → км, стадо, события, стоянки.
 - `UlyKosh/Services/HealthKitStepSource.swift` — чтение шагов по дням.
 - `UlyKosh/Views/` — экраны: онбординг, «Дорога», «Маршрут», «Аул», «Ещё».
+
+## Выпуск в TestFlight
+
+```bash
+./scripts/test.sh            # тесты
+./scripts/archive.sh upload  # +1 к номеру сборки, коммит, Release-архив, выгрузка в App Store Connect
+```
+
+Сборки для симулятора и устройства кладутся в `~/Library/Caches/UlyKosh/build`, вне папки проекта, потому что она синхронизируется iCloud и его атрибуты ломают подпись.
+
+Раздел «Отладка» в настройках виден в Debug- и TestFlight-сборках и скрыт в App Store.
+Политика конфиденциальности публикуется из `docs/` через GitHub Pages.
