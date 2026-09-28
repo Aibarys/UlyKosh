@@ -15,9 +15,10 @@ struct CalendarTests {
     @Test("Маршрут выбирается по сезону старта")
     func routeForStart() {
         #expect(Routes.forStart(Fixtures.date(2026, 4, 1)).id == SpringRoute.route.id)
-        #expect(Routes.forStart(Fixtures.date(2026, 7, 1)).id == SpringRoute.route.id)
+        #expect(Routes.forStart(Fixtures.date(2026, 7, 1)).id == SummerRoute.route.id)
         #expect(Routes.forStart(Fixtures.date(2026, 10, 1)).id == AutumnRoute.route.id)
-        #expect(Routes.forStart(Fixtures.date(2026, 1, 1)).id == AutumnRoute.route.id)
+        #expect(Routes.forStart(Fixtures.date(2026, 1, 1)).id == WinterRoute.route.id)
+        #expect(Set(Routes.all.map(\.id)).count == 4)
     }
 
     @Test("Фаза дня зависит от восхода и заката месяца")

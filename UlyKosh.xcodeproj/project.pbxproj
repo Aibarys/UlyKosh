@@ -10,6 +10,7 @@
 		09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA374652C6F6D6E467AF0FA5 /* HomeView.swift */; };
 		0D3DCE881ED66E02ED24A46D /* UlyKoshWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FD2AE73AE601439C91069 /* UlyKoshWidget.swift */; };
 		0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617FA4D102727E0CC62F293 /* RouteMapView.swift */; };
+		1CF86482E637268CBEEF255A /* WinterRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */; };
 		2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */; };
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
 		3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
@@ -32,6 +33,7 @@
 		90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
 		922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
 		95FD3480EBD3940C75704169 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */; };
+		9991EE468C967BBB05A9988B /* SummerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60B12FFE0A9DEDDE8342F3 /* SummerRoute.swift */; };
 		9A91EA0BD6EB31E810F0DDD3 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD843740DD3290D6E37F3B /* Route.swift */; };
 		9C539DC345877EA6711534AD /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */; };
 		AFBB706AFBAF613622C5FE6B /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF139901566A4D74C8AB674 /* Season.swift */; };
@@ -102,11 +104,13 @@
 		60C2DFB7119649968104366B /* UlyKoshWidget.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = UlyKoshWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F6C09FB3A8BD52FCE249C93 /* UlyKoshTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = UlyKoshTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6FCCF40899099CBFF3A80C30 /* UlyKoshWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKoshWidget.entitlements; sourceTree = "<group>"; };
+		7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterRoute.swift; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
 		87330EE442BE509F530E870C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KazakhstanMapView.swift; sourceTree = "<group>"; };
 		8994525A1EF735990AAE25FE /* Pictograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograms.swift; sourceTree = "<group>"; };
 		8C04906DC303EFA406662493 /* Herd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Herd.swift; sourceTree = "<group>"; };
+		8D60B12FFE0A9DEDDE8342F3 /* SummerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummerRoute.swift; sourceTree = "<group>"; };
 		8F75E0DC15E5323E9381F143 /* AulView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AulView.swift; sourceTree = "<group>"; };
 		9196C3239C4E23B179D5B5D8 /* UlyKosh.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UlyKosh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9617FA4D102727E0CC62F293 /* RouteMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapView.swift; sourceTree = "<group>"; };
@@ -135,6 +139,8 @@
 			children = (
 				EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */,
 				9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */,
+				8D60B12FFE0A9DEDDE8342F3 /* SummerRoute.swift */,
+				7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -488,10 +494,12 @@
 				F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */,
 				C87C063ED198832D5886002C /* StateStore.swift in Sources */,
 				E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */,
+				9991EE468C967BBB05A9988B /* SummerRoute.swift in Sources */,
 				922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */,
 				2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */,
 				90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */,
 				8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */,
+				1CF86482E637268CBEEF255A /* WinterRoute.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

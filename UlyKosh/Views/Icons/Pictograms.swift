@@ -2,14 +2,14 @@ import SwiftUI
 
 /// Пиктограммы в духе петроглифов Тамғалы. Рисуются в квадрате 100×100, ось Y вниз, животные смотрят вправо.
 enum Pictogram: String, Codable, CaseIterable {
-    case camel, horse, rider, sheep, ram, saiga, gazelle, deer, wolf, boar, dog
+    case camel, horse, rider, sheep, ram, saiga, gazelle, deer, wolf, boar, dog, fox, hare
     case eagle, crane, bird, tortoise, hedgehog, marmot
     case yurt, tree, spruce, reeds, mausoleum, ruins, tulip
-    case elder, dombra, well, hammer, crescent, fish, bow, book
+    case elder, dombra, well, hammer, crescent, fish, bow, book, bowl, sun, lightning
     case snow, whirlwind, wave
 
     var isStroke: Bool { [.snow, .whirlwind, .wave].contains(self) }
-    var evenOdd: Bool { [.yurt, .mausoleum, .crescent, .fish, .book].contains(self) }
+    var evenOdd: Bool { [.yurt, .mausoleum, .crescent, .fish, .book, .bowl].contains(self) }
 
     var title: String {
         switch self {
@@ -24,6 +24,8 @@ enum Pictogram: String, Codable, CaseIterable {
         case .wolf: return "Волк"
         case .boar: return "Кабан"
         case .dog: return "Тобет"
+        case .fox: return "Лиса"
+        case .hare: return "Заяц"
         case .eagle: return "Орёл"
         case .crane: return "Журавль"
         case .bird: return "Птица"
@@ -45,6 +47,9 @@ enum Pictogram: String, Codable, CaseIterable {
         case .fish: return "Рыба"
         case .bow: return "Лук"
         case .book: return "Книга"
+        case .bowl: return "Тостаған"
+        case .sun: return "Солнце"
+        case .lightning: return "Молния"
         case .snow: return "Снег"
         case .whirlwind: return "Вихрь"
         case .wave: return "Волна"
@@ -415,6 +420,54 @@ private enum PictogramLibrary {
             b.poly([(20, 46), (42, 50), (42, 54), (20, 50)], hole: true)
             b.poly([(58, 38), (80, 34), (80, 38), (58, 42)], hole: true)
             b.poly([(58, 50), (80, 46), (80, 50), (58, 54)], hole: true)
+
+        case .fox:
+            b.poly([(20, 52), (30, 44), (46, 40), (62, 40), (72, 42), (80, 36), (86, 30), (92, 36), (100, 42), (98, 48), (90, 50),
+                    (84, 54), (78, 58), (66, 61), (40, 61), (26, 60)])
+            b.poly([(80, 36), (81, 24), (87, 32)])
+            b.poly([(87, 32), (94, 26), (95, 37)])
+            // пушистый хвост
+            b.poly([(20, 52), (26, 50), (18, 62), (10, 70), (2, 68), (4, 60), (10, 54)])
+            b.leg(28, 52, 88, width: 5, lean: -2)
+            b.leg(36, 52, 88, width: 5, lean: 1)
+            b.leg(58, 52, 88, width: 5, lean: -1)
+            b.leg(66, 52, 88, width: 5, lean: 2)
+
+        case .hare:
+            b.poly([(18, 70), (24, 56), (36, 48), (52, 46), (66, 48), (76, 44), (84, 40), (94, 44), (98, 52), (92, 56), (84, 58),
+                    (78, 66), (66, 74), (40, 76), (24, 78)])
+            b.poly([(78, 42), (72, 14), (78, 12), (86, 40)])
+            b.poly([(86, 40), (88, 12), (94, 14), (92, 42)])
+            b.poly([(18, 70), (24, 66), (14, 64), (10, 70), (14, 76)])
+            b.leg(30, 70, 92, width: 6, lean: -2)
+            b.leg(60, 70, 92, width: 6, lean: 3)
+
+        case .bowl:
+            var pts: [(CGFloat, CGFloat)] = [(6, 34), (94, 34)]
+            for i in 0...20 {
+                let a = CGFloat(i) / 20 * .pi
+                pts.append((50 + cos(a) * 44, 34 + sin(a) * 40))
+            }
+            b.poly(pts)
+            var inner: [(CGFloat, CGFloat)] = [(14, 38), (86, 38)]
+            for i in 0...20 {
+                let a = CGFloat(i) / 20 * .pi
+                inner.append((50 + cos(a) * 36, 38 + sin(a) * 30))
+            }
+            b.poly(inner, hole: true)
+            b.poly([(36, 78), (64, 78), (68, 92), (32, 92)])
+            b.poly([(10, 26), (90, 26), (90, 32), (10, 32)])
+
+        case .sun:
+            b.ellipse(50, 50, 18, 18)
+            for i in 0..<12 {
+                let a = CGFloat(i) / 12 * 2 * .pi
+                let r1: CGFloat = 26, r2: CGFloat = i % 2 == 0 ? 46 : 38
+                b.bar((50 + cos(a) * r1, 50 + sin(a) * r1), (50 + cos(a) * r2, 50 + sin(a) * r2), width: 5)
+            }
+
+        case .lightning:
+            b.poly([(58, 2), (26, 54), (46, 54), (36, 98), (74, 40), (54, 40), (68, 2)])
 
         case .snow:
             for i in 0..<6 {

@@ -185,10 +185,21 @@ struct KazakhstanMapView: View {
 
     private var caravanWorld: CGPoint { route.point(atFraction: route.fraction(atKm: engine.totalKm)) }
 
+    /// Зум, при котором весь маршрут занимает около половины экрана: перекочёвки видны целиком,
+    /// а короткие вылазки вокруг стоянки не сливаются в одну точку.
+    private func routeFitZoom(size: CGSize) -> Double {
+        let bounds = route.path.boundingRect
+        guard bounds.width > 0, bounds.height > 0 else { return 3.4 }
+        let base = screenScale(zoom: 1, size: size)
+        let fit = min(size.width / (bounds.width * base), size.height / (bounds.height * base)) * 0.5
+        return min(maxZoom, max(3.4, fit))
+    }
+
     private func startIntro(size: CGSize) {
         guard !introStarted else { return }
         introStarted = true
-        let target = MapCamera(center: clamped(center: caravanWorld, zoom: 3.4, size: size), zoom: 3.4)
+        let zoom = routeFitZoom(size: size)
+        let target = MapCamera(center: clamped(center: caravanWorld, zoom: zoom, size: size), zoom: zoom)
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(350))
             revealStart = .now
@@ -256,7 +267,7 @@ struct KazakhstanMapView: View {
     private func controls(size: CGSize) -> some View {
         VStack(spacing: 10) {
             mapButton("location.north.line") {
-                let zoom = max(displayedCamera(at: .now).zoom, 3.4)
+                let zoom = max(displayedCamera(at: .now).zoom, routeFitZoom(size: size))
                 animateCamera(to: MapCamera(center: clamped(center: caravanWorld, zoom: zoom, size: size), zoom: zoom), duration: 0.9)
             }
             mapButton("arrow.down.right.and.arrow.up.left") {

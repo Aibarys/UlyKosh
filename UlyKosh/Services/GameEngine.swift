@@ -105,10 +105,10 @@ final class GameEngine {
         await syncSteps()
     }
 
-    func startJourney(aulName: String) async {
+    func startJourney(aulName: String, routeId: String? = nil) async {
         let name = aulName.trimmingCharacters(in: .whitespacesAndNewlines)
         state = GameState(
-            routeId: Routes.forStart(now).id,
+            routeId: routeId ?? Routes.forStart(now).id,
             aulName: name.isEmpty ? String(localized: "Аул Ұлы Көш") : name,
             startDate: Calendar.current.startOfDay(for: now)
         )

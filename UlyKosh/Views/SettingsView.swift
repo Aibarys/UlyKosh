@@ -67,6 +67,15 @@ struct SettingsView: View {
                     NavigationLink("Сцены по сезонам") { SeasonSheetView() }
                     NavigationLink("Сцены по местности") { TerrainSheetView() }
                     NavigationLink("Виджет") { WidgetPreviewSheet() }
+                    Menu("Начать другой маршрут") {
+                        ForEach(Routes.all) { route in
+                            Button("\(route.title) · \(route.season)") {
+                                let name = engine.state?.aulName ?? ""
+                                engine.resetJourney()
+                                Task { await engine.startJourney(aulName: name, routeId: route.id) }
+                            }
+                        }
+                    }
                 }
                 #endif
 

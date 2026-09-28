@@ -68,13 +68,16 @@ struct Route: Identifiable {
 }
 
 enum Routes {
-    static let all: [Route] = [SpringRoute.route, AutumnRoute.route]
+    static let all: [Route] = [SpringRoute.route, SummerRoute.route, AutumnRoute.route, WinterRoute.route]
 
-    /// Весной и летом аул идёт на жайляу, осенью и зимой возвращается на кыстау.
+    /// Годовой круг: весной перекочёвка на жайлау, летом стоянка на жайлау,
+    /// осенью перекочёвка на кыстау, зимой стоянка на кыстау.
     static func forStart(_ date: Date = .now) -> Route {
         switch Season.current(date) {
-        case .spring, .summer: return SpringRoute.route
-        case .autumn, .winter: return AutumnRoute.route
+        case .spring: return SpringRoute.route
+        case .summer: return SummerRoute.route
+        case .autumn: return AutumnRoute.route
+        case .winter: return WinterRoute.route
         }
     }
 
