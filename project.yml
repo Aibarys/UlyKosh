@@ -10,6 +10,9 @@ settings:
   base:
     SWIFT_VERSION: "5.0"
     SWIFT_EMIT_LOC_STRINGS: YES
+    MARKETING_VERSION: "0.3.0"
+    CURRENT_PROJECT_VERSION: "1"
+    GENERATE_INFOPLIST_FILE: NO
     SWIFT_STRICT_CONCURRENCY: minimal
     CODE_SIGN_STYLE: Automatic
     DEVELOPMENT_TEAM: VTP9UAM5MH
@@ -23,6 +26,7 @@ targets:
     sources:
       - path: UlyKosh
       - path: UlyKoshWidget/WidgetViews.swift
+      - path: PrivacyInfo.xcprivacy
     info:
       path: UlyKosh/Info.plist
       properties:
@@ -37,6 +41,9 @@ targets:
         NSHealthShareUsageDescription: "Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего аула."
         NSHealthUpdateUsageDescription: "Приложение не записывает данные в Здоровье."
         ITSAppUsesNonExemptEncryption: false
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.healthcare-fitness
     entitlements:
       path: UlyKosh/UlyKosh.entitlements
       properties:
@@ -61,6 +68,7 @@ targets:
       - path: UlyKoshWidget
       - path: UlyKosh/Shared
       - path: UlyKosh/Resources/Localizable.xcstrings
+      - path: PrivacyInfo.xcprivacy
       - path: UlyKosh/Views/Theme.swift
       - path: UlyKosh/Views/Icons/Pictograms.swift
     info:
@@ -69,6 +77,8 @@ targets:
         CFBundleDisplayName: Ұлы Көш
         CFBundleDevelopmentRegion: ru
         CFBundleLocalizations: [ru, kk]
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:
           NSExtensionPointIdentifier: com.apple.widgetkit-extension
     entitlements:

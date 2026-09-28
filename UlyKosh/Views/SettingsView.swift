@@ -100,7 +100,7 @@ struct SettingsView: View {
                 }
 
                 Section("О приложении") {
-                    LabeledContent("Ұлы Көш", value: "MVP 0.2")
+                    LabeledContent("Ұлы Көш", value: Self.versionString)
                     Text("Аул проходит \(Fmt.km(GameEngine.passiveKmPerDay)) км в день сам по себе, остальное зависит от ваших шагов.")
                         .font(.footnote)
                         .foregroundStyle(Color.ash)
@@ -126,6 +126,12 @@ struct SettingsView: View {
                 Button("Отмена", role: .cancel) {}
             }
         }
+    }
+
+    private static var versionString: String {
+        let v = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String ?? "?"
+        let b = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String ?? "?"
+        return "\(v) (\(b))"
     }
 
     private var healthText: String {

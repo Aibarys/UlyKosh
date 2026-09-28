@@ -25,12 +25,14 @@
 		75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */ = {isa = PBXBuildFile; fileRef = B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */; };
 		79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */; };
 		7AD1615D54A5D5721D529FB6 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD734DCCD061DD5E164CE25A /* RootView.swift */; };
+		829501065AE9FF66A3BD0063 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F888AF3C2A86756E8C5AAC40 /* PrivacyInfo.xcprivacy */; };
 		8664C10F178D43AF437299C4 /* MapWorld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C8A1393060E44E6B227C8F /* MapWorld.swift */; };
 		880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */; };
 		8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEFFF72D6D462522C9D5B2F1 /* WidgetViews.swift */; };
 		8CCC08E719C5084DE25D8600 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A78890B7F7ED51971628D2E /* SettingsView.swift */; };
 		8FDFAF61A7FD43CFAA8F4E40 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */; };
 		90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
+		9121F88EDA93D73B83B648E8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F888AF3C2A86756E8C5AAC40 /* PrivacyInfo.xcprivacy */; };
 		922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
 		95FD3480EBD3940C75704169 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */; };
 		9991EE468C967BBB05A9988B /* SummerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60B12FFE0A9DEDDE8342F3 /* SummerRoute.swift */; };
@@ -130,6 +132,7 @@
 		EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutumnRoute.swift; sourceTree = "<group>"; };
 		F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		F6A46CC9B7CF6243CFC3837F /* TestSupport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestSupport.swift; sourceTree = "<group>"; };
+		F888AF3C2A86756E8C5AAC40 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		FD734DCCD061DD5E164CE25A /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,6 +151,7 @@
 		06D28CF2903B5A49F9490598 = {
 			isa = PBXGroup;
 			children = (
+				F888AF3C2A86756E8C5AAC40 /* PrivacyInfo.xcprivacy */,
 				F8EC1DDB8C843F6ED6F2CC34 /* UlyKosh */,
 				48C3E881FFA10F9EC830D915 /* UlyKoshTests */,
 				9586448E155A8F1E2C60373D /* UlyKoshWidget */,
@@ -409,6 +413,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				52C0096D2654C7744BC8DB37 /* Localizable.xcstrings in Resources */,
+				9121F88EDA93D73B83B648E8 /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +424,7 @@
 				3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */,
 				8FDFAF61A7FD43CFAA8F4E40 /* InfoPlist.xcstrings in Resources */,
 				C9F1FC2E2C8833A5C27CA0B2 /* Localizable.xcstrings in Resources */,
+				829501065AE9FF66A3BD0063 /* PrivacyInfo.xcprivacy in Resources */,
 				75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,6 +584,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = VTP9UAM5MH;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -591,7 +598,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.3.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -695,6 +704,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = VTP9UAM5MH;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -714,7 +724,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				GENERATE_INFOPLIST_FILE = NO;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 0.3.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
