@@ -38,6 +38,7 @@ targets:
           UIImageName: LaunchRider
           UIImageRespectsSafeAreaInsets: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
         NSHealthShareUsageDescription: "Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего аула."
         NSHealthUpdateUsageDescription: "Приложение не записывает данные в Здоровье."
         ITSAppUsesNonExemptEncryption: false
