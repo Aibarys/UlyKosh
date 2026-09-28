@@ -14,10 +14,11 @@ if [[ "$MODE" == "upload" ]]; then
   if [[ -n "$(git status --porcelain --untracked-files=no)" ]]; then
     echo "В рабочем дереве есть незакоммиченные изменения. Закоммитьте их перед выгрузкой."; exit 1
   fi
-  CUR=$(grep -E '^\s*CURRENT_PROJECT_VERSION:' project.yml | head -1 | sed -E 's/.*"([0-9]+)".*/\1/')
-  VER=$(grep -E '^\s*MARKETING_VERSION:' project.yml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
+  CUR=$(grep -E '^[[:space:]]*CURRENT_PROJECT_VERSION:' project.yml | head -1 | sed -E 's/.*"([0-9]+)".*/\1/')
+  VER=$(grep -E '^[[:space:]]*MARKETING_VERSION:' project.yml | head -1 | sed -E 's/.*"([^"]+)".*/\1/')
   NEXT=$((CUR + 1))
-  sed -i '' -E "s/^(\s*CURRENT_PROJECT_VERSION:) \"$CUR\"/\1 \"$NEXT\"/" project.yml
+  sed -i '' -E "s/^([[:space:]]*CURRENT_PROJECT_VERSION:) \"$CUR\"/\1 \"$NEXT\"/" project.yml
+  if ! grep -qE "^[[:space:]]*CURRENT_PROJECT_VERSION: \"$NEXT\"" project.yml; then echo "Не удалось поднять номер сборки"; exit 1; fi
   xcodegen generate > /dev/null
   git add project.yml UlyKosh.xcodeproj/project.pbxproj
   git commit -q -m "Сборка $VER ($NEXT) для TestFlight"
