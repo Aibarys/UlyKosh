@@ -1,0 +1,14 @@
+:root { --night:#0b0b0e; --gold:#dba847; --parchment:#ebe0cc; --ash:#948f85; --hair:rgba(255,255,255,.09); }
+* { box-sizing:border-box }
+body { margin:0; background:var(--night); color:var(--parchment); font:17px/1.6 Georgia,"Times New Roman",serif; }
+main { max-width:720px; margin:0 auto; padding:48px 20px 80px; }
+header { border-bottom:1px solid var(--hair); padding-bottom:20px; margin-bottom:28px; }
+h1 { font-weight:normal; color:var(--gold); font-size:34px; margin:0 0 6px; }
+h2 { font-weight:normal; color:var(--gold); font-size:22px; margin:36px 0 10px; }
+p, li { color:var(--parchment) }
+small, .muted { color:var(--ash); font-size:14px }
+a { color:var(--gold) }
+nav a { margin-right:16px; font-size:14px; letter-spacing:.06em; text-transform:uppercase; text-decoration:none }
+nav a.active { border-bottom:1px solid var(--gold) }
+ul { padding-left:22px }
+.rider { display:block; width:56px; margin-bottom:14px; fill:var(--gold) }
