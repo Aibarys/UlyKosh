@@ -21,6 +21,23 @@ struct WeatherNote: Codable, Hashable {
     var place: String?
 }
 
+/// Пройденный или оставленный путь в архиве. Шаги по дням хранятся общие, здесь только рамки пути.
+struct JourneyRecord: Codable, Identifiable, Hashable {
+    var id: String
+    var routeId: String
+    var customRoute: CustomRoute?
+    /// Начало дня старта.
+    var startDate: Date
+    /// Километры дня старта, засчитанные предыдущему пути.
+    var startBaselineKm: Double
+    /// Когда путь закончился: дошли до конца или свернули.
+    var endedAt: Date
+    /// Сколько км пройдено по этому пути.
+    var km: Double
+    var finished: Bool
+    var eventStatus: [String: EventStatus]
+}
+
 /// Всё, что нужно сохранить между запусками. Километры не хранятся, а считаются из шагов.
 struct GameState: Codable {
     var routeId: String
@@ -45,6 +62,14 @@ struct GameState: Codable {
     var healthRequested: Bool = false
     /// Километраж, по которому уже отправлены уведомления о стоянках. nil — ещё не инициализирован.
     var lastNotifiedKm: Double?
+    /// Первый день дневника: с него читаются шаги, сколько бы путей ни сменилось.
+    var journalStart: Date
+    /// Километры дня старта, которые засчитаны предыдущему пути (новый путь начинается с нуля).
+    var startBaselineKm: Double = 0
+    /// Итоги пройденного пути уже показаны.
+    var finishSeen: Bool = false
+    /// Прошлые пути, от старых к новым.
+    var history: [JourneyRecord] = []
     /// Шаги по часам для дневника: день → 24 значения.
     var hourlySteps: [String: [Int]] = [:]
     /// Отладочные шаги по часам (хранятся отдельно, чтобы синхронизация со «Здоровьем» их не стирала).
@@ -57,13 +82,14 @@ struct GameState: Codable {
     enum CodingKeys: String, CodingKey {
         case routeId, heroName = "aulName", startDate, strideMeters, healthSteps, healthDistanceKm, sourceSettings,
              debugSteps, eventStatus, finishedAt, customRoute, healthRequested, lastNotifiedKm,
-             hourlySteps, debugHourlySteps, weatherLog, dayNotes
+             hourlySteps, debugHourlySteps, weatherLog, dayNotes, journalStart, startBaselineKm, finishSeen, history
     }
 
     init(routeId: String, heroName: String, startDate: Date, customRoute: CustomRoute? = nil) {
         self.routeId = routeId
         self.heroName = heroName
         self.startDate = startDate
+        self.journalStart = startDate
         self.customRoute = customRoute
     }
 
@@ -84,6 +110,10 @@ struct GameState: Codable {
         healthRequested = try c.decodeIfPresent(Bool.self, forKey: .healthRequested) ?? false
         lastNotifiedKm = try c.decodeIfPresent(Double.self, forKey: .lastNotifiedKm)
         hourlySteps = try c.decodeIfPresent([String: [Int]].self, forKey: .hourlySteps) ?? [:]
+        journalStart = try c.decodeIfPresent(Date.self, forKey: .journalStart) ?? startDate
+        startBaselineKm = try c.decodeIfPresent(Double.self, forKey: .startBaselineKm) ?? 0
+        finishSeen = try c.decodeIfPresent(Bool.self, forKey: .finishSeen) ?? false
+        history = try c.decodeIfPresent([JourneyRecord].self, forKey: .history) ?? []
         debugHourlySteps = try c.decodeIfPresent([String: [Int]].self, forKey: .debugHourlySteps) ?? [:]
         weatherLog = try c.decodeIfPresent([String: WeatherNote].self, forKey: .weatherLog) ?? [:]
         dayNotes = try c.decodeIfPresent([String: String].self, forKey: .dayNotes) ?? [:]

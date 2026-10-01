@@ -65,14 +65,22 @@ final class GameEngine {
         return Routes.forStart(now)
     }
 
-    @ObservationIgnored private var customCache: (key: CustomRoute, language: String?, route: Route)?
+    @ObservationIgnored private var customCache: [CustomRoute: Route] = [:]
+    @ObservationIgnored private var cacheLanguage: String?
 
     private func customRoute(_ custom: CustomRoute) -> Route {
         let language = Bundle.main.preferredLocalizations.first
-        if let cache = customCache, cache.key == custom, cache.language == language { return cache.route }
+        if language != cacheLanguage { customCache = [:]; cacheLanguage = language }
+        if let cached = customCache[custom] { return cached }
         let built = RouteBuilder.makeRoute(custom)
-        customCache = (custom, language, built)
+        customCache[custom] = built
         return built
+    }
+
+    /// Маршрут пути из архива.
+    func route(of record: JourneyRecord) -> Route {
+        if record.routeId == CustomRoute.routeId, let custom = record.customRoute { return customRoute(custom) }
+        return Routes.byId(record.routeId) ?? Routes.all[0]
     }
     private var loaded = false
     private var suppressNotificationsOnce = false
@@ -121,9 +129,9 @@ final class GameEngine {
     static var defaultHeroName: String { String(localized: "Жолаушы") }
 
     /// Начинает путь: великое кочевье по сезону, выбранное кочевье или свой маршрут.
+    /// Прежний путь уходит в архив, дневник и шаги остаются.
     func startJourney(heroName: String, routeId: String? = nil, customRoute: CustomRoute? = nil) async {
         let name = heroName.trimmingCharacters(in: .whitespacesAndNewlines)
-        // Новый путь продолжает прежний: шаги «Здоровья» и настройки источников не теряются.
         let previous = state
         var fresh = GameState(
             routeId: customRoute != nil ? CustomRoute.routeId : (routeId ?? Routes.forStart(now).id),
@@ -135,6 +143,18 @@ final class GameEngine {
             fresh.strideMeters = previous.strideMeters
             fresh.sourceSettings = previous.sourceSettings
             fresh.healthRequested = previous.healthRequested
+            fresh.journalStart = previous.journalStart
+            fresh.healthSteps = previous.healthSteps
+            fresh.healthDistanceKm = previous.healthDistanceKm
+            fresh.hourlySteps = previous.hourlySteps
+            fresh.debugSteps = previous.debugSteps
+            fresh.debugHourlySteps = previous.debugHourlySteps
+            fresh.weatherLog = previous.weatherLog
+            fresh.dayNotes = previous.dayNotes
+            fresh.history = previous.history
+            if let record = archiveRecord(of: previous) { fresh.history.append(record) }
+            // Шаги, сделанные сегодня до старта, остаются прежнему пути: новый начинается с нуля.
+            fresh.startBaselineKm = Journal.walkedKm(on: DayKey.key(now), in: previous)
         }
         state = fresh
         persist()
@@ -143,6 +163,28 @@ final class GameEngine {
         await requestHealthAccess()
         await notifications.requestAuthorization()
         startObservingIfPossible()
+    }
+
+    /// Запись прежнего пути для архива; путь, на котором не сделано ни шага, не сохраняется.
+    private func archiveRecord(of s: GameState) -> JourneyRecord? {
+        let km = min(rawKm(s), route.totalKm)
+        guard s.finishedAt != nil || km >= 0.1 else { return nil }
+        return JourneyRecord(
+            id: UUID().uuidString,
+            routeId: s.routeId,
+            customRoute: s.customRoute,
+            startDate: s.startDate,
+            startBaselineKm: s.startBaselineKm,
+            endedAt: s.finishedAt ?? now,
+            km: s.finishedAt != nil ? route.totalKm : km,
+            finished: s.finishedAt != nil,
+            eventStatus: s.eventStatus)
+    }
+
+    func markFinishSeen() {
+        guard state?.finishSeen == false else { return }
+        state?.finishSeen = true
+        persist()
     }
 
     func requestHealthAccess() async {
@@ -166,10 +208,10 @@ final class GameEngine {
         if health.isAvailable, !isolated {
             // Шаги и расстояние читаем независимо: отказ по одному типу не должен ломать другой.
             async let stepsResult: Result<[Date: [String: Double]], Error> = {
-                do { return .success(try await health.hourlyStepsBySource(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
+                do { return .success(try await health.hourlyStepsBySource(from: snapshot.journalStart, to: .now)) } catch { return .failure(error) }
             }()
             async let distanceResult: Result<[Date: [String: Double]], Error> = {
-                do { return .success(try await health.hourlyDistanceKmBySource(from: snapshot.startDate, to: .now)) } catch { return .failure(error) }
+                do { return .success(try await health.hourlyDistanceKmBySource(from: snapshot.journalStart, to: .now)) } catch { return .failure(error) }
             }()
             let (steps, distance) = await (stepsResult, distanceResult)
             if let list = try? await health.sources() { healthSources = list }
@@ -313,10 +355,48 @@ final class GameEngine {
         persist()
     }
 
-    /// Дни пути от сегодняшнего к первому.
+    /// Текущий путь как часть дневника.
+    var currentSegment: JourneySegment? {
+        guard let s = state else { return nil }
+        return JourneySegment(id: "current", route: route, startDate: s.startDate, baselineKm: s.startBaselineKm,
+                              endedAt: nil, capKm: route.totalKm, finishedAt: s.finishedAt, eventStatus: s.eventStatus)
+    }
+
+    /// Пути из архива, от старых к новым.
+    var pastSegments: [JourneySegment] {
+        (state?.history ?? []).map { r in
+            JourneySegment(id: r.id, route: route(of: r), startDate: r.startDate, baselineKm: r.startBaselineKm,
+                           endedAt: r.endedAt, capKm: r.km, finishedAt: r.finished ? r.endedAt : nil, eventStatus: r.eventStatus)
+        }
+    }
+
+    /// Дни дневника от сегодняшнего к первому, через все пути.
     var journalDays: [JournalDay] {
         guard let s = state else { return [] }
-        return Journal.days(state: s, route: route, today: now, passivePerDay: Self.passiveKmPerDay)
+        return Journal.days(state: s, segments: pastSegments + [currentSegment].compactMap { $0 }, today: now, passivePerDay: Self.passiveKmPerDay)
+    }
+
+    /// Итоги путей: текущий первым, дальше архив от новых к старым.
+    var journeySummaries: [JourneySummary] {
+        guard let s = state else { return [] }
+        return ([currentSegment].compactMap { $0 } + pastSegments.reversed()).map {
+            Journal.summary(of: $0, state: s, today: now, passivePerDay: Self.passiveKmPerDay)
+        }
+    }
+
+    /// Итоги текущего пути (для экрана финиша).
+    var currentSummary: JourneySummary? {
+        guard let s = state, let seg = currentSegment else { return nil }
+        return Journal.summary(of: seg, state: s, today: now, passivePerDay: Self.passiveKmPerDay)
+    }
+
+    /// Где сейчас путник на местности.
+    var currentCoordinate: GeoPoint { route.coordinate(atKm: totalKm) }
+
+    /// Пункт, откуда продолжать: после финиша — конечная точка, в пути — ближайший к путнику населённый пункт.
+    var continuePlace: Place? {
+        if isFinished, let custom = state?.customRoute, let place = PlaceStore.shared.place(custom.toId) { return place }
+        return PlaceStore.shared.nearest(to: currentCoordinate)
     }
 
     var journalStats: JournalStats { Journal.stats(journalDays) }
@@ -328,6 +408,8 @@ final class GameEngine {
         let cal = Calendar.current
         let today = cal.startOfDay(for: now)
         s.startDate = cal.date(byAdding: .day, value: -9, to: today) ?? today
+        s.journalStart = min(s.journalStart, s.startDate)
+        s.startBaselineKm = 0
         s.debugSteps = [:]
         s.debugHourlySteps = [:]
         let totals = [7_200, 11_500, 3_100, 9_800, 14_300, 6_400, 0, 8_900, 12_700, 4_200]
@@ -372,19 +454,15 @@ final class GameEngine {
 
     /// Километры за день: расстояние из «Здоровья», а если его за этот день нет — шаги × длина шага.
     /// Отладочные шаги всегда добавляются через длину шага.
-    private static func walkedKm(on key: String, in s: GameState) -> Double {
-        let health: Double
-        if let km = s.healthDistanceKm[key], km > 0 {
-            health = km
-        } else {
-            health = Double(s.healthSteps[key] ?? 0) * s.strideMeters / 1000
-        }
-        return health + Double(s.debugSteps[key] ?? 0) * s.strideMeters / 1000
-    }
+    private static func walkedKm(on key: String, in s: GameState) -> Double { Journal.walkedKm(on: key, in: s) }
 
+    /// Километры текущего пути без ограничения длиной маршрута: шаги с дня старта (без засчитанных прежнему пути) и полкилометра в день.
     private func rawKm(_ s: GameState) -> Double {
-        let keys = Set(s.healthSteps.keys).union(s.healthDistanceKm.keys).union(s.debugSteps.keys)
-        let walked = keys.reduce(0.0) { $0 + Self.walkedKm(on: $1, in: s) }
+        let startKey = DayKey.key(s.startDate)
+        let keys = Set(s.healthSteps.keys).union(s.healthDistanceKm.keys).union(s.debugSteps.keys).filter { $0 >= startKey }
+        let walked = keys.reduce(0.0) { sum, key in
+            sum + max(0, Self.walkedKm(on: key, in: s) - (key == startKey ? s.startBaselineKm : 0))
+        }
         return walked + Double(daysElapsed(s)) * Self.passiveKmPerDay
     }
 

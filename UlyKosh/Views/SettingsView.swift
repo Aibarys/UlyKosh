@@ -5,7 +5,6 @@ struct SettingsView: View {
     private var notifications: NotificationService { NotificationService.shared }
     @State private var heroName = ""
     @State private var showRoutePicker = false
-    @State private var pendingRoute: CustomRoute?
     @State private var stride = 0.7
     @State private var showResetConfirm = false
 
@@ -131,29 +130,7 @@ struct SettingsView: View {
                 Task { await notifications.refreshStatus() }
             }
             .sheet(isPresented: $showRoutePicker) {
-                NavigationStack {
-                    RoutePickerView(startTitle: String(localized: "Начать этот путь")) { route in
-                        pendingRoute = route
-                        showRoutePicker = false
-                    }
-                    .toolbar {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Отмена") { showRoutePicker = false }
-                        }
-                    }
-                }
-                .presentationBackground(Color.night)
-            }
-            .confirmationDialog("Начать новый путь?", isPresented: Binding(get: { pendingRoute != nil }, set: { if !$0 { pendingRoute = nil } }), titleVisibility: .visible) {
-                Button("Начать") {
-                    if let route = pendingRoute {
-                        Task { await engine.startJourney(heroName: engine.state?.heroName ?? "", customRoute: route) }
-                    }
-                    pendingRoute = nil
-                }
-                Button("Отмена", role: .cancel) { pendingRoute = nil }
-            } message: {
-                Text("Прогресс нынешнего пути и дневник начнутся заново. Шаги в «Здоровье» и настройки источников сохранятся.")
+                NewJourneySheet(from: nil)
             }
             .confirmationDialog("Сбросить путь?", isPresented: $showResetConfirm, titleVisibility: .visible) {
                 Button("Сбросить", role: .destructive) { engine.resetJourney() }

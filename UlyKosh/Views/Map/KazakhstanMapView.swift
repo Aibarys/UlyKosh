@@ -61,19 +61,31 @@ struct KazakhstanMapView: View {
         (.boar, GeoPoint(lat: 48.6, lon: 55.4))
     ]
 
-    init(world: MapWorld, route: Route, km: Double, currentStopId: String?, isFinished: Bool, allowsNavigation: Bool = true) {
+    /// Пройденные части прошлых путей в мировых координатах.
+    private let trails: [Path]
+
+    init(world: MapWorld, route: Route, km: Double, currentStopId: String?, isFinished: Bool, allowsNavigation: Bool = true,
+         trails: [(route: Route, km: Double)] = []) {
         self.world = world
+        self.trails = trails.compactMap { item in
+            guard item.km > 0 else { return nil }
+            let geometry = Self.geometry(of: item.route, in: world)
+            return geometry.path.trimmedPath(from: 0, to: geometry.fraction(atKm: item.km))
+        }
         self.routeModel = route
         self.km = km
         self.currentStopId = currentStopId
         self.isFinished = isFinished
         self.allowsNavigation = allowsNavigation
-        if let path = route.path {
-            self.route = RouteGeometry(polyline: path.points.map { world.projection.project($0) }, kms: path.cumulativeKm)
-        } else {
-            self.route = RouteGeometry(points: route.stops.map { world.projection.project($0.coordinate) }, kms: route.stops.map(\.km))
-        }
+        self.route = Self.geometry(of: route, in: world)
         _camera = State(initialValue: MapCamera(center: CGPoint(x: world.bounds.midX, y: world.bounds.midY), zoom: 1))
+    }
+
+    private static func geometry(of route: Route, in world: MapWorld) -> RouteGeometry {
+        if let path = route.path {
+            return RouteGeometry(polyline: path.points.map { world.projection.project($0) }, kms: path.cumulativeKm)
+        }
+        return RouteGeometry(points: route.stops.map { world.projection.project($0.coordinate) }, kms: route.stops.map(\.km))
     }
 
     var body: some View {
@@ -95,6 +107,7 @@ struct KazakhstanMapView: View {
                         zoom: cam.zoom,
                         viewport: CGRect(origin: .zero, size: size),
                         travelled: travelled * reveal,
+                        trails: trails,
                         stopPoints: routeModel.stops.map { world.projection.project($0.coordinate) }
                     )
                     overlays(transform: transform, zoom: cam.zoom, reveal: reveal, travelled: travelled)
@@ -366,6 +379,8 @@ private struct MapCanvas: View {
     let zoom: Double
     let viewport: CGRect
     let travelled: Double
+    /// Пройденные части прошлых путей.
+    var trails: [Path] = []
     /// Стоянки маршрута в мировых координатах: их подписывают маркеры, а не карта.
     var stopPoints: [CGPoint] = []
 
@@ -463,6 +478,12 @@ private struct MapCanvas: View {
             // Граница страны со свечением
             ctx.stroke(border, with: .color(Color.gold.opacity(0.12)), lineWidth: 7)
             ctx.stroke(border, with: .color(Color.gold.opacity(0.9)), style: StrokeStyle(lineWidth: 1.2, lineJoin: .round))
+
+            // Прошлые пути: тусклее нынешнего, чтобы было видно, где путник уже ходил.
+            for trail in trails {
+                ctx.stroke(trail.applying(transform), with: .color(Color.gold.opacity(0.5)),
+                           style: StrokeStyle(lineWidth: 1.8, lineCap: .round, lineJoin: .round))
+            }
 
             // Маршрут
             let routePath = route.path.applying(transform)

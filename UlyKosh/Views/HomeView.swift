@@ -53,6 +53,11 @@ struct HomeView: View {
                             .padding(.horizontal, 28)
                             .padding(.top, 2)
 
+                        if engine.isFinished {
+                            ChangeJourneyButton()
+                                .padding(.top, 18)
+                        }
+
                         if let active = engine.activeEvent {
                             EventStrip(active: active)
                                 .padding(.horizontal, 24)

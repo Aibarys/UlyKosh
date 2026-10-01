@@ -148,8 +148,6 @@ enum RouteBuilder {
     static func makeRoute(_ custom: CustomRoute, places: PlaceStore = .shared) -> Route {
         let from = places.resolve(id: custom.fromId, near: custom.stops.first?.at ?? custom.path.points.first ?? GeoPoint(lat: 0, lon: 0))
         let to = places.resolve(id: custom.toId, near: custom.stops.last?.at ?? custom.path.points.last ?? GeoPoint(lat: 0, lon: 0))
-        let fromName = from?.name ?? "?"
-        let toName = to?.name ?? "?"
         let landmarkMap = Dictionary(landmarks.map { ($0.key, $0.stop) }, uniquingKeysWith: { a, _ in a })
 
         var stops: [Stop] = []
@@ -181,7 +179,10 @@ enum RouteBuilder {
         let events: [RouteEvent] = custom.events.compactMap { ref in
             EventTemplates.byId[ref.template]?.make(id: "\(ref.template)-\(ref.index)", triggerKm: ref.triggerKm)
         }
-        let km = Fmt.km(custom.totalKm)
+        // Для старых маршрутов конечный пункт может не найтись по id: тогда берём имя крайней стоянки.
+        let fromName = from?.name ?? stops.first?.name ?? "?"
+        let toName = to?.name ?? stops.last?.name ?? "?"
+        let km = Fmt.km(stops.last?.km ?? custom.totalKm)
         return Route(
             id: CustomRoute.routeId,
             title: "\(fromName) → \(toName)",

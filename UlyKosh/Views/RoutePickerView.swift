@@ -3,6 +3,8 @@ import SwiftUI
 /// Выбор своего пути: откуда и куда, предпросмотр по дорогам, старт.
 struct RoutePickerView: View {
     var startTitle: String = String(localized: "В путь")
+    /// Пояснение под заголовком, например что станет с нынешним путём.
+    var note: String? = nil
     let onStart: (CustomRoute) -> Void
 
     @State var from: Place?
@@ -21,6 +23,12 @@ struct RoutePickerView: View {
             VStack(alignment: .leading, spacing: 18) {
                 ScreenHeader(title: String(localized: "Новый путь"),
                              subtitle: String(localized: "Выберите, откуда и куда идёт путник. Путь проляжет по дорогам Казахстана."))
+                if let note {
+                    Text(note)
+                        .font(.system(size: 12))
+                        .italic()
+                        .foregroundStyle(Color.ash)
+                }
 
                 VStack(spacing: 0) {
                     fieldRow(title: String(localized: "Откуда"), place: from) { picking = .from }

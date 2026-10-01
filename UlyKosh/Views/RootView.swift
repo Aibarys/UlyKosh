@@ -26,6 +26,9 @@ struct RootView: View {
         .onChange(of: engine.isLoading) { _, loading in
             #if DEBUG
             if !loading, DebugLaunch.journalDemo { engine.seedJournalDemo() }
+            if !loading, ProcessInfo.processInfo.arguments.contains("-finishDemo"), let s = engine.state {
+                engine.addDebugSteps(Int((engine.route.totalKm - engine.totalKm + 1) * 1000 / s.strideMeters))
+            }
             #endif
         }
         .onChange(of: scenePhase) { _, phase in
@@ -59,6 +62,7 @@ enum AppTab: CaseIterable {
 }
 
 struct MainTabView: View {
+    @Environment(GameEngine.self) private var engine
     @State private var tab: AppTab = DebugLaunch.startTab ?? .road
 
     var body: some View {
@@ -77,6 +81,12 @@ struct MainTabView: View {
             TabBarView(selected: $tab)
         }
         .background(Color.night.ignoresSafeArea())
+        .sheet(isPresented: Binding(
+            get: { engine.isFinished && engine.state?.finishSeen == false },
+            set: { if !$0 { engine.markFinishSeen() } }
+        )) {
+            FinishSummaryView()
+        }
     }
 }
 

@@ -70,6 +70,22 @@ struct Route: Identifiable {
 
     var totalKm: Double { stops.last?.km ?? 0 }
     var isCustom: Bool { id == CustomRoute.routeId }
+
+    /// «Откуда → куда» по первой и последней стоянке.
+    var endpoints: String { "\(stops.first?.name ?? "") → \(stops.last?.name ?? "")" }
+
+    /// Где на местности находится путник, прошедший `km`.
+    func coordinate(atKm km: Double) -> GeoPoint {
+        let (points, kms): ([GeoPoint], [Double]) = path.map { ($0.points, $0.cumulativeKm) } ?? (stops.map(\.coordinate), stops.map(\.km))
+        guard let first = points.first, let last = points.last else { return GeoPoint(lat: 48, lon: 67) }
+        if km <= kms[0] { return first }
+        for i in 1..<points.count where km <= kms[i] {
+            let f = kms[i] > kms[i - 1] ? (km - kms[i - 1]) / (kms[i] - kms[i - 1]) : 0
+            return GeoPoint(lat: points[i - 1].lat + (points[i].lat - points[i - 1].lat) * f,
+                            lon: points[i - 1].lon + (points[i].lon - points[i - 1].lon) * f)
+        }
+        return last
+    }
 }
 
 enum Routes {

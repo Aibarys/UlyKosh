@@ -103,6 +103,9 @@ struct DayDetailView: View {
             if day.passiveKm > 0 {
                 DetailRow(title: String(localized: "Путник прошёл сам"), value: "\(Fmt.km(day.passiveKm)) км")
             }
+            if let title = day.routeTitle {
+                DetailRow(title: String(localized: "Путь"), value: title)
+            }
             DetailRow(title: String(localized: "С начала пути"), value: "\(Fmt.km(day.totalKm)) км")
             if let peak = day.peakHour {
                 DetailRow(title: String(localized: "Самый активный час"), value: String(format: "%02d:00–%02d:00", peak, (peak + 1) % 24))
@@ -171,6 +174,15 @@ struct DayDetailView: View {
                     .contentShape(Rectangle())
                 }
                 .buttonStyle(.plain)
+            }
+            ForEach(day.finishedRoutes, id: \.self) { title in
+                HStack(alignment: .top, spacing: 12) {
+                    PictogramView(kind: .walker, size: 22).frame(width: 28)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("Путь пройден").font(.display(17, weight: .regular)).foregroundStyle(Color.parchment)
+                        Text(title).font(.system(size: 12)).foregroundStyle(Color.gold)
+                    }
+                }
             }
             ForEach(day.eventsStarted) { eventRow($0, String(localized: "Началось испытание"), active: true) }
             ForEach(day.eventsCompleted) { eventRow($0, $0.rewardText, active: true) }

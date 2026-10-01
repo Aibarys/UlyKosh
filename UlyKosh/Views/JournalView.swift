@@ -7,11 +7,12 @@ struct JournalView: View {
     @State private var tab: JournalTab = .days
 
     enum JournalTab: CaseIterable, Hashable {
-        case days, places, nature, people, trials
+        case days, journeys, places, nature, people, trials
 
         var title: String {
             switch self {
             case .days: String(localized: "Дни")
+            case .journeys: String(localized: "Пути")
             case .places: String(localized: "Места")
             case .nature: String(localized: "Природа")
             case .people: String(localized: "Встречи")
@@ -38,6 +39,7 @@ struct JournalView: View {
                     Group {
                         switch tab {
                         case .days: DaysList(days: days)
+                        case .journeys: JourneysList()
                         case .places: PlacesTimeline(days: days)
                         case .nature: NatureCollection(days: days)
                         case .people: PeopleList(days: days)
@@ -321,6 +323,7 @@ private struct DayCard: View {
                         EventLine(icon: stop.km == 0 ? .walker : .yurt,
                                   text: stop.km == 0 ? String(localized: "Начало пути: \(stop.name)") : String(localized: "Стоянка: \(stop.name)"))
                     }
+                    ForEach(day.finishedRoutes, id: \.self) { EventLine(icon: .walker, text: String(localized: "Путь пройден: \($0)")) }
                     ForEach(day.eventsStarted) { EventLine(icon: $0.icon, text: String(localized: "Испытание: \($0.title)")) }
                     ForEach(day.eventsCompleted) { EventLine(icon: $0.icon, text: String(localized: "Пройдено: \($0.title)")) }
                     ForEach(day.eventsFailed) { EventLine(icon: $0.icon, text: String(localized: "Не успели: \($0.title)"), dim: true) }
@@ -390,6 +393,36 @@ private struct HourlySparkline: View {
             }
         }
         .accessibilityHidden(true)
+    }
+}
+
+// MARK: - Пути
+
+private struct JourneysList: View {
+    @Environment(GameEngine.self) private var engine
+
+    var body: some View {
+        let summaries = engine.journeySummaries
+        let finished = summaries.filter(\.segment.finished).count
+        VStack(alignment: .leading, spacing: 10) {
+            Text("Путей: \(summaries.count) · пройдено до конца: \(finished) · всего \(Fmt.km(summaries.reduce(0) { $0 + $1.km })) км")
+                .font(.system(size: 13))
+                .foregroundStyle(Color.ash)
+            ForEach(summaries) { summary in
+                NavigationLink {
+                    JourneyDetailView(summary: summary)
+                } label: {
+                    JourneyCard(summary: summary)
+                }
+                .buttonStyle(.plain)
+            }
+            HStack {
+                Spacer()
+                ChangeJourneyButton(compact: true)
+                Spacer()
+            }
+            .padding(.top, 6)
+        }
     }
 }
 

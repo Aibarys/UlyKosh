@@ -9,7 +9,8 @@ struct RouteView: View {
             ZStack(alignment: .top) {
                 if let world = MapWorld.shared {
                     KazakhstanMapView(world: world, route: engine.route, km: engine.totalKm,
-                                      currentStopId: engine.currentStop.id, isFinished: engine.isFinished)
+                                      currentStopId: engine.currentStop.id, isFinished: engine.isFinished,
+                                      trails: engine.pastSegments.map { ($0.route, $0.capKm) })
                         .id(engine.route.id + (engine.state?.customRoute.map { "\($0.fromId)-\($0.toId)" } ?? ""))
                 } else {
                     Text("Карта недоступна")
@@ -42,6 +43,7 @@ struct RouteView: View {
                     .foregroundStyle(Color.ash)
             }
             Spacer()
+            VStack(alignment: .trailing, spacing: 8) {
             Button {
                 showStops = true
             } label: {
@@ -54,6 +56,8 @@ struct RouteView: View {
                     .overlay(Capsule().stroke(Color.gold.opacity(0.45)))
             }
             .buttonStyle(.plain)
+            ChangeJourneyButton(compact: true)
+            }
         }
         .padding(.horizontal, 24)
         .padding(.top, 24)
