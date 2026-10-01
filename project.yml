@@ -30,7 +30,7 @@ targets:
     info:
       path: UlyKosh/Info.plist
       properties:
-        CFBundleDisplayName: Ұлы Көш
+        CFBundleDisplayName: Жаяу
         CFBundleDevelopmentRegion: ru
         CFBundleLocalizations: [ru, kk]
         UILaunchScreen:
@@ -39,8 +39,8 @@ targets:
           UIImageRespectsSafeAreaInsets: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
-        NSHealthShareUsageDescription: "Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего путника."
-        NSLocationWhenInUseUsageDescription: "Ұлы Көш показывает погоду там, где вы сейчас, и предлагает ближайший город как начало пути. Местоположение не сохраняется."
+        NSHealthShareUsageDescription: "Жаяу читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего путника."
+        NSLocationWhenInUseUsageDescription: "Жаяу показывает погоду там, где вы сейчас, и предлагает ближайший город как начало пути. Местоположение не сохраняется."
         NSHealthUpdateUsageDescription: "Приложение не записывает данные в Здоровье."
         ITSAppUsesNonExemptEncryption: false
         CFBundleShortVersionString: $(MARKETING_VERSION)
@@ -77,7 +77,7 @@ targets:
     info:
       path: UlyKoshWidget/Info.plist
       properties:
-        CFBundleDisplayName: Ұлы Көш
+        CFBundleDisplayName: Жаяу
         CFBundleDevelopmentRegion: ru
         CFBundleLocalizations: [ru, kk]
         CFBundleShortVersionString: $(MARKETING_VERSION)

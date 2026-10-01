@@ -101,7 +101,7 @@ struct SettingsView: View {
                 }
 
                 Section("О приложении") {
-                    LabeledContent("Ұлы Көш", value: Self.versionString)
+                    LabeledContent("Жаяу · Jaiau", value: Self.versionString)
                     if BuildEnvironment.current != .appStore {
                         LabeledContent("Сборка", value: BuildEnvironment.current.title)
                     }

@@ -39,7 +39,7 @@ struct WidgetSnapshot: Codable {
     }
 
     static let placeholder = WidgetSnapshot(
-        aulName: "Аул Ұлы Көш", routeTitle: "Сырдария → Ұлытау", dayNumber: 12,
+        aulName: "Жолаушы", routeTitle: "Алматы → Астана", dayNumber: 12,
         kmToday: 4.6, kmTotal: 87, routeTotalKm: 520, stepsToday: 6_580,
         nextStopName: "Перевал Қаратау", kmToNextStop: 23, regionName: "Предгорья Қаратау",
         isFinished: false, updatedAt: .now

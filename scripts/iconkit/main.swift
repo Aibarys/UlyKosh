@@ -39,25 +39,19 @@ func bar(_ a: (CGFloat, CGFloat), _ b: (CGFloat, CGFloat), width: CGFloat) -> CG
 }
 
 func riderPath() -> CGPath {
+    // Путник с котомкой и посохом, тот же контур, что .walker в Pictograms.swift.
     let p = CGMutablePath()
-    // лошадь
-    p.addPath(poly([(14, 50), (22, 44), (34, 40), (50, 38), (64, 40), (72, 36), (78, 26), (84, 18), (90, 16), (98, 20), (100, 26), (94, 30),
-                    (88, 34), (82, 42), (78, 52), (70, 58), (50, 60), (30, 60), (20, 58)]))
-    p.addPath(poly([(70, 38), (69, 31), (74, 26), (79, 20), (84, 17), (87, 21), (82, 25), (78, 31), (76, 38)]))
-    p.addPath(poly([(85, 18), (87, 11), (90, 17)]))
-    p.addPath(poly([(90, 17), (93, 11), (95, 17)]))
-    p.addPath(poly([(14, 50), (20, 50), (17, 64), (15, 78), (8, 77), (9, 62)]))
-    p.addPath(leg(24, 51, 92, width: 6, lean: -3))
-    p.addPath(leg(32, 51, 92, width: 6, lean: 1))
-    p.addPath(leg(62, 50, 92, width: 6, lean: -1))
-    p.addPath(leg(69, 47, 92, width: 6, lean: 3))
-    // всадник
-    p.addPath(poly([(45, 42), (58, 42), (56, 20), (47, 20)]))
-    p.addPath(ellipse(52, 13, 6, 6))
-    p.addPath(poly([(45, 12), (52, 1), (59, 12)]))
-    p.addPath(bar((55, 25), (69, 32), width: 4))
-    p.addPath(bar((48, 41), (45, 62), width: 4.5))
-    p.addPath(poly([(41, 60), (50, 60), (50, 64), (41, 64)]))
+    p.addPath(ellipse(56, 13, 6.5, 6.5))
+    p.addPath(poly([(48, 11), (56, 1), (64, 11)]))
+    p.addPath(poly([(49, 22), (62, 22), (61, 55), (50, 55)]))
+    p.addPath(poly([(39, 25), (50, 24), (50, 47), (40, 47)]))
+    p.addPath(bar((52, 53), (39, 93), width: 6.5))
+    p.addPath(poly([(33, 91), (43, 91), (43, 96), (31, 96)]))
+    p.addPath(bar((58, 53), (64, 73), width: 6.5))
+    p.addPath(bar((64, 73), (70, 93), width: 6))
+    p.addPath(poly([(67, 91), (78, 91), (78, 96), (67, 96)]))
+    p.addPath(bar((59, 26), (73, 41), width: 4.5))
+    p.addPath(bar((76, 12), (79, 96), width: 3.5))
     return p
 }
 
@@ -94,7 +88,7 @@ func render(variant: String) -> CGImage {
     ctx.setStrokeColor(ink.copy(alpha: 0.7)!)
     ctx.setLineWidth(size * 0.008)
     ctx.setLineCap(.round)
-    let groundY = (size - 100 * scale) / 2 + size * 0.02 + 92 * scale + size * 0.012
+    let groundY = (size - 100 * scale) / 2 + size * 0.02 + 96 * scale + size * 0.006
     ctx.move(to: CGPoint(x: size * 0.22, y: groundY))
     ctx.addLine(to: CGPoint(x: size * 0.78, y: groundY))
     ctx.strokePath()
@@ -122,7 +116,7 @@ func renderLaunch() -> CGImage {
     ctx.setStrokeColor(gold.copy(alpha: 0.7)!)
     ctx.setLineWidth(side * 0.004)
     ctx.setLineCap(.round)
-    let groundY = (side - 100 * scale) / 2 + 92 * scale + side * 0.008
+    let groundY = (side - 100 * scale) / 2 + 96 * scale + side * 0.004
     ctx.move(to: CGPoint(x: side * 0.34, y: groundY))
     ctx.addLine(to: CGPoint(x: side * 0.66, y: groundY))
     ctx.strokePath()

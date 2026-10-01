@@ -1015,7 +1015,8 @@
             "value": "Ұлы Көш"
           }
         }
-      }
+      },
+      "extractionState": "stale"
     },
     "верблюды": {
       "extractionState": "stale",
@@ -4091,7 +4092,8 @@
             "value": "Қолданбаны ашып, көшті бастаңыз"
           }
         }
-      }
+      },
+      "extractionState": "stale"
     },
     "Откуда": {
       "localizations": {
@@ -6507,7 +6509,8 @@
             "value": "Ұлы Көш"
           }
         }
-      }
+      },
+      "extractionState": "stale"
     },
     "Ұлы Көш: начните кочевье": {
       "localizations": {
@@ -6517,7 +6520,8 @@
             "value": "Ұлы Көш: көшті бастаңыз"
           }
         }
-      }
+      },
+      "extractionState": "stale"
     },
     "Ұлытау → Сырдария": {
       "localizations": {
@@ -6785,6 +6789,46 @@
           "stringUnit": {
             "state": "translated",
             "value": " Weather"
+          }
+        }
+      }
+    },
+    "Каждый шаг — шаг в пути": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Әр қадам – жолдағы қадам"
+          }
+        }
+      }
+    },
+    "Жаяу: выберите путь": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жаяу: жолды таңдаңыз"
+          }
+        }
+      }
+    },
+    "Откройте приложение и выберите путь": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қолданбаны ашып, жолды таңдаңыз"
+          }
+        }
+      }
+    },
+    "Жаяу · Jaiau": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жаяу · Jaiau"
           }
         }
       }

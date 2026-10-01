@@ -18,10 +18,10 @@ struct OnboardingView: View {
 
                         VStack(spacing: 22) {
                             VStack(spacing: 6) {
-                                Text("Ұлы Көш")
+                                Text(verbatim: "Жаяу")
                                     .font(.display(44, weight: .regular))
                                     .foregroundStyle(Color.gold)
-                                Text("Великое Кочевье")
+                                Text("Каждый шаг — шаг в пути")
                                     .font(.system(size: 15))
                                     .kerning(1)
                                     .foregroundStyle(Color.ash)

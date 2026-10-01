@@ -162,7 +162,7 @@ struct RectangularWidgetView: View {
         VStack(alignment: .leading, spacing: 1) {
             HStack(spacing: 4) {
                 PictogramView(kind: .rider, size: 12, tint: .primary)
-                Text("Ұлы Көш")
+                Text(verbatim: "Жаяу")
                     .font(.system(size: 12, weight: .semibold))
             }
             Text("\(Fmt.km(s.kmToday)) км сегодня")
@@ -200,22 +200,22 @@ struct EmptyStateView: View {
     var body: some View {
         switch family {
         case .accessoryInline:
-            Text("Ұлы Көш: начните кочевье")
+            Text("Жаяу: выберите путь")
         case .accessoryCircular:
             PictogramView(kind: .rider, size: 22, tint: .primary)
         case .accessoryRectangular:
             VStack(alignment: .leading) {
-                Text("Ұлы Көш").font(.system(size: 12, weight: .semibold))
-                Text("Откройте приложение и начните кочевье").font(.system(size: 11)).foregroundStyle(.secondary)
+                Text(verbatim: "Жаяу").font(.system(size: 12, weight: .semibold))
+                Text("Откройте приложение и выберите путь").font(.system(size: 11)).foregroundStyle(.secondary)
             }
         default:
             VStack(alignment: .leading, spacing: 8) {
                 PictogramView(kind: .rider, size: 28, tint: .gold)
                 Spacer()
-                Text("Ұлы Көш")
+                Text(verbatim: "Жаяу")
                     .font(.display(18, weight: .regular))
                     .foregroundStyle(Color.gold)
-                Text("Откройте приложение и начните кочевье")
+                Text("Откройте приложение и выберите путь")
                     .font(.system(size: 11))
                     .foregroundStyle(Color.ash)
             }

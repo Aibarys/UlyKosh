@@ -23,6 +23,8 @@ final class WeatherStore: NSObject {
 
     @ObservationIgnored private let manager = CLLocationManager()
     @ObservationIgnored private var lastFetch: Date?
+    @ObservationIgnored private var lastFailure: Date?
+    @ObservationIgnored private var inFlight = false
     @ObservationIgnored private var pendingPermissionCallback: (() -> Void)?
 
     override init() {
@@ -44,8 +46,12 @@ final class WeatherStore: NSObject {
         case .denied, .restricted:
             status = .denied
         default:
+            if inFlight { return }
             if let lastFetch, Date.now.timeIntervalSince(lastFetch) < 30 * 60, status == .ready { return }
+            // После отказа не долбим сервис: повтор не раньше чем через 5 минут.
+            if let lastFailure, Date.now.timeIntervalSince(lastFailure) < 5 * 60, status == .failed { return }
             if status != .ready { status = .loading }
+            inFlight = true
             manager.requestLocation()
         }
     }
@@ -63,6 +69,7 @@ final class WeatherStore: NSObject {
     }
 
     private func fetch(for raw: CLLocation) async {
+        defer { inFlight = false }
         let rounded = CLLocation(latitude: (raw.coordinate.latitude * 10).rounded() / 10,
                                  longitude: (raw.coordinate.longitude * 10).rounded() / 10)
         location = rounded
@@ -85,7 +92,14 @@ final class WeatherStore: NSObject {
             }
         } catch {
             status = .failed
+            lastFailure = .now
+            #if DEBUG
+            print("[Weather] failed: \(error)")
+            #endif
         }
+        #if DEBUG
+        if status == .ready { print("[Weather] ok: \(temperatureText ?? "?") \(condition?.description ?? "") at \(placeName ?? "?")") }
+        #endif
     }
 
     /// Как реальная погода выглядит на сцене.
@@ -131,6 +145,9 @@ extension WeatherStore: CLLocationManagerDelegate {
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        Task { @MainActor in if self.status != .ready { self.status = .failed } }
+        Task { @MainActor in
+            self.inFlight = false
+            if self.status != .ready { self.status = .failed; self.lastFailure = .now }
+        }
     }
 }
