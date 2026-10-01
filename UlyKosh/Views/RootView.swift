@@ -15,6 +15,8 @@ struct RootView: View {
                 OnboardingView()
             } else if DebugLaunch.showsWeatherSheet {
                 NavigationStack { WeatherSheetView() }
+            } else if let (a, b) = DebugLaunch.routePreview {
+                NavigationStack { RoutePickerView(onStart: { _ in }, from: a, to: b) }
             } else {
                 MainTabView()
             }
@@ -109,6 +111,21 @@ enum DebugLaunch {
         return ProcessInfo.processInfo.arguments.contains("-weatherSheet")
         #else
         return false
+        #endif
+    }
+
+    /// `-route Pavlodar Beskaragay`: открыть предпросмотр пути между пунктами (поиск по латинице).
+    static var routePreview: (Place, Place)? {
+        #if DEBUG
+        let args = ProcessInfo.processInfo.arguments
+        guard let i = args.firstIndex(of: "-route"), i + 2 < args.count,
+              let a = PlaceStore.shared.search(args[i + 1]).first,
+              let b = PlaceStore.shared.search(args[i + 2]).first(where: { place in
+                  args.count > i + 3 ? place.regionName.lowercased().contains(args[i + 3].lowercased()) : true
+              }) else { return nil }
+        return (a, b)
+        #else
+        return nil
         #endif
     }
 

@@ -5,8 +5,8 @@ struct RoutePickerView: View {
     var startTitle: String = String(localized: "В путь")
     let onStart: (CustomRoute) -> Void
 
-    @State private var from: Place?
-    @State private var to: Place?
+    @State var from: Place?
+    @State var to: Place?
     @State private var built: CustomRoute?
     @State private var preview: Route?
     @State private var building = false
@@ -87,6 +87,7 @@ struct RoutePickerView: View {
             .padding(.bottom, 32)
         }
         .background(Color.night.ignoresSafeArea())
+        .onAppear { if built == nil, from != nil, to != nil { rebuild() } }
         .sheet(item: $picking) { field in
             PlaceSearchView { place in
                 if field == .from { from = place } else { to = place }

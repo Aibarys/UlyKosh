@@ -48,7 +48,8 @@ enum RouteBuilder {
 
     static func build(from: Place, to: Place, startDate: Date = .now,
                       places: PlaceStore = .shared, roads: RoadGraph = .shared) -> CustomRoute? {
-        guard from.id != to.id, let path = roads.route(from: from.coordinate, to: to.coordinate), path.totalKm > 1 else { return nil }
+        guard from.id != to.id, let raw = roads.route(from: from.coordinate, to: to.coordinate), raw.totalKm > 1 else { return nil }
+        let path = raw
         let total = path.totalKm
 
         // Кандидаты: населённые пункты и знаковые места возле дороги.
@@ -145,8 +146,8 @@ enum RouteBuilder {
     // MARK: - Превращение в маршрут для показа
 
     static func makeRoute(_ custom: CustomRoute, places: PlaceStore = .shared) -> Route {
-        let from = places.place(custom.fromId)
-        let to = places.place(custom.toId)
+        let from = places.resolve(id: custom.fromId, near: custom.stops.first?.at ?? custom.path.points.first ?? GeoPoint(lat: 0, lon: 0))
+        let to = places.resolve(id: custom.toId, near: custom.stops.last?.at ?? custom.path.points.last ?? GeoPoint(lat: 0, lon: 0))
         let fromName = from?.name ?? "?"
         let toName = to?.name ?? "?"
         let landmarkMap = Dictionary(landmarks.map { ($0.key, $0.stop) }, uniquingKeysWith: { a, _ in a })
@@ -162,7 +163,7 @@ enum RouteBuilder {
                                       legend: base.legend, fauna: base.fauna, character: base.character, labelRank: 1))
                 }
             case .place:
-                guard let place = ref.placeId.flatMap(places.place) else { continue }
+                guard let place = places.resolve(id: ref.placeId, near: ref.at) else { continue }
                 stops.append(Stop(id: id, name: place.name, subtitle: subtitle(for: place), km: ref.km, coordinate: ref.at,
                                   region: place.regionName, terrain: ref.terrain, trailNotes: TrailNotes.notes(for: ref.terrain),
                                   legend: legend(for: place, terrain: ref.terrain), fauna: FaunaPools.pick(for: ref.terrain, seed: place.id),

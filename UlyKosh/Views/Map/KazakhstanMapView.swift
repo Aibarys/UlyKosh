@@ -105,6 +105,13 @@ struct KazakhstanMapView: View {
             .simultaneousGesture(magnifyGesture(size: size))
             .simultaneousGesture(doubleTap(size: size))
             .overlay(alignment: .bottomLeading) { scaleBar(size: size).padding(.leading, 68).padding(.bottom, 24) }
+            .overlay(alignment: .bottom) {
+                Text(verbatim: "© OpenStreetMap")
+                    .font(.system(size: 8))
+                    .foregroundStyle(Color.ash.opacity(0.7))
+                    .padding(.bottom, 12)
+                    .allowsHitTesting(false)
+            }
             .overlay(alignment: .bottomTrailing) { controls(size: size).padding(.trailing, 20).padding(.bottom, 72) }
             .overlay(alignment: .topTrailing) { CompassRose().padding(.top, 118).padding(.trailing, 20) }
             .overlay { MapFrame().allowsHitTesting(false) }
@@ -237,7 +244,7 @@ struct KazakhstanMapView: View {
             // Предпросмотр: весь путь целиком.
             let bounds = route.path.boundingRect
             let base = screenScale(zoom: 1, size: size)
-            let fit = min(size.width / max(bounds.width * base, 1), size.height / max(bounds.height * base, 1)) * 0.8
+            let fit = min(size.width / max(bounds.width * base, 1), size.height / max(bounds.height * base, 1)) * 0.62
             let zoom = min(maxZoom, max(minZoom, fit))
             target = MapCamera(center: clamped(center: CGPoint(x: bounds.midX, y: bounds.midY), zoom: zoom, size: size), zoom: zoom)
         }
@@ -441,9 +448,17 @@ private struct MapCanvas: View {
                 ctx.stroke(path, with: .color(waterLine.opacity(0.9)), style: StrokeStyle(lineWidth: width, lineCap: .round, lineJoin: .round))
             }
 
-            // Дороги
-            ctx.stroke(world.roads.applying(transform), with: .color(Color.ash.opacity(zoom > 2.5 ? 0.42 : 0.28)),
-                       style: StrokeStyle(lineWidth: zoom > 2.5 ? 0.9 : 0.6, lineCap: .round, lineJoin: .round))
+            // Дороги: трассы всегда, областные с приближением, местные ещё ближе. Рисуем только видимые клетки.
+            let worldVisible = visible.applying(transform.inverted())
+            let groups: [(minZoom: Double, opacity: Double, width: CGFloat)] = [(1.0, 0.42, 0.9), (2.2, 0.32, 0.7), (4.5, 0.24, 0.5)]
+            for (g, style) in groups.enumerated() where zoom >= style.minZoom {
+                var batch = Path()
+                for tile in world.roadTiles[g] where tile.bounds.intersects(worldVisible) {
+                    batch.addPath(tile.path)
+                }
+                ctx.stroke(batch.applying(transform), with: .color(Color.ash.opacity(style.opacity)),
+                           style: StrokeStyle(lineWidth: style.width, lineCap: .round, lineJoin: .round))
+            }
 
             // Граница страны со свечением
             ctx.stroke(border, with: .color(Color.gold.opacity(0.12)), lineWidth: 7)
@@ -496,6 +511,8 @@ private struct MapCanvas: View {
             // Населённые пункты: от крупных к мелким, подписи не накладываются друг на друга
             var occupied: [CGRect] = []
             let stopsOnScreen = stopPoints.map { $0.applying(transform) }.filter { visible.contains($0) }
+            // Место под подписи стоянок (они слева или справа от точки).
+            for p in stopsOnScreen { occupied.append(CGRect(x: p.x - 130, y: p.y - 11, width: 260, height: 22)) }
             for (place, world) in world.places {
                 let threshold: Double
                 switch place.rank {

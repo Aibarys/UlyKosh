@@ -106,6 +106,10 @@ struct SettingsView: View {
                     if BuildEnvironment.current != .appStore {
                         LabeledContent("Сборка", value: BuildEnvironment.current.title)
                     }
+                    Link(destination: URL(string: "https://www.openstreetmap.org/copyright")!) {
+                        Text("Карта, дороги и населённые пункты: © участники OpenStreetMap")
+                            .font(.footnote)
+                    }
                     Text("Путник проходит \(Fmt.km(GameEngine.passiveKmPerDay)) км в день сам по себе, остальное зависит от ваших шагов.")
                         .font(.footnote)
                         .foregroundStyle(Color.ash)

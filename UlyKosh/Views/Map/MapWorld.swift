@@ -70,8 +70,8 @@ final class MapWorld {
     let labels: [Label]
     let cities: [City]
     let historic: [Historic]
-    /// Основные дороги.
-    let roads: Path
+    /// Дороги по клеткам 1°×1°: [класс-группа: [клетка: (границы, путь)]]. Группы: 0 — трассы, 1 — областные, 2 — местные.
+    let roadTiles: [[(bounds: CGRect, path: Path)]]
     /// Населённые пункты в мировых координатах, по убыванию значимости.
     let places: [(place: Place, at: CGPoint)]
     /// Километров в одной мировой единице (по параллели 48°).
@@ -106,14 +106,19 @@ final class MapWorld {
         labels = data.labels.map { Label(text: $0.text, kind: $0.kind, at: pt($0.at), angle: $0.angle) }
         cities = data.cities.map { City(name: $0.name, at: pt($0.at), capital: $0.capital, rank: $0.rank) }
         historic = data.historic.map { Historic(name: $0.name, at: pt($0.at)) }
-        var roadPath = Path()
         let graph = RoadGraph.shared
+        var tiles: [[Int: Path]] = [[:], [:], [:]]
         for edge in graph.edges {
-            let pts = [graph.nodes[edge.a]] + edge.geometry + [graph.nodes[edge.b]]
-            roadPath.move(to: projection.project(pts[0]))
-            for p in pts.dropFirst() { roadPath.addLine(to: projection.project(p)) }
+            let group = edge.roadClass <= 2 ? 0 : (edge.roadClass <= 3 ? 1 : 2)
+            let first = graph.nodes[edge.a]
+            let cell = Int(floor(first.lon)) * 1000 + Int(floor(first.lat))
+            var path = tiles[group][cell] ?? Path()
+            path.move(to: projection.project(first))
+            for p in edge.geometry { path.addLine(to: projection.project(p)) }
+            path.addLine(to: projection.project(graph.nodes[edge.b]))
+            tiles[group][cell] = path
         }
-        roads = roadPath
+        roadTiles = tiles.map { group in group.values.map { (bounds: $0.boundingRect, path: $0) } }
         places = PlaceStore.shared.places.map { ($0, projection.project($0.coordinate)) }
 
         let a = projection.project(lon: 67, lat: 48), b = projection.project(lon: 68, lat: 48)

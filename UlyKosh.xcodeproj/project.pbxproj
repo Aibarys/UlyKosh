@@ -10,8 +10,8 @@
 		09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA374652C6F6D6E467AF0FA5 /* HomeView.swift */; };
 		0D3DCE881ED66E02ED24A46D /* UlyKoshWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FD2AE73AE601439C91069 /* UlyKoshWidget.swift */; };
 		0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617FA4D102727E0CC62F293 /* RouteMapView.swift */; };
-		0F9836E305AB0A10863B7880 /* kz-roads.json in Resources */ = {isa = PBXBuildFile; fileRef = 8650ECD280E19898EE6B0EFD /* kz-roads.json */; };
 		1CF86482E637268CBEEF255A /* WinterRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */; };
+		23A07E3C52E95CAF4A9246FC /* kz-roads.bin in Resources */ = {isa = PBXBuildFile; fileRef = 94971F8296410BDEB57D01AA /* kz-roads.bin */; };
 		2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */; };
 		3C6819F67E82BCE55C768134 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D617F21525B1A8BE15483747 /* WeatherStore.swift */; };
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
@@ -127,13 +127,13 @@
 		70390BF0FD707FF0C429BCB9 /* BuildEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildEnvironment.swift; sourceTree = "<group>"; };
 		7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterRoute.swift; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
-		8650ECD280E19898EE6B0EFD /* kz-roads.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kz-roads.json"; sourceTree = "<group>"; };
 		87330EE442BE509F530E870C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KazakhstanMapView.swift; sourceTree = "<group>"; };
 		8994525A1EF735990AAE25FE /* Pictograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograms.swift; sourceTree = "<group>"; };
 		8D60B12FFE0A9DEDDE8342F3 /* SummerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummerRoute.swift; sourceTree = "<group>"; };
 		8E200D303F34E1C839B58DB4 /* GeoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoData.swift; sourceTree = "<group>"; };
 		9196C3239C4E23B179D5B5D8 /* UlyKosh.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UlyKosh.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		94971F8296410BDEB57D01AA /* kz-roads.bin */ = {isa = PBXFileReference; lastKnownFileType = archive.macbinary; path = "kz-roads.bin"; sourceTree = "<group>"; };
 		9617FA4D102727E0CC62F293 /* RouteMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapView.swift; sourceTree = "<group>"; };
 		9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRoute.swift; sourceTree = "<group>"; };
 		AAF139901566A4D74C8AB674 /* Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Season.swift; sourceTree = "<group>"; };
@@ -224,7 +224,7 @@
 				6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */,
 				B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */,
 				044FBC5DB1F86946D357B6C5 /* kz-places.json */,
-				8650ECD280E19898EE6B0EFD /* kz-roads.json */,
+				94971F8296410BDEB57D01AA /* kz-roads.bin */,
 				F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */,
 			);
 			path = Resources;
@@ -469,7 +469,7 @@
 				829501065AE9FF66A3BD0063 /* PrivacyInfo.xcprivacy in Resources */,
 				75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */,
 				B777C1940FE609C822B5B3C9 /* kz-places.json in Resources */,
-				0F9836E305AB0A10863B7880 /* kz-roads.json in Resources */,
+				23A07E3C52E95CAF4A9246FC /* kz-roads.bin in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

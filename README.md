@@ -33,3 +33,16 @@ open UlyKosh.xcodeproj
 
 Раздел «Отладка» в настройках виден в Debug- и TestFlight-сборках и скрыт в App Store.
 Политика конфиденциальности публикуется из `docs/` через GitHub Pages.
+
+## Данные карты
+
+Населённые пункты, границы областей и дороги взяты из OpenStreetMap (© участники OpenStreetMap, лицензия ODbL).
+Пересобрать `kz-places.json` и `kz-roads.bin`:
+
+```bash
+pip install osmium
+curl -L -o kazakhstan-latest.osm.pbf https://download.geofabrik.de/asia/kazakhstan-latest.osm.pbf
+python3 scripts/prepare_osm.py kazakhstan-latest.osm.pbf
+```
+
+Контур страны, реки, озёра и рельеф — Natural Earth (`scripts/prepare_map_data.py`).

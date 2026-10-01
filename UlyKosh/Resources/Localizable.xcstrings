@@ -6952,6 +6952,16 @@
           }
         }
       }
+    },
+    "Карта, дороги и населённые пункты: © участники OpenStreetMap": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Карта, жолдар және елді мекендер: © OpenStreetMap қатысушылары"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

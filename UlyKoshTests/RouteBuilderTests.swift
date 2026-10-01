@@ -25,6 +25,9 @@ struct RouteBuilderTests {
         #expect(places.search("Түркіс").contains { $0.ru == "Туркестан" })
         #expect(places.search("алмат").first?.ru == "Алматы")
         #expect(!places.search("").isEmpty)
+        #expect(places.search("Pavlodar").first?.ru == "Павлодар")
+        #expect(places.search("Beskaragay").contains { $0.ru == "Бескарагай" })
+        #expect(places.search("Shymkent").first?.ru == "Шымкент")
     }
 
     @Test("Алматы → Астана: путь по дорогам реальной длины")
@@ -34,6 +37,25 @@ struct RouteBuilderTests {
         #expect(route.stops.first?.placeId == place("Алматы").id)
         #expect(route.stops.last?.placeId == place("Астана").id)
         #expect(abs((route.stops.last?.km ?? 0) - route.totalKm) < 0.01)
+    }
+
+    @Test("До маленького села можно проложить путь: Павлодар → Бескарагай")
+    func smallVillage() throws {
+        let village = try #require(places.places.first { $0.ru == "Бескарагай" && $0.regionName.contains("Павлодар") })
+        let route = try #require(RouteBuilder.build(from: place("Павлодар"), to: village, startDate: Fixtures.autumn))
+        #expect(route.stops.last?.placeId == village.id)
+        #expect(route.totalKm > 50 && route.totalKm < 400)
+    }
+
+    @Test("Старый путь со сменившимися id находит пункты по координатам")
+    func legacyIds() throws {
+        let built = try #require(RouteBuilder.build(from: place("Шымкент"), to: place("Туркестан")))
+        var legacy = built
+        legacy.fromId = -1; legacy.toId = -2
+        legacy.stops = legacy.stops.map { var s = $0; if s.kind == .place { s.placeId = -3 }; return s }
+        let shown = RouteBuilder.makeRoute(legacy)
+        #expect(shown.title.contains("Шымкент") && shown.title.contains("Туркестан"))
+        #expect(shown.stops.count >= 2)
     }
 
     @Test("Стоянки идут по порядку, разрыв между ними не больше 70 км")
