@@ -25,6 +25,7 @@ final class WeatherStore: NSObject {
     @ObservationIgnored private var lastFetch: Date?
     @ObservationIgnored private var lastFailure: Date?
     @ObservationIgnored private var inFlight = false
+    @ObservationIgnored private var fetching = false
     @ObservationIgnored private var pendingPermissionCallback: (() -> Void)?
 
     override init() {
@@ -69,7 +70,12 @@ final class WeatherStore: NSObject {
     }
 
     private func fetch(for raw: CLLocation) async {
-        defer { inFlight = false }
+        // Одна точка геолокации может прийти дважды: второй вызов отбрасываем, пока идёт первый.
+        guard !fetching else { return }
+        fetching = true
+        defer { inFlight = false; fetching = false }
+        // Геолокация может прислать несколько точек подряд: свежие данные не перезапрашиваем.
+        if status == .ready, let lastFetch, Date.now.timeIntervalSince(lastFetch) < 60 { return }
         let rounded = CLLocation(latitude: (raw.coordinate.latitude * 10).rounded() / 10,
                                  longitude: (raw.coordinate.longitude * 10).rounded() / 10)
         location = rounded
