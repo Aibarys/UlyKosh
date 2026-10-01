@@ -1008,6 +1008,7 @@
       }
     },
     "Великое Кочевье": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -1015,8 +1016,7 @@
             "value": "Ұлы Көш"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "верблюды": {
       "extractionState": "stale",
@@ -1197,8 +1197,7 @@
             "value": "Қасқырлар қалып қойды. Жолда малға бөтен қойлар қосылды"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Волки у дороги": {
       "localizations": {
@@ -1331,6 +1330,7 @@
       }
     },
     "встреч в природе": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -1341,6 +1341,7 @@
       }
     },
     "Встречи в пути": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -2018,8 +2019,7 @@
             "value": "Ыстық қырықтан асты, шөп көз алдында күйіп жатыр. Қой қырыла бастамай тұрып, малды тауға, бұлақтарға жоғары айдау керек."
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Ждёт на %@ км": {
       "localizations": {
@@ -2612,6 +2612,7 @@
       }
     },
     "испытаний": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -2659,8 +2660,7 @@
             "value": "Ауылға қосылады"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "К середине лета уже прячется от жары в норе.": {
       "localizations": {
@@ -2932,8 +2932,7 @@
             "value": "Қызыл қызғалдақ тізеге жетеді, жылқылар баяу жүреді"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Кричит и кружит над лугом, отводя от гнезда.": {
       "localizations": {
@@ -4085,6 +4084,7 @@
       }
     },
     "Откройте приложение и начните кочевье": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -4092,8 +4092,7 @@
             "value": "Қолданбаны ашып, көшті бастаңыз"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Откуда": {
       "localizations": {
@@ -4536,6 +4535,7 @@
       }
     },
     "Пока никого. Звери и растения появятся здесь, когда путник дойдёт до первой стоянки.": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -4749,6 +4749,7 @@
       }
     },
     "Пройденные места": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -5157,8 +5158,7 @@
             "value": "Таудан кешігіп келген қар соқты. Малды ашық жерде қалдыруға болмайды: шатқалдағы паналайтын жерге тез жету керек."
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "С запада идёт чёрная туча. До укрытия нужно дойти, пока не ударила молния.": {
       "localizations": {
@@ -5238,8 +5238,7 @@
             "value": "Сарысу көктемде бір шақырымға тасиды. Өткел күні бойы созылады: алдымен жылқыларды өткізеді, содан кейін торсықтан жасалған салмен киіз үйлер мен балаларды тасиды, ең соңында түйелер өтеді. Жағада ауыл үш күн демалады, ал жайылма үстінде солтүстікке ұшқан тырналар дауыстайды."
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Саудагер": {
       "localizations": {
@@ -5766,8 +5765,7 @@
             "value": "Мал паналады, бірде-бір қой жоғалған жоқ"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Старейшина аула. Зимой он строг: считает сено, запрещает резать лишний скот и следит, чтобы никто не уходил в степь в буран. Говорит, что зиму переживает не сильный, а расчётливый.": {
       "localizations": {
@@ -6010,6 +6008,7 @@
       }
     },
     "стоянок": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -6147,8 +6146,7 @@
             "value": "Үйір паналады. Найзағайдан үріккен бөтен жылқылар ауылға қосылды"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Табунщик. Ночует с табуном в степи, знает каждую лошадь по голосу. У реки объездил молодого жеребца и подарил его аулу к байге.": {
       "localizations": {
@@ -6488,8 +6486,7 @@
             "value": "Өрттен құтылдық. Ауылға өрттен қашқан жылқылар қосылды"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Ушли от огня. Пожарные из района благодарят за предупреждение.": {
       "localizations": {
@@ -6502,6 +6499,7 @@
       }
     },
     "Ұлы Көш": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -6509,10 +6507,10 @@
             "value": "Ұлы Көш"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Ұлы Көш: начните кочевье": {
+      "extractionState": "stale",
       "localizations": {
         "kk": {
           "stringUnit": {
@@ -6520,8 +6518,7 @@
             "value": "Ұлы Көш: көшті бастаңыз"
           }
         }
-      },
-      "extractionState": "stale"
+      }
     },
     "Ұлытау → Сырдария": {
       "localizations": {
@@ -6959,6 +6956,424 @@
           "stringUnit": {
             "state": "translated",
             "value": "Карта, жолдар және елді мекендер: © OpenStreetMap қатысушылары"
+          }
+        }
+      }
+    },
+    "%lld°": {
+      "shouldTranslate": false
+    },
+    "avg": {
+      "shouldTranslate": false
+    },
+    "day": {
+      "shouldTranslate": false
+    },
+    "hour": {
+      "shouldTranslate": false
+    },
+    "km": {
+      "shouldTranslate": false
+    },
+    "steps": {
+      "shouldTranslate": false
+    },
+    "Активный день": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Белсенді күн"
+          }
+        }
+      }
+    },
+    "Встреча: %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кездесу: %@"
+          }
+        }
+      }
+    },
+    "Встречено %lld из %lld": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%2$lld ішінен %1$lld кездесті"
+          }
+        }
+      }
+    },
+    "Встречи": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Кездесулер"
+          }
+        }
+      }
+    },
+    "Встречи в природе": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Табиғаттағы кездесулер"
+          }
+        }
+      }
+    },
+    "Готово": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дайын"
+          }
+        }
+      }
+    },
+    "Дни": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күндер"
+          }
+        }
+      }
+    },
+    "Заметка": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жазба"
+          }
+        }
+      }
+    },
+    "Испытание: %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сынақ: %@"
+          }
+        }
+      }
+    },
+    "Как прошёл день? Где гуляли, что видели…": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күн қалай өтті? Қайда серуендедіңіз, не көрдіңіз…"
+          }
+        }
+      }
+    },
+    "Места": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жерлер"
+          }
+        }
+      }
+    },
+    "На этом пути испытаний нет.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Бұл жолда сынақ жоқ."
+          }
+        }
+      }
+    },
+    "Нажмите на встреченного зверя или растение, чтобы прочитать запись.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жазбаны оқу үшін кездескен аңды не өсімдікті басыңыз."
+          }
+        }
+      }
+    },
+    "Началось испытание": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сынақ басталды"
+          }
+        }
+      }
+    },
+    "Не успели, но путник справился": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үлгермедік, бірақ жолаушы еңсерді"
+          }
+        }
+      }
+    },
+    "Не успели: %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Үлгермедік: %@"
+          }
+        }
+      }
+    },
+    "Неделя": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Апта"
+          }
+        }
+      }
+    },
+    "Пешком": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жаяу"
+          }
+        }
+      }
+    },
+    "Пока никого. Люди, которых путник встретит на стоянках, появятся здесь.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Әзірге ешкім жоқ. Жолаушы қоныстарда кездестіретін адамдар осында пайда болады."
+          }
+        }
+      }
+    },
+    "Пройдено: %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өтілді: %@"
+          }
+        }
+      }
+    },
+    "Путник прошёл сам": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жолаушы өзі жүрді"
+          }
+        }
+      }
+    },
+    "Путь пройден": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жол өтілді"
+          }
+        }
+      }
+    },
+    "С начала пути": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жол басынан"
+          }
+        }
+      }
+    },
+    "Самый активный час": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ең белсенді сағат"
+          }
+        }
+      }
+    },
+    "События дня": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күн оқиғалары"
+          }
+        }
+      }
+    },
+    "Часов в движении": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қозғалыстағы сағат"
+          }
+        }
+      }
+    },
+    "Шаги по часам": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сағат бойынша қадам"
+          }
+        }
+      }
+    },
+    "активных дней": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "белсенді күн"
+          }
+        }
+      }
+    },
+    "в среднем за день": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "күніне орташа"
+          }
+        }
+      }
+    },
+    "да": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "иә"
+          }
+        }
+      }
+    },
+    "день %lld": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-күн"
+          }
+        }
+      }
+    },
+    "лучший день": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "үздік күн"
+          }
+        }
+      }
+    },
+    "нет, меньше 5 000 шагов": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "жоқ, 5 000 қадамнан аз"
+          }
+        }
+      }
+    },
+    "пешком": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "жаяу"
+          }
+        }
+      }
+    },
+    "шагов всего": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "барлық қадам"
+          }
+        }
+      }
+    },
+    "Стоянка: %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Қоныс: %@"
+          }
+        }
+      }
+    },
+    "активных дней подряд": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "қатарынан белсенді күн"
+          }
+        }
+      }
+    },
+    "в среднем %@ км в день": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "күніне орташа %@ км"
+          }
+        }
+      }
+    },
+    "И ещё %lld впереди": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Алда тағы %lld"
+          }
+        }
+      }
+    },
+    "Начало пути: %@": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жол басы: %@"
           }
         }
       }

@@ -17,6 +17,8 @@ final class WeatherStore: NSObject {
     private(set) var condition: WeatherCondition?
     private(set) var cloudCover: Double?
     private(set) var windKmh: Double?
+    /// Вызывается после каждого успешного обновления погоды (дневник записывает погоду дня).
+    @ObservationIgnored var onUpdate: ((WeatherNote) -> Void)?
     /// Отладка: показать на главном любое состояние погоды.
     var debugCondition: WeatherCondition?
     private(set) var symbolName: String?
@@ -99,6 +101,8 @@ final class WeatherStore: NSObject {
             windKmh = current.wind.speed.converted(to: .kilometersPerHour).value
             lastFetch = .now
             status = .ready
+            onUpdate?(WeatherNote(temperature: current.temperature.converted(to: .celsius).value,
+                                  condition: current.condition.rawValue, symbol: current.symbolName, place: placeName))
             if attributionMarkURL == nil, let attribution = try? await WeatherService.shared.attribution {
                 attributionMarkURL = attribution.combinedMarkDarkURL
                 attributionLegalURL = attribution.legalPageURL

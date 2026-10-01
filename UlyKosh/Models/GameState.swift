@@ -13,6 +13,14 @@ enum EventStatus: Codable, Hashable {
     case failed(at: Date)
 }
 
+/// Погода дня для дневника.
+struct WeatherNote: Codable, Hashable {
+    var temperature: Double
+    var condition: String
+    var symbol: String
+    var place: String?
+}
+
 /// Всё, что нужно сохранить между запусками. Километры не хранятся, а считаются из шагов.
 struct GameState: Codable {
     var routeId: String
@@ -37,10 +45,19 @@ struct GameState: Codable {
     var healthRequested: Bool = false
     /// Километраж, по которому уже отправлены уведомления о стоянках. nil — ещё не инициализирован.
     var lastNotifiedKm: Double?
+    /// Шаги по часам для дневника: день → 24 значения.
+    var hourlySteps: [String: [Int]] = [:]
+    /// Отладочные шаги по часам (хранятся отдельно, чтобы синхронизация со «Здоровьем» их не стирала).
+    var debugHourlySteps: [String: [Int]] = [:]
+    /// Погода, которую путник видел в этот день.
+    var weatherLog: [String: WeatherNote] = [:]
+    /// Заметки пользователя по дням.
+    var dayNotes: [String: String] = [:]
 
     enum CodingKeys: String, CodingKey {
         case routeId, heroName = "aulName", startDate, strideMeters, healthSteps, healthDistanceKm, sourceSettings,
-             debugSteps, eventStatus, finishedAt, customRoute, healthRequested, lastNotifiedKm
+             debugSteps, eventStatus, finishedAt, customRoute, healthRequested, lastNotifiedKm,
+             hourlySteps, debugHourlySteps, weatherLog, dayNotes
     }
 
     init(routeId: String, heroName: String, startDate: Date, customRoute: CustomRoute? = nil) {
@@ -66,6 +83,10 @@ struct GameState: Codable {
         customRoute = try c.decodeIfPresent(CustomRoute.self, forKey: .customRoute)
         healthRequested = try c.decodeIfPresent(Bool.self, forKey: .healthRequested) ?? false
         lastNotifiedKm = try c.decodeIfPresent(Double.self, forKey: .lastNotifiedKm)
+        hourlySteps = try c.decodeIfPresent([String: [Int]].self, forKey: .hourlySteps) ?? [:]
+        debugHourlySteps = try c.decodeIfPresent([String: [Int]].self, forKey: .debugHourlySteps) ?? [:]
+        weatherLog = try c.decodeIfPresent([String: WeatherNote].self, forKey: .weatherLog) ?? [:]
+        dayNotes = try c.decodeIfPresent([String: String].self, forKey: .dayNotes) ?? [:]
     }
 }
 

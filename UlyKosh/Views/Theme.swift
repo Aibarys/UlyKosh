@@ -66,6 +66,11 @@ enum Fmt {
         value >= 100 ? String(format: "%.0f", value) : String(format: "%.1f", value)
     }
 
+    /// Шаги с разделителем тысяч; от 100 000 — сокращённо.
+    static func steps(_ value: Int) -> String {
+        value >= 100_000 ? value.formatted(.number.notation(.compactName)) : value.formatted()
+    }
+
     /// Множественное число задаётся правилами языка в Localizable.xcstrings.
     static func days(_ n: Int) -> String {
         String(localized: "\(n) дней")

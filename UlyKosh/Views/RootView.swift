@@ -23,6 +23,11 @@ struct RootView: View {
         }
         .tint(Color.gold)
         .preferredColorScheme(.dark)
+        .onChange(of: engine.isLoading) { _, loading in
+            #if DEBUG
+            if !loading, DebugLaunch.journalDemo { engine.seedJournalDemo() }
+            #endif
+        }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 Task { await engine.syncSteps() }
@@ -54,7 +59,7 @@ enum AppTab: CaseIterable {
 }
 
 struct MainTabView: View {
-    @State private var tab: AppTab = .road
+    @State private var tab: AppTab = DebugLaunch.startTab ?? .road
 
     var body: some View {
         VStack(spacing: 0) {
@@ -126,6 +131,31 @@ enum DebugLaunch {
         return (a, b)
         #else
         return nil
+        #endif
+    }
+
+    /// `-tab journal`: открыть приложение сразу на вкладке.
+    static var startTab: AppTab? {
+        #if DEBUG
+        let args = ProcessInfo.processInfo.arguments
+        guard let i = args.firstIndex(of: "-tab"), i + 1 < args.count else { return nil }
+        switch args[i + 1] {
+        case "route": return .route
+        case "journal": return .aul
+        case "more": return .more
+        default: return .road
+        }
+        #else
+        return nil
+        #endif
+    }
+
+    /// `-journalDemo`: заполнить дневник примером за 10 дней.
+    static var journalDemo: Bool {
+        #if DEBUG
+        return ProcessInfo.processInfo.arguments.contains("-journalDemo")
+        #else
+        return false
         #endif
     }
 

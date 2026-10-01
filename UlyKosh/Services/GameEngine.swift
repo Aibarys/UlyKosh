@@ -180,6 +180,7 @@ final class GameEngine {
             let daily = Self.aggregate(steps: hourlySteps, km: hourlyKm, settings: current.sourceSettings, stride: current.strideMeters, today: now)
             current.healthSteps = daily.steps
             current.healthDistanceKm = daily.km
+            current.hourlySteps = daily.hourly
             stepsTodayBySource = daily.todayBySource
             state = current
             switch (steps, distance) {
@@ -219,6 +220,9 @@ final class GameEngine {
     func addDebugSteps(_ steps: Int) {
         guard var current = state else { return }
         current.debugSteps[DayKey.key(now), default: 0] += steps
+        var hours24 = current.debugHourlySteps[DayKey.key(now)] ?? Array(repeating: 0, count: 24)
+        hours24[Calendar.current.component(.hour, from: now)] += steps
+        current.debugHourlySteps[DayKey.key(now)] = hours24
         state = current
         evaluateAndNotify()
         persist()
@@ -230,6 +234,7 @@ final class GameEngine {
         var steps: [String: Int] = [:]
         var km: [String: Double] = [:]
         var todayBySource: [String: Int] = [:]
+        var hourly: [String: [Int]] = [:]
     }
 
     /// Сводит почасовые данные по источникам в дневные шаги и километры.
@@ -267,6 +272,9 @@ final class GameEngine {
 
             totals.steps[dayKey, default: 0] += Int(dedupedSteps.rounded())
             totals.km[dayKey, default: 0] += kmHour
+            var hours24 = totals.hourly[dayKey] ?? Array(repeating: 0, count: 24)
+            hours24[calendar.component(.hour, from: hour)] += Int(dedupedSteps.rounded())
+            totals.hourly[dayKey] = hours24
             if dayKey == todayKey {
                 for (source, value) in steps[hour] ?? [:] {
                     totals.todayBySource[source, default: 0] += Int(value.rounded())
@@ -282,11 +290,69 @@ final class GameEngine {
         let daily = Self.aggregate(steps: hourlySteps, km: hourlyKm, settings: current.sourceSettings, stride: current.strideMeters, today: now)
         current.healthSteps = daily.steps
         current.healthDistanceKm = daily.km
+        current.hourlySteps = daily.hourly
         stepsTodayBySource = daily.todayBySource
         state = current
         evaluateAndNotify()
         persist()
     }
+
+    // MARK: - Дневник
+
+    /// Записывает погоду, которую путник видел сегодня.
+    func logWeather(_ note: WeatherNote) {
+        guard state != nil else { return }
+        state?.weatherLog[DayKey.key(now)] = note
+        persist()
+    }
+
+    func setNote(_ text: String, for dayKey: String) {
+        guard state != nil else { return }
+        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        state?.dayNotes[dayKey] = trimmed.isEmpty ? nil : trimmed
+        persist()
+    }
+
+    /// Дни пути от сегодняшнего к первому.
+    var journalDays: [JournalDay] {
+        guard let s = state else { return [] }
+        return Journal.days(state: s, route: route, today: now, passivePerDay: Self.passiveKmPerDay)
+    }
+
+    var journalStats: JournalStats { Journal.stats(journalDays) }
+
+    #if DEBUG
+    /// Отладка (`-journalDemo`): переносит старт на 10 дней назад и заполняет дни шагами, погодой и заметками.
+    func seedJournalDemo() {
+        guard var s = state else { return }
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: now)
+        s.startDate = cal.date(byAdding: .day, value: -9, to: today) ?? today
+        s.debugSteps = [:]
+        s.debugHourlySteps = [:]
+        let totals = [7_200, 11_500, 3_100, 9_800, 14_300, 6_400, 0, 8_900, 12_700, 4_200]
+        let weather = [("sun.max", "clear", 14.0), ("cloud.sun", "partlyCloudy", 11.0), ("cloud.rain", "rain", 7.0),
+                       ("cloud", "cloudy", 9.0), ("wind", "windy", 6.0), ("cloud.fog", "foggy", 4.0),
+                       ("cloud.drizzle", "drizzle", 5.0), ("sun.max", "clear", 12.0), ("cloud.sun", "mostlyClear", 13.0), ("cloud", "cloudy", 10.0)]
+        let shape = [0, 0, 0, 0, 0, 0, 1, 4, 9, 5, 3, 2, 6, 3, 2, 2, 3, 6, 10, 8, 4, 2, 0, 0]
+        let weight = Double(shape.reduce(0, +))
+        for i in 0..<10 {
+            guard let date = cal.date(byAdding: .day, value: i, to: s.startDate) else { continue }
+            let key = DayKey.key(date)
+            let hourly = shape.map { Int(Double(totals[i]) * Double($0) / weight) }
+            s.debugSteps[key] = hourly.reduce(0, +)
+            s.debugHourlySteps[key] = hourly
+            let w = weather[i]
+            s.weatherLog[key] = WeatherNote(temperature: w.2, condition: w.1, symbol: w.0, place: "Павлодар")
+        }
+        s.dayNotes[DayKey.key(s.startDate)] = "Вышел из дома рано, по набережной Иртыша."
+        if let d = cal.date(byAdding: .day, value: 4, to: s.startDate) { s.dayNotes[DayKey.key(d)] = "Длинная прогулка после работы." }
+        state = s
+        suppressNotificationsOnce = true
+        evaluateAndNotify()
+        persist()
+    }
+    #endif
 
     func setting(for source: HealthSource) -> SourceSetting {
         state?.sourceSettings[source.id] ?? SourceSetting()

@@ -8,6 +8,7 @@ struct UlyKoshApp: App {
         let engine = GameEngine()
         _engine = State(initialValue: engine)
         NotificationService.shared.configure()
+        WeatherStore.shared.onUpdate = { [weak engine] note in engine?.logWeather(note) }
         // Наблюдатель HealthKit должен регистрироваться при каждом запуске, в том числе когда система будит приложение в фоне.
         Task { await engine.bootstrap() }
     }
