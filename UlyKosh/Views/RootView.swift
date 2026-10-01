@@ -13,6 +13,8 @@ struct RootView: View {
                 }
             } else if engine.state == nil {
                 OnboardingView()
+            } else if DebugLaunch.showsWeatherSheet {
+                NavigationStack { WeatherSheetView() }
             } else {
                 MainTabView()
             }
@@ -95,5 +97,26 @@ struct TabBarView: View {
         .padding(.horizontal, 12)
         .background(Color.night.ignoresSafeArea(edges: .bottom))
         .overlay(alignment: .top) { Rectangle().fill(Color.hairline).frame(height: 0.5) }
+    }
+}
+
+
+/// Аргументы запуска для отладки в симуляторе:
+/// `-weatherSheet` открывает лист всех погод, `-weather rain` показывает состояние на главном.
+enum DebugLaunch {
+    static var showsWeatherSheet: Bool {
+        #if DEBUG
+        return ProcessInfo.processInfo.arguments.contains("-weatherSheet")
+        #else
+        return false
+        #endif
+    }
+
+    static var condition: String? {
+        #if DEBUG
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-weather"), i + 1 < args.count { return args[i + 1] }
+        #endif
+        return nil
     }
 }

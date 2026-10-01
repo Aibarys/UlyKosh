@@ -6832,6 +6832,126 @@
           }
         }
       }
+    },
+    "Погода на сцене": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Сахнадағы ауа райы"
+          }
+        }
+      }
+    },
+    "Вернуть реальную погоду": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Нақты ауа райын қайтару"
+          }
+        }
+      }
+    },
+    "Нажмите на сцену, чтобы показать эту погоду на главном экране.": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Осы ауа райын басты экранда көрсету үшін сахнаны басыңыз."
+          }
+        }
+      }
+    },
+    "Время": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Уақыт"
+          }
+        }
+      }
+    },
+    "Рассвет": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таң"
+          }
+        }
+      }
+    },
+    "День": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күндіз"
+          }
+        }
+      }
+    },
+    "Закат": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Күн бату"
+          }
+        }
+      }
+    },
+    "Ночь": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Түн"
+          }
+        }
+      }
+    },
+    "Местность": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Жер бедері"
+          }
+        }
+      }
+    },
+    "Степь": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Дала"
+          }
+        }
+      }
+    },
+    "Река": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Өзен"
+          }
+        }
+      }
+    },
+    "Горы": {
+      "localizations": {
+        "kk": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Таулар"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

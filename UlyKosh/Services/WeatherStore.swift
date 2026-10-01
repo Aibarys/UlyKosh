@@ -15,6 +15,10 @@ final class WeatherStore: NSObject {
     private(set) var status: Status = .idle
     private(set) var temperature: Measurement<UnitTemperature>?
     private(set) var condition: WeatherCondition?
+    private(set) var cloudCover: Double?
+    private(set) var windKmh: Double?
+    /// Отладка: показать на главном любое состояние погоды.
+    var debugCondition: WeatherCondition?
     private(set) var symbolName: String?
     private(set) var placeName: String?
     private(set) var location: CLLocation?
@@ -30,6 +34,7 @@ final class WeatherStore: NSObject {
 
     override init() {
         super.init()
+        if let raw = DebugLaunch.condition, let c = WeatherCondition(rawValue: raw) { debugCondition = c }
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyKilometer
     }
@@ -90,6 +95,8 @@ final class WeatherStore: NSObject {
             temperature = current.temperature
             condition = current.condition
             symbolName = current.symbolName
+            cloudCover = current.cloudCover
+            windKmh = current.wind.speed.converted(to: .kilometersPerHour).value
             lastFetch = .now
             status = .ready
             if attributionMarkURL == nil, let attribution = try? await WeatherService.shared.attribution {
@@ -108,24 +115,15 @@ final class WeatherStore: NSObject {
         #endif
     }
 
-    /// Как реальная погода выглядит на сцене.
-    var sceneWeather: SceneWeather? {
+    /// Реальная погода на сцене; в отладке можно подменить состояние.
+    var atmosphere: Atmosphere? {
+        if let debugCondition { return Atmosphere(condition: debugCondition) }
         guard status == .ready, let condition else { return nil }
-        switch condition {
-        case .rain, .drizzle, .heavyRain, .isolatedThunderstorms, .scatteredThunderstorms, .thunderstorms,
-             .strongStorms, .sunShowers, .tropicalStorm, .hurricane:
-            return .rain
-        case .snow, .heavySnow, .flurries, .blizzard, .blowingSnow, .sleet, .wintryMix, .freezingRain,
-             .freezingDrizzle, .hail, .sunFlurries:
-            return .snow
-        case .blowingDust, .haze, .smoky:
-            return .sand
-        case .cloudy, .mostlyCloudy, .foggy, .breezy, .windy:
-            return .clouds
-        default:
-            return .clear
-        }
+        return Atmosphere(condition: condition, cloudCover: cloudCover, windKmh: windKmh)
     }
+
+    /// Состояние, которое сейчас показывается (реальное или отладочное).
+    var shownCondition: WeatherCondition? { debugCondition ?? condition }
 
     var temperatureText: String? {
         guard let temperature else { return nil }

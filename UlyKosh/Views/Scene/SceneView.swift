@@ -25,6 +25,10 @@ struct SceneView: View {
     var season: Season = .current()
     var weather: SceneWeather = .clear
     var showCaravan = true
+    /// Подробная погода (реальная из WeatherKit). Если не задана, берётся погода испытания.
+    var atmosphere: Atmosphere? = nil
+
+    private var air: Atmosphere { atmosphere ?? Atmosphere(event: weather) }
 
     var body: some View {
         TimelineView(.animation(minimumInterval: 1.0 / 30)) { timeline in
@@ -33,42 +37,50 @@ struct SceneView: View {
                 let w = geo.size.width
                 let h = geo.size.height
                 let ground = TerrainProfile.ground(terrain)
+                let air = self.air
+                let flash = LightningLayer.flash(air.lightning, at: time).amount
 
                 ZStack {
+                    // Небо
                     LinearGradient(colors: phase.colors(for: season), startPoint: .top, endPoint: .bottom)
+                    SkyOvercast(atmosphere: air, phase: phase)
                     if phase == .night {
-                        StarField(time: time)
-                    } else {
-                        Clouds(time: time, phase: phase)
+                        StarField(time: time).opacity(max(0, 1 - air.cloudCover * 1.3))
                     }
+                    SkyBody(atmosphere: air, phase: phase, time: time)
+                    CloudLayer(atmosphere: air, phase: phase, time: time)
+                    LightningLayer(atmosphere: air, time: time, groundY: h * 0.78)
                     if let haze = phase.haze(for: season) {
                         LinearGradient(colors: [.clear, haze], startPoint: .top, endPoint: .bottom)
                     }
-                    Color(red: 0.72, green: 0.50, blue: 0.20).opacity(weather == .sand ? 0.35 : 0)
-                    Color(white: 0.65).opacity(weather == .snow ? 0.35 : 0)
-                    Color(red: 0.32, green: 0.36, blue: 0.42).opacity(weather == .rain ? 0.45 : (weather == .clouds ? 0.3 : 0))
-                    if weather == .clouds || weather == .rain {
-                        Clouds(time: time, phase: phase, count: 9, opacity: 0.35)
-                    }
+                    if air.veil != .none { VeilLayer(atmosphere: air, phase: phase) }
 
+                    // Дальний план и туман за ним
                     TerrainShape(profile: TerrainProfile.far(terrain))
                         .fill(phase.farColor(for: season))
+                    if air.fog > 0 { FogLayer(amount: air.fog, phase: phase, time: time) }
 
+                    // Земля
                     TerrainShape(profile: ground)
                         .fill(phase.groundColor(for: season))
+                    if air.snowCover && season != .winter {
+                        SnowCapShape(profile: ground)
+                            .stroke(Color.white.opacity(0.85), style: StrokeStyle(lineWidth: 4, lineCap: .round))
+                    }
+                    if air.glaze {
+                        SnowCapShape(profile: ground)
+                            .stroke(Color(red: 0.8, green: 0.92, blue: 1).opacity(0.7), lineWidth: 1.5)
+                    }
 
                     if terrain == .river || terrain == .ford {
-                        let top = terrain == .ford ? 0.88 : 0.91
-                        Rectangle()
-                            .fill(Color(red: 0.05, green: 0.12, blue: 0.18))
-                            .frame(height: h * (1 - top))
-                            .position(x: w / 2, y: h * (top + (1 - top) / 2))
+                        WaterView(top: terrain == .ford ? 0.88 : 0.91, phase: phase, time: time, rain: air.precipitation != .none, wind: air.wind)
                     }
 
                     StructuresShape(terrain: terrain).fill(Color.black)
+                    YurtCutoutsShape(terrain: terrain).fill(phase.farColor(for: season))
 
                     ForEach(figures) { figure in
-                        let motion = figure.motion(at: time)
+                        let motion = figure.motion(at: time, wind: air.wind)
                         let slope = Self.slopeDegrees(ground, at: figure.t, width: w, height: h)
                         PictogramView(kind: figure.icon, size: figure.size, tint: .black)
                             .scaleEffect(x: figure.flip ? -1 : 1)
@@ -76,22 +88,26 @@ struct SceneView: View {
                             .position(x: w * figure.t, y: h * ground(figure.t) - figure.size * 0.5 + 2 + motion.lift)
                     }
 
-                    if weather == .snow {
-                        Particles(time: time, color: .white.opacity(0.8), fall: 0.07, drift: 0.02, count: 70)
-                            .transition(.opacity)
+                    // Передний план погоды
+                    if air.fog > 0.2 { FogLayer(amount: air.fog, phase: phase, time: time, near: true) }
+                    if air.precipitation != .none {
+                        PrecipitationLayer(atmosphere: air, time: time)
                     } else if season == .winter {
                         Particles(time: time, color: .white.opacity(0.55), fall: 0.03, drift: 0.01, count: 25)
                     }
-                    if weather == .rain {
-                        Rain(time: time)
-                            .transition(.opacity)
+                    if air.blowingSnow > 0 || air.blowingDust > 0 {
+                        GroundDriftLayer(snow: air.blowingSnow, dust: air.blowingDust, wind: air.wind, time: time)
                     }
-                    if weather == .sand {
-                        Particles(time: time, color: Color(red: 0.85, green: 0.65, blue: 0.35).opacity(0.7), fall: 0.02, drift: 0.45, count: 90)
-                            .transition(.opacity)
+                    if air.precipitation == .none && air.blowingDust == 0 && air.blowingSnow == 0 {
+                        WindStreakLayer(wind: air.wind, time: time)
+                    }
+                    if air.heat { HeatShimmerLayer(time: time) }
+                    if air.frost { FrostSparkleLayer(time: time) }
+                    if flash > 0 {
+                        Color(red: 0.9, green: 0.92, blue: 1).opacity(flash * 0.35).allowsHitTesting(false)
                     }
                 }
-                .animation(.easeInOut(duration: 1.2), value: weather)
+                .animation(.easeInOut(duration: 1.2), value: air)
             }
         }
         .clipped()
@@ -116,13 +132,15 @@ struct SceneView: View {
         var flip = false
         var motion: Motion = .still
 
-        /// Деревья и камыш чуть наклоняются на ветру, животные стоят неподвижно.
-        func motion(at time: Double) -> (lift: CGFloat, tilt: Double) {
+        /// Деревья и камыш наклоняются на ветру: чем сильнее ветер, тем ниже и быстрее. Животные стоят.
+        func motion(at time: Double, wind: Double = 0.1) -> (lift: CGFloat, tilt: Double) {
             switch motion {
             case .still:
                 return (0, 0)
             case .sway:
-                return (0, sin(time * 0.9 + t * 37) * 1.6)
+                let lean = wind * 7
+                let amplitude = 1.6 + wind * 4
+                return (0, lean + sin(time * (0.9 + wind * 2.2) + t * 37) * amplitude)
             }
         }
     }
@@ -480,6 +498,67 @@ struct Rain: View {
                 streaks.addLine(to: CGPoint(x: x - len * 0.25, y: y + len))
             }
             context.stroke(streaks, with: .color(Color(white: 0.85).opacity(0.45)), lineWidth: 1)
+        }
+        .allowsHitTesting(false)
+    }
+}
+
+
+/// Линия по верху земли: снежная шапка или ледяная корка.
+struct SnowCapShape: Shape {
+    let profile: (Double) -> Double
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        for i in 0...140 {
+            let t = Double(i) / 140
+            let p = CGPoint(x: rect.minX + rect.width * t, y: rect.minY + rect.height * profile(t) + 1.5)
+            i == 0 ? path.move(to: p) : path.addLine(to: p)
+        }
+        return path
+    }
+}
+
+/// Река на переднем плане: отражённое небо, блик по кромке, рябь, круги от капель.
+struct WaterView: View {
+    let top: Double
+    let phase: SkyPhase
+    let time: Double
+    var rain = false
+    var wind: Double = 0.1
+
+    var body: some View {
+        Canvas { ctx, size in
+            let y0 = size.height * top
+            let rect = CGRect(x: 0, y: y0, width: size.width, height: size.height - y0)
+            let sky = phase == .night ? Color(red: 0.08, green: 0.12, blue: 0.18) : Color(red: 0.32, green: 0.44, blue: 0.52)
+            ctx.fill(Path(rect), with: .linearGradient(Gradient(colors: [sky.opacity(0.9), Color(red: 0.04, green: 0.08, blue: 0.12)]),
+                                                      startPoint: CGPoint(x: 0, y: rect.minY), endPoint: CGPoint(x: 0, y: rect.maxY)))
+            ctx.fill(Path(CGRect(x: 0, y: y0, width: size.width, height: 1.2)), with: .color(Color.white.opacity(0.25)))
+            var rng = SeededGenerator(seed: 5)
+            var ripples = Path()
+            for _ in 0..<26 {
+                let x0 = Double.random(in: 0...1, using: &rng)
+                let yy = Double.random(in: 0.15...0.9, using: &rng)
+                let len = Double.random(in: 10...30, using: &rng)
+                let x = ((x0 + time * (0.01 + wind * 0.04)).truncatingRemainder(dividingBy: 1)) * size.width
+                let y = y0 + rect.height * yy
+                ripples.move(to: CGPoint(x: x, y: y))
+                ripples.addLine(to: CGPoint(x: x + len, y: y))
+            }
+            ctx.stroke(ripples, with: .color(Color.white.opacity(0.14)), lineWidth: 1)
+            if rain {
+                var drops = Path()
+                for i in 0..<14 {
+                    let cycle = (time * 0.9 + Double(i) * 0.37).truncatingRemainder(dividingBy: 1)
+                    var r2 = SeededGenerator(seed: UInt64(200 + i) &+ UInt64(time * 0.9 + Double(i) * 0.37))
+                    let x = Double.random(in: 0...1, using: &r2) * size.width
+                    let y = y0 + rect.height * Double.random(in: 0.2...0.85, using: &r2)
+                    let r = 1 + cycle * 7
+                    drops.addEllipse(in: CGRect(x: x - r, y: y - r * 0.3, width: r * 2, height: r * 0.6))
+                }
+                ctx.stroke(drops, with: .color(Color.white.opacity(0.18)), lineWidth: 0.8)
+            }
         }
         .allowsHitTesting(false)
     }

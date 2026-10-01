@@ -20,9 +20,11 @@
 		441907A1BDA8E7D94D250EAD /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A46CC9B7CF6243CFC3837F /* TestSupport.swift */; };
 		4B2D6B59869E41A4B91A2435 /* GeoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E200D303F34E1C839B58DB4 /* GeoData.swift */; };
 		4DB9ABEEAB11C608E3DC4AF3 /* EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34994C08915FFC40EDD08F99 /* EngineTests.swift */; };
+		4E4007259E7FB92034B9D280 /* AtmosphereTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51F99A8509ACEF0D90CADB22 /* AtmosphereTests.swift */; };
 		512D56B308A6A058C4C91494 /* UlyKoshWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 60C2DFB7119649968104366B /* UlyKoshWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52C0096D2654C7744BC8DB37 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */; };
 		54EA1B4348DEFEE749BAAAAD /* CalendarTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 226A70BF8FEC05D068B7C205 /* CalendarTests.swift */; };
+		551003168F062735EEF09DBA /* WeatherSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43F460F11102EC4A2148EF6B /* WeatherSheet.swift */; };
 		5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
 		5E0FECD2963BD1E8C667E5B4 /* Pictograms.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8994525A1EF735990AAE25FE /* Pictograms.swift */; };
 		5F24074A0B67928B27940BF3 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87330EE442BE509F530E870C /* NotificationService.swift */; };
@@ -53,6 +55,7 @@
 		C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */; };
 		C9F1FC2E2C8833A5C27CA0B2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */; };
 		CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F1C5AAC906C5C78F4DE5B /* GameState.swift */; };
+		D1422F68103C57126A484856 /* Atmosphere.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4504ECB32A8272F484B6CC2C /* Atmosphere.swift */; };
 		D9B8D4564419CC4A228FFAF0 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
 		E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */; };
 		ED559C6F72758549DE1A0AEA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
@@ -111,7 +114,10 @@
 		2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		34994C08915FFC40EDD08F99 /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
 		39CD843740DD3290D6E37F3B /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
+		43F460F11102EC4A2148EF6B /* WeatherSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherSheet.swift; sourceTree = "<group>"; };
+		4504ECB32A8272F484B6CC2C /* Atmosphere.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atmosphere.swift; sourceTree = "<group>"; };
 		48A14E4FFB337A35451614EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		51F99A8509ACEF0D90CADB22 /* AtmosphereTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtmosphereTests.swift; sourceTree = "<group>"; };
 		56B4CEA357F74A573EBC1179 /* AggregationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AggregationTests.swift; sourceTree = "<group>"; };
 		575F1C5AAC906C5C78F4DE5B /* GameState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameState.swift; sourceTree = "<group>"; };
 		6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -228,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				56B4CEA357F74A573EBC1179 /* AggregationTests.swift */,
+				51F99A8509ACEF0D90CADB22 /* AtmosphereTests.swift */,
 				226A70BF8FEC05D068B7C205 /* CalendarTests.swift */,
 				34994C08915FFC40EDD08F99 /* EngineTests.swift */,
 				28E173AD177DCB0A53446BBA /* RouteBuilderTests.swift */,
@@ -259,8 +266,10 @@
 		A1580C7E8B362496D4C0DCDF /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				4504ECB32A8272F484B6CC2C /* Atmosphere.swift */,
 				E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */,
 				AAF139901566A4D74C8AB674 /* Season.swift */,
+				43F460F11102EC4A2148EF6B /* WeatherSheet.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -512,6 +521,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1422F68103C57126A484856 /* Atmosphere.swift in Sources */,
 				C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */,
 				F017E88E1A9CCA6C30035180 /* BuildEnvironment.swift in Sources */,
 				F9A940E803A636F8F171D365 /* GameEngine.swift in Sources */,
@@ -542,6 +552,7 @@
 				9991EE468C967BBB05A9988B /* SummerRoute.swift in Sources */,
 				922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */,
 				2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */,
+				551003168F062735EEF09DBA /* WeatherSheet.swift in Sources */,
 				3C6819F67E82BCE55C768134 /* WeatherStore.swift in Sources */,
 				90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */,
 				8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */,
@@ -554,6 +565,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EED6AFFFF2F005736C950887 /* AggregationTests.swift in Sources */,
+				4E4007259E7FB92034B9D280 /* AtmosphereTests.swift in Sources */,
 				54EA1B4348DEFEE749BAAAAD /* CalendarTests.swift in Sources */,
 				4DB9ABEEAB11C608E3DC4AF3 /* EngineTests.swift in Sources */,
 				F0C92BFDBF6C145DFADDBC35 /* RouteBuilderTests.swift in Sources */,

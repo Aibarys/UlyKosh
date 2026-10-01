@@ -6,13 +6,16 @@ struct HomeView: View {
     private var weather: WeatherStore { WeatherStore.shared }
 
     /// Испытание важнее реальной погоды: буран в сюжете виден, даже если за окном солнце.
-    private var sceneWeather: SceneWeather { engine.eventWeather ?? weather.sceneWeather ?? .clear }
+    private var atmosphere: Atmosphere {
+        if let event = engine.eventWeather, weather.debugCondition == nil { return Atmosphere(event: event) }
+        return weather.atmosphere ?? .fair
+    }
 
     var body: some View {
         GeometryReader { geo in
             ScrollView {
                 VStack(spacing: 0) {
-                    SceneView(terrain: engine.sceneTerrain, weather: sceneWeather)
+                    SceneView(terrain: engine.sceneTerrain, atmosphere: atmosphere)
                         .frame(height: geo.size.height * 0.52)
                         .id(engine.sceneTerrain)
                         .transition(.opacity)
@@ -106,7 +109,7 @@ struct WeatherLine: View {
                         if let t = weather.temperatureText {
                             Text(t).foregroundStyle(Color.parchment)
                         }
-                        if let condition = weather.condition {
+                        if let condition = weather.shownCondition {
                             Text(condition.description.lowercased())
                         }
                         if let place = weather.placeName {

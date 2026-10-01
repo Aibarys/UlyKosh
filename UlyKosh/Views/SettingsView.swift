@@ -69,6 +69,7 @@ struct SettingsView: View {
                     NavigationLink("Все пиктограммы") { PictogramSheetView() }
                     NavigationLink("Сцены по сезонам") { SeasonSheetView() }
                     NavigationLink("Сцены по местности") { TerrainSheetView() }
+                    NavigationLink("Погода на сцене") { WeatherSheetView() }
                     NavigationLink("Виджет") { WidgetPreviewSheet() }
                     Menu("Начать другой маршрут") {
                         ForEach(Routes.all) { route in
