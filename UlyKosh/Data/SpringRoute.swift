@@ -200,7 +200,6 @@ enum SpringRoute {
                 goalKm: 15,
                 days: 4,
                 rewardText: L("Стадо укрыто, ни одна овца не потеряна"),
-                reward: HerdDelta(sheep: 30),
                 weather: .snow
             ),
             RouteEvent(
@@ -212,7 +211,6 @@ enum SpringRoute {
                 goalKm: 20,
                 days: 5,
                 rewardText: L("У колодца аул нашёл отбившихся от чужого табуна лошадей"),
-                reward: HerdDelta(horses: 5),
                 weather: .sand
             ),
             RouteEvent(
@@ -224,7 +222,6 @@ enum SpringRoute {
                 goalKm: 12,
                 days: 3,
                 rewardText: L("Переправились до большой воды. Кузнец подарил двух верблюдов"),
-                reward: HerdDelta(camels: 2),
                 weather: .clear
             ),
             RouteEvent(
@@ -236,7 +233,6 @@ enum SpringRoute {
                 goalKm: 18,
                 days: 4,
                 rewardText: L("Волки отстали. По дороге к стаду прибились чужие овцы"),
-                reward: HerdDelta(sheep: 40),
                 weather: .clear
             )
         ]

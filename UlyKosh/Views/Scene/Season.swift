@@ -139,7 +139,7 @@ struct SeasonSheetView: View {
 
 /// Отладочный лист: все местности с караваном днём, для поиска наложений.
 struct TerrainSheetView: View {
-    private let terrains: [Terrain] = [.river, .ruins, .mountains, .desert, .ford, .mausoleum, .pasture]
+    private let terrains: [Terrain] = [.steppe, .town, .river, .ruins, .mountains, .desert, .ford, .mausoleum, .pasture]
 
     var body: some View {
         ScrollView {

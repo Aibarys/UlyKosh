@@ -203,7 +203,6 @@ enum AutumnRoute {
                 goalKm: 15,
                 days: 4,
                 rewardText: L("Спустились вовремя, ягнята не замёрзли"),
-                reward: HerdDelta(sheep: 30),
                 weather: .snow
             ),
             RouteEvent(
@@ -215,7 +214,6 @@ enum AutumnRoute {
                 goalKm: 18,
                 days: 4,
                 rewardText: L("Ушли от огня. К аулу прибились лошади, бежавшие от пожара"),
-                reward: HerdDelta(horses: 5),
                 weather: .sand
             ),
             RouteEvent(
@@ -227,7 +225,6 @@ enum AutumnRoute {
                 goalKm: 20,
                 days: 5,
                 rewardText: L("Вышли из снега. Погонщик Мұса подарил аулу двух верблюдов"),
-                reward: HerdDelta(camels: 2),
                 weather: .snow
             ),
             RouteEvent(
@@ -239,7 +236,6 @@ enum AutumnRoute {
                 goalKm: 18,
                 days: 4,
                 rewardText: L("Волки отстали. Мерген Серік отбил у них чужих овец"),
-                reward: HerdDelta(sheep: 40),
                 weather: .clear
             )
         ]

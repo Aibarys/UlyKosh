@@ -8,7 +8,9 @@ struct RouteView: View {
         NavigationStack {
             ZStack(alignment: .top) {
                 if let world = MapWorld.shared {
-                    KazakhstanMapView(world: world, stops: engine.route.stops)
+                    KazakhstanMapView(world: world, route: engine.route, km: engine.totalKm,
+                                      currentStopId: engine.currentStop.id, isFinished: engine.isFinished)
+                        .id(engine.route.id + (engine.state?.customRoute.map { "\($0.fromId)-\($0.toId)" } ?? ""))
                 } else {
                     Text("Карта недоступна")
                         .foregroundStyle(Color.ash)

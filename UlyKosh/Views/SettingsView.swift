@@ -3,16 +3,19 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(GameEngine.self) private var engine
     private var notifications: NotificationService { NotificationService.shared }
-    @State private var aulName = ""
+    @State private var heroName = ""
+    @State private var showRoutePicker = false
+    @State private var pendingRoute: CustomRoute?
     @State private var stride = 0.7
     @State private var showResetConfirm = false
 
     var body: some View {
         NavigationStack {
             Form {
-                Section("Аул") {
-                    TextField("Название аула", text: $aulName)
-                        .onSubmit { engine.rename(aulName) }
+                Section("Путник") {
+                    TextField("Имя путника", text: $heroName)
+                        .onSubmit { engine.rename(heroName) }
+                    Button("Новый путь") { showRoutePicker = true }
                 }
 
                 Section("Шаги и расстояние") {
@@ -50,7 +53,7 @@ struct SettingsView: View {
                     Button("Разрешить уведомления") {
                         Task { await notifications.requestAuthorization() }
                     }
-                    Text("Аул сообщит, когда дойдёт до стоянки, когда начнётся буран или половодье и когда испытание пройдено.")
+                    Text("Путник сообщит, когда дойдёт до стоянки, когда начнётся буран или половодье и когда испытание пройдено.")
                         .font(.footnote)
                         .foregroundStyle(Color.ash)
                 }
@@ -70,9 +73,7 @@ struct SettingsView: View {
                     Menu("Начать другой маршрут") {
                         ForEach(Routes.all) { route in
                             Button("\(route.title) · \(route.season)") {
-                                let name = engine.state?.aulName ?? ""
-                                engine.resetJourney()
-                                Task { await engine.startJourney(aulName: name, routeId: route.id) }
+                                Task { await engine.startJourney(heroName: engine.state?.heroName ?? "", routeId: route.id) }
                             }
                         }
                     }
@@ -80,9 +81,9 @@ struct SettingsView: View {
                 }
 
                 Section {
-                    Button("Сбросить кочевье", role: .destructive) { showResetConfirm = true }
+                    Button("Сбросить путь", role: .destructive) { showResetConfirm = true }
                 } footer: {
-                    Text("Прогресс, стадо и события будут удалены. Шаги в «Здоровье» не затрагиваются.")
+                    Text("Прогресс, дневник и испытания будут удалены. Шаги в «Здоровье» не затрагиваются.")
                 }
 
                 Section("Длина шага") {
@@ -104,7 +105,7 @@ struct SettingsView: View {
                     if BuildEnvironment.current != .appStore {
                         LabeledContent("Сборка", value: BuildEnvironment.current.title)
                     }
-                    Text("Аул проходит \(Fmt.km(GameEngine.passiveKmPerDay)) км в день сам по себе, остальное зависит от ваших шагов.")
+                    Text("Путник проходит \(Fmt.km(GameEngine.passiveKmPerDay)) км в день сам по себе, остальное зависит от ваших шагов.")
                         .font(.footnote)
                         .foregroundStyle(Color.ash)
                 }
@@ -120,11 +121,36 @@ struct SettingsView: View {
             }
             .toolbar(.hidden, for: .navigationBar)
             .onAppear {
-                aulName = engine.state?.aulName ?? ""
+                heroName = engine.state?.heroName ?? ""
                 stride = engine.state?.strideMeters ?? 0.7
                 Task { await notifications.refreshStatus() }
             }
-            .confirmationDialog("Сбросить кочевье?", isPresented: $showResetConfirm, titleVisibility: .visible) {
+            .sheet(isPresented: $showRoutePicker) {
+                NavigationStack {
+                    RoutePickerView(startTitle: String(localized: "Начать этот путь")) { route in
+                        pendingRoute = route
+                        showRoutePicker = false
+                    }
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Отмена") { showRoutePicker = false }
+                        }
+                    }
+                }
+                .presentationBackground(Color.night)
+            }
+            .confirmationDialog("Начать новый путь?", isPresented: Binding(get: { pendingRoute != nil }, set: { if !$0 { pendingRoute = nil } }), titleVisibility: .visible) {
+                Button("Начать") {
+                    if let route = pendingRoute {
+                        Task { await engine.startJourney(heroName: engine.state?.heroName ?? "", customRoute: route) }
+                    }
+                    pendingRoute = nil
+                }
+                Button("Отмена", role: .cancel) { pendingRoute = nil }
+            } message: {
+                Text("Прогресс нынешнего пути и дневник начнутся заново. Шаги в «Здоровье» и настройки источников сохранятся.")
+            }
+            .confirmationDialog("Сбросить путь?", isPresented: $showResetConfirm, titleVisibility: .visible) {
                 Button("Сбросить", role: .destructive) { engine.resetJourney() }
                 Button("Отмена", role: .cancel) {}
             }

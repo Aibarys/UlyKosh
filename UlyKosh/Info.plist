@@ -30,9 +30,11 @@
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.healthcare-fitness</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего аула.</string>
+	<string>Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего путника.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Приложение не записывает данные в Здоровье.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Ұлы Көш показывает погоду там, где вы сейчас, и предлагает ближайший город как начало пути. Местоположение не сохраняется.</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

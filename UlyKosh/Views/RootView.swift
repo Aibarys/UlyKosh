@@ -34,7 +34,7 @@ enum AppTab: CaseIterable {
         switch self {
         case .road: return "figure.walk"
         case .route: return "map"
-        case .aul: return "tent"
+        case .aul: return "book"
         case .more: return "gearshape"
         }
     }
@@ -43,7 +43,7 @@ enum AppTab: CaseIterable {
         switch self {
         case .road: return String(localized: "Дорога")
         case .route: return String(localized: "Маршрут")
-        case .aul: return String(localized: "Аул")
+        case .aul: return String(localized: "Дневник")
         case .more: return String(localized: "Ещё")
         }
     }
@@ -58,7 +58,7 @@ struct MainTabView: View {
                 switch tab {
                 case .road: HomeView()
                 case .route: RouteView()
-                case .aul: AulView()
+                case .aul: JournalView()
                 case .more: SettingsView()
                 }
             }

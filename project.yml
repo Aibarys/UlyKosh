@@ -39,7 +39,8 @@ targets:
           UIImageRespectsSafeAreaInsets: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         UISupportedInterfaceOrientations~ipad: [UIInterfaceOrientationPortrait, UIInterfaceOrientationPortraitUpsideDown, UIInterfaceOrientationLandscapeLeft, UIInterfaceOrientationLandscapeRight]
-        NSHealthShareUsageDescription: "Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего аула."
+        NSHealthShareUsageDescription: "Ұлы Көш читает шаги и пройденное расстояние, чтобы превращать их в километры пути вашего путника."
+        NSLocationWhenInUseUsageDescription: "Ұлы Көш показывает погоду там, где вы сейчас, и предлагает ближайший город как начало пути. Местоположение не сохраняется."
         NSHealthUpdateUsageDescription: "Приложение не записывает данные в Здоровье."
         ITSAppUsesNonExemptEncryption: false
         CFBundleShortVersionString: $(MARKETING_VERSION)
@@ -52,6 +53,7 @@ targets:
         com.apple.developer.healthkit.access: []
         com.apple.developer.healthkit.background-delivery: true
         com.apple.security.application-groups: [group.kz.ulykosh]
+        com.apple.developer.weatherkit: true
     dependencies:
       - target: UlyKoshWidget
         embed: true

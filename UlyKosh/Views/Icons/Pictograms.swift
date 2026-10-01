@@ -2,7 +2,7 @@ import SwiftUI
 
 /// Пиктограммы в духе петроглифов Тамғалы. Рисуются в квадрате 100×100, ось Y вниз, животные смотрят вправо.
 enum Pictogram: String, Codable, CaseIterable {
-    case camel, horse, rider, sheep, ram, saiga, gazelle, deer, wolf, boar, dog, fox, hare
+    case walker, camel, horse, rider, sheep, ram, saiga, gazelle, deer, wolf, boar, dog, fox, hare
     case eagle, crane, bird, tortoise, hedgehog, marmot
     case yurt, tree, spruce, reeds, mausoleum, ruins, tulip
     case elder, dombra, well, hammer, crescent, fish, bow, book, bowl, sun, lightning
@@ -13,6 +13,7 @@ enum Pictogram: String, Codable, CaseIterable {
 
     var title: String {
         switch self {
+        case .walker: return "Путник"
         case .camel: return "Верблюд"
         case .horse: return "Лошадь"
         case .rider: return "Всадник"
@@ -149,6 +150,20 @@ private enum PictogramLibrary {
     // swiftlint:disable function_body_length
     private static func build(_ kind: Pictogram, _ b: inout PathBuilder) {
         switch kind {
+        case .walker:
+            // Путник в колпаке, с котомкой и посохом, широкий шаг вправо
+            b.ellipse(56, 13, 6.5, 6.5)
+            b.poly([(48, 11), (56, 1), (64, 11)])
+            b.poly([(49, 22), (62, 22), (61, 55), (50, 55)])
+            b.poly([(39, 25), (50, 24), (50, 47), (40, 47)])
+            b.bar((52, 53), (39, 93), width: 6.5)
+            b.poly([(33, 91), (43, 91), (43, 96), (31, 96)])
+            b.bar((58, 53), (64, 73), width: 6.5)
+            b.bar((64, 73), (70, 93), width: 6)
+            b.poly([(67, 91), (78, 91), (78, 96), (67, 96)])
+            b.bar((59, 26), (73, 41), width: 4.5)
+            b.bar((76, 12), (79, 96), width: 3.5)
+
         case .camel:
             b.poly([(10, 56), (14, 48), (20, 40), (26, 32), (32, 28), (38, 30), (44, 40), (48, 42),
                     (52, 32), (58, 26), (64, 28), (70, 38), (76, 42),

@@ -24,8 +24,14 @@ private struct CameraAnimation {
 
 /// Интерактивная карта Казахстана в стиле старинной гравюры с маршрутом кочевья.
 struct KazakhstanMapView: View {
-    @Environment(GameEngine.self) private var engine
     let world: MapWorld
+    let routeModel: Route
+    /// Пройдено километров.
+    let km: Double
+    let currentStopId: String?
+    let isFinished: Bool
+    /// Можно ли открыть стоянку тапом; в предпросмотре нельзя, и камера показывает весь путь.
+    var allowsNavigation = true
 
     @State private var camera: MapCamera
     @State private var animation: CameraAnimation?
@@ -55,9 +61,18 @@ struct KazakhstanMapView: View {
         (.boar, GeoPoint(lat: 48.6, lon: 55.4))
     ]
 
-    init(world: MapWorld, stops: [Stop]) {
+    init(world: MapWorld, route: Route, km: Double, currentStopId: String?, isFinished: Bool, allowsNavigation: Bool = true) {
         self.world = world
-        route = RouteGeometry(points: stops.map { world.projection.project($0.coordinate) }, kms: stops.map(\.km))
+        self.routeModel = route
+        self.km = km
+        self.currentStopId = currentStopId
+        self.isFinished = isFinished
+        self.allowsNavigation = allowsNavigation
+        if let path = route.path {
+            self.route = RouteGeometry(polyline: path.points.map { world.projection.project($0) }, kms: path.cumulativeKm)
+        } else {
+            self.route = RouteGeometry(points: route.stops.map { world.projection.project($0.coordinate) }, kms: route.stops.map(\.km))
+        }
         _camera = State(initialValue: MapCamera(center: CGPoint(x: world.bounds.midX, y: world.bounds.midY), zoom: 1))
     }
 
@@ -70,7 +85,7 @@ struct KazakhstanMapView: View {
                 let s = screenScale(zoom: cam.zoom, size: size)
                 let transform = CGAffineTransform(a: s, b: 0, c: 0, d: s, tx: size.width / 2 - cam.center.x * s, ty: size.height / 2 - cam.center.y * s)
                 let reveal = revealFinished ? 1.0 : revealProgress(at: now)
-                let travelled = route.fraction(atKm: engine.totalKm)
+                let travelled = route.fraction(atKm: km)
 
                 ZStack {
                     MapCanvas(
@@ -79,7 +94,8 @@ struct KazakhstanMapView: View {
                         transform: transform,
                         zoom: cam.zoom,
                         viewport: CGRect(origin: .zero, size: size),
-                        travelled: travelled * reveal
+                        travelled: travelled * reveal,
+                        stopPoints: routeModel.stops.map { world.projection.project($0.coordinate) }
                     )
                     overlays(transform: transform, zoom: cam.zoom, reveal: reveal, travelled: travelled)
                 }
@@ -102,7 +118,7 @@ struct KazakhstanMapView: View {
 
     @ViewBuilder
     private func overlays(transform: CGAffineTransform, zoom: Double, reveal: Double, travelled: Double) -> some View {
-        let stops = engine.route.stops
+        let stops = routeModel.stops
         let showLabels = zoom >= 2.0
 
         if zoom >= 1.6 {
@@ -115,26 +131,41 @@ struct KazakhstanMapView: View {
 
         ForEach(Array(stops.enumerated()), id: \.element.id) { index, stop in
             let point = world.projection.project(stop.coordinate).applying(transform)
-            let reached = stop.km <= engine.totalKm
-            let isCurrent = stop.id == engine.currentStop.id && !engine.isFinished
+            let reached = stop.km <= km
+            let isCurrent = stop.id == currentStopId && !isFinished
             let appear = reveal >= route.fraction(atKm: stop.km) - 0.01 || !reached
-            let marker = StopMarker(stop: stop, reached: reached, isCurrent: isCurrent, showLabel: showLabels || (isCurrent && zoom >= 1.5), labelOnLeft: index % 2 == 1)
+            let labelZoom: Double = stop.labelRank == 1 ? 2.0 : (stop.labelRank == 2 ? 3.5 : (stop.labelRank == 3 ? 6.0 : .infinity))
+            let marker = StopMarker(stop: stop, reached: reached, isCurrent: isCurrent,
+                                    showLabel: (zoom >= labelZoom && showLabels) || (isCurrent && zoom >= 1.5),
+                                    labelOnLeft: index % 2 == 1)
 
             Group {
-                if reached {
+                if reached && allowsNavigation {
                     NavigationLink(value: stop) { marker }.buttonStyle(.plain)
                 } else {
                     marker
                 }
             }
             .position(point)
-            .opacity(appear ? 1 : 0)
+            .opacity(appear && markerVisible(stop, isCurrent: isCurrent, zoom: zoom) ? 1 : 0)
+            .allowsHitTesting(markerVisible(stop, isCurrent: isCurrent, zoom: zoom))
             .scaleEffect(appear ? 1 : 0.5)
             .animation(.spring(duration: 0.45, bounce: 0.3), value: appear)
         }
 
         CaravanMarker()
             .position(route.point(atFraction: travelled * reveal).applying(transform))
+    }
+
+    /// Мелкие стоянки появляются при приближении, чтобы общий план не превращался в частокол.
+    private func markerVisible(_ stop: Stop, isCurrent: Bool, zoom: Double) -> Bool {
+        if isCurrent { return true }
+        switch stop.labelRank {
+        case 1: return true
+        case 2: return zoom >= 2.5
+        case 3: return zoom >= 4
+        default: return zoom >= 5
+        }
     }
 
     // MARK: - Камера
@@ -183,7 +214,7 @@ struct KazakhstanMapView: View {
         }
     }
 
-    private var caravanWorld: CGPoint { route.point(atFraction: route.fraction(atKm: engine.totalKm)) }
+    private var caravanWorld: CGPoint { route.point(atFraction: route.fraction(atKm: km)) }
 
     /// Зум, при котором весь маршрут занимает около половины экрана: перекочёвки видны целиком,
     /// а короткие вылазки вокруг стоянки не сливаются в одну точку.
@@ -198,8 +229,18 @@ struct KazakhstanMapView: View {
     private func startIntro(size: CGSize) {
         guard !introStarted else { return }
         introStarted = true
-        let zoom = routeFitZoom(size: size)
-        let target = MapCamera(center: clamped(center: caravanWorld, zoom: zoom, size: size), zoom: zoom)
+        let target: MapCamera
+        if allowsNavigation {
+            let zoom = routeFitZoom(size: size)
+            target = MapCamera(center: clamped(center: caravanWorld, zoom: zoom, size: size), zoom: zoom)
+        } else {
+            // Предпросмотр: весь путь целиком.
+            let bounds = route.path.boundingRect
+            let base = screenScale(zoom: 1, size: size)
+            let fit = min(size.width / max(bounds.width * base, 1), size.height / max(bounds.height * base, 1)) * 0.8
+            let zoom = min(maxZoom, max(minZoom, fit))
+            target = MapCamera(center: clamped(center: CGPoint(x: bounds.midX, y: bounds.midY), zoom: zoom, size: size), zoom: zoom)
+        }
         Task { @MainActor in
             try? await Task.sleep(for: .milliseconds(350))
             revealStart = .now
@@ -318,6 +359,8 @@ private struct MapCanvas: View {
     let zoom: Double
     let viewport: CGRect
     let travelled: Double
+    /// Стоянки маршрута в мировых координатах: их подписывают маркеры, а не карта.
+    var stopPoints: [CGPoint] = []
 
     private var waterFill: Color { Color(red: 0.06, green: 0.14, blue: 0.20) }
     private var waterLine: Color { Color(red: 0.38, green: 0.60, blue: 0.72) }
@@ -398,6 +441,10 @@ private struct MapCanvas: View {
                 ctx.stroke(path, with: .color(waterLine.opacity(0.9)), style: StrokeStyle(lineWidth: width, lineCap: .round, lineJoin: .round))
             }
 
+            // Дороги
+            ctx.stroke(world.roads.applying(transform), with: .color(Color.ash.opacity(zoom > 2.5 ? 0.42 : 0.28)),
+                       style: StrokeStyle(lineWidth: zoom > 2.5 ? 0.9 : 0.6, lineCap: .round, lineJoin: .round))
+
             // Граница страны со свечением
             ctx.stroke(border, with: .color(Color.gold.opacity(0.12)), lineWidth: 7)
             ctx.stroke(border, with: .color(Color.gold.opacity(0.9)), style: StrokeStyle(lineWidth: 1.2, lineJoin: .round))
@@ -446,20 +493,36 @@ private struct MapCanvas: View {
                 }
             }
 
-            // Города
-            for city in world.cities {
-                let threshold = city.rank == 1 ? 1.0 : (city.rank == 2 ? 1.6 : 2.6)
+            // Населённые пункты: от крупных к мелким, подписи не накладываются друг на друга
+            var occupied: [CGRect] = []
+            let stopsOnScreen = stopPoints.map { $0.applying(transform) }.filter { visible.contains($0) }
+            for (place, world) in world.places {
+                let threshold: Double
+                switch place.rank {
+                case 1: threshold = 1.0
+                case 2: threshold = 1.5
+                case 3: threshold = 2.4
+                case 4: threshold = 4.0
+                default: threshold = 6.0
+                }
                 guard zoom >= threshold else { continue }
-                let p = city.at.applying(transform)
+                let p = world.applying(transform)
                 guard onScreen(p) else { continue }
-                if city.capital {
+                if stopsOnScreen.contains(where: { hypot($0.x - p.x, $0.y - p.y) < 8 }) { continue }
+                let fontSize: CGFloat = place.rank == 1 ? 11 : (place.rank <= 3 ? 10 : 9)
+                let label = CGRect(x: p.x - 3, y: p.y - fontSize * 0.7, width: 10 + CGFloat(place.name.count) * fontSize * 0.56, height: fontSize * 1.4)
+                if occupied.contains(where: { $0.intersects(label) }) { continue }
+                occupied.append(label)
+                if place.isCapital {
                     ctx.stroke(Path(ellipseIn: CGRect(x: p.x - 4.5, y: p.y - 4.5, width: 9, height: 9)), with: .color(Color.gold.opacity(0.8)), lineWidth: 1)
                     ctx.fill(Path(ellipseIn: CGRect(x: p.x - 2, y: p.y - 2, width: 4, height: 4)), with: .color(Color.gold))
                 } else {
-                    ctx.fill(Path(ellipseIn: CGRect(x: p.x - 2.2, y: p.y - 2.2, width: 4.4, height: 4.4)), with: .color(Color.ash))
+                    let r: CGFloat = place.rank <= 2 ? 2.2 : (place.rank == 3 ? 1.8 : 1.4)
+                    ctx.fill(Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: r * 2, height: r * 2)), with: .color(Color.ash.opacity(place.rank <= 3 ? 1 : 0.8)))
                 }
-                let text = ctx.resolve(Text(city.name).font(.system(size: city.rank == 1 ? 11 : 10)).foregroundColor(city.capital ? Color.parchment : Color.ash))
-                ctx.draw(text, at: CGPoint(x: p.x + 7, y: p.y), anchor: .leading)
+                let color = place.isCapital ? Color.parchment : (place.rank <= 3 ? Color.ash : Color.ash.opacity(0.8))
+                let text = ctx.resolve(Text(place.name).font(.system(size: fontSize)).foregroundColor(color))
+                ctx.draw(text, at: CGPoint(x: p.x + 6, y: p.y), anchor: .leading)
             }
 
             // Исторические места

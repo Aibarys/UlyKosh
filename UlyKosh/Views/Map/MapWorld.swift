@@ -70,6 +70,10 @@ final class MapWorld {
     let labels: [Label]
     let cities: [City]
     let historic: [Historic]
+    /// Основные дороги.
+    let roads: Path
+    /// Населённые пункты в мировых координатах, по убыванию значимости.
+    let places: [(place: Place, at: CGPoint)]
     /// Километров в одной мировой единице (по параллели 48°).
     let kmPerUnit: Double
 
@@ -102,6 +106,15 @@ final class MapWorld {
         labels = data.labels.map { Label(text: $0.text, kind: $0.kind, at: pt($0.at), angle: $0.angle) }
         cities = data.cities.map { City(name: $0.name, at: pt($0.at), capital: $0.capital, rank: $0.rank) }
         historic = data.historic.map { Historic(name: $0.name, at: pt($0.at)) }
+        var roadPath = Path()
+        let graph = RoadGraph.shared
+        for edge in graph.edges {
+            let pts = [graph.nodes[edge.a]] + edge.geometry + [graph.nodes[edge.b]]
+            roadPath.move(to: projection.project(pts[0]))
+            for p in pts.dropFirst() { roadPath.addLine(to: projection.project(p)) }
+        }
+        roads = roadPath
+        places = PlaceStore.shared.places.map { ($0, projection.project($0.coordinate)) }
 
         let a = projection.project(lon: 67, lat: 48), b = projection.project(lon: 68, lat: 48)
         kmPerUnit = 74.6 / Double(hypot(b.x - a.x, b.y - a.y))

@@ -202,7 +202,6 @@ enum SummerRoute {
                 goalKm: 12,
                 days: 4,
                 rewardText: L("Перегнали вовремя, стадо у воды"),
-                reward: HerdDelta(sheep: 30),
                 weather: .sand
             ),
             RouteEvent(
@@ -214,7 +213,6 @@ enum SummerRoute {
                 goalKm: 15,
                 days: 4,
                 rewardText: L("Табун укрыт. К аулу прибились чужие лошади, испугавшиеся грозы"),
-                reward: HerdDelta(horses: 5),
                 weather: .clear
             ),
             RouteEvent(
@@ -226,7 +224,6 @@ enum SummerRoute {
                 goalKm: 15,
                 days: 4,
                 rewardText: L("Волки отстали, отара цела"),
-                reward: HerdDelta(sheep: 30),
                 weather: .clear
             ),
             RouteEvent(
@@ -238,7 +235,6 @@ enum SummerRoute {
                 goalKm: 20,
                 days: 5,
                 rewardText: L("Жеребец пришёл первым. Выигрыш байги: пять лошадей"),
-                reward: HerdDelta(horses: 5),
                 weather: .clear
             )
         ]

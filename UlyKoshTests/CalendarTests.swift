@@ -45,7 +45,8 @@ struct CalendarTests {
         {"routeId":"spring-syrdarya-ulytau","aulName":"Аул","startDate":700000000,"healthSteps":{"2026-04-15":1200}}
         """.data(using: .utf8)!
         let state = try JSONDecoder().decode(GameState.self, from: json)
-        #expect(state.aulName == "Аул")
+        #expect(state.heroName == "Аул")
+        #expect(state.customRoute == nil)
         #expect(state.healthSteps["2026-04-15"] == 1200)
         #expect(state.strideMeters == 0.7)
         #expect(state.sourceSettings.isEmpty)

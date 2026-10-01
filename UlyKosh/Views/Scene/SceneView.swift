@@ -1,7 +1,7 @@
 import SwiftUI
 
 enum Terrain: String, Codable, Hashable {
-    case river, ruins, mountains, desert, ford, mausoleum, pasture
+    case river, ruins, mountains, desert, ford, mausoleum, pasture, steppe, town
 
     var symbol: String {
         switch self {
@@ -10,12 +10,13 @@ enum Terrain: String, Codable, Hashable {
         case .mountains: return "mountain.2"
         case .desert: return "sun.max"
         case .mausoleum: return "building"
-        case .pasture: return "leaf"
+        case .pasture, .steppe: return "leaf"
+        case .town: return "house"
         }
     }
 }
 
-enum SceneWeather: String, Codable, Hashable { case clear, snow, sand }
+enum SceneWeather: String, Codable, Hashable { case clear, snow, sand, rain, clouds }
 
 /// Силуэтный пейзаж: градиентное небо, дальний план, чёрная земля, фигуры каравана.
 struct SceneView: View {
@@ -45,6 +46,10 @@ struct SceneView: View {
                     }
                     Color(red: 0.72, green: 0.50, blue: 0.20).opacity(weather == .sand ? 0.35 : 0)
                     Color(white: 0.65).opacity(weather == .snow ? 0.35 : 0)
+                    Color(red: 0.32, green: 0.36, blue: 0.42).opacity(weather == .rain ? 0.45 : (weather == .clouds ? 0.3 : 0))
+                    if weather == .clouds || weather == .rain {
+                        Clouds(time: time, phase: phase, count: 9, opacity: 0.35)
+                    }
 
                     TerrainShape(profile: TerrainProfile.far(terrain))
                         .fill(phase.farColor(for: season))
@@ -76,6 +81,10 @@ struct SceneView: View {
                             .transition(.opacity)
                     } else if season == .winter {
                         Particles(time: time, color: .white.opacity(0.55), fall: 0.03, drift: 0.01, count: 25)
+                    }
+                    if weather == .rain {
+                        Rain(time: time)
+                            .transition(.opacity)
                     }
                     if weather == .sand {
                         Particles(time: time, color: Color(red: 0.85, green: 0.65, blue: 0.35).opacity(0.7), fall: 0.02, drift: 0.45, count: 90)
@@ -136,23 +145,23 @@ struct SceneView: View {
         case .pasture:
             list += [Figure(t: 0.08, icon: .horse, size: 20, flip: true), Figure(t: 0.15, icon: .horse, size: 16, flip: true),
                      Figure(t: 0.70, icon: .tree, size: 34, motion: .sway)]
+        case .steppe:
+            list += [Figure(t: 0.10, icon: .reeds, size: 18, motion: .sway), Figure(t: 0.16, icon: .reeds, size: 14, motion: .sway),
+                     Figure(t: 0.78, icon: .reeds, size: 16, motion: .sway), Figure(t: 0.90, icon: .saiga, size: 13, flip: true)]
+        case .town:
+            list += [Figure(t: 0.08, icon: .tree, size: 30, motion: .sway), Figure(t: 0.15, icon: .tree, size: 24, motion: .sway)]
         }
         if showCaravan {
-            // Начало каравана на ровном участке; впереди всадник (это вы), за ним верблюды, позади овцы.
-            let start: Double
+            // Путник идёт по ровному месту, вправо, к следующей стоянке.
+            let at: Double
             switch terrain {
-            case .ruins: start = 0.58
-            case .pasture: start = 0.30
-            case .mausoleum: start = 0.10
-            default: start = 0.36
+            case .ruins: at = 0.68
+            case .pasture: at = 0.42
+            case .mausoleum: at = 0.30
+            case .town: at = 0.36
+            default: at = 0.48
             }
-            list += [
-                Figure(t: start, icon: .sheep, size: 13),
-                Figure(t: start + 0.03, icon: .sheep, size: 14),
-                Figure(t: start + 0.09, icon: .camel, size: 27),
-                Figure(t: start + 0.16, icon: .camel, size: 30),
-                Figure(t: start + 0.25, icon: .rider, size: 32)
-            ]
+            list.append(Figure(t: at, icon: .walker, size: 40))
         }
         return list
     }
@@ -176,6 +185,8 @@ enum TerrainProfile {
         case .ford: return { 0.84 + 0.005 * sin($0 * 20) }
         case .mausoleum: return { 0.80 + 0.01 * sin($0 * 7) }
         case .pasture: return { 0.74 + 0.06 * sin($0 * 3.5 + 0.5) }
+        case .steppe: return { 0.81 + 0.012 * sin($0 * 5 + 1) }
+        case .town: return { 0.82 + 0.006 * sin($0 * 9) }
         }
     }
 
@@ -189,6 +200,8 @@ enum TerrainProfile {
         case .mausoleum: return { 0.68 + 0.04 * sin($0 * 4) }
         case .ruins: return { 0.68 + 0.04 * sin($0 * 5 + 2) }
         case .river, .pasture: return { 0.66 + 0.05 * sin($0 * 5 + 2) }
+        case .steppe: return { 0.75 + 0.015 * sin($0 * 3 + 2) + 0.03 * exp(-pow(($0 - 0.3) * 9, 2)) }
+        case .town: return { 0.74 + 0.02 * sin($0 * 4) }
         }
     }
 
@@ -312,6 +325,32 @@ struct StructuresShape: Shape {
             path.addRect(CGRect(x: x + bw * 0.44, y: baseY - h * 0.11 - bw * 0.36 - h * 0.03, width: bw * 0.12, height: h * 0.04))
         case .river, .pasture:
             for (t, width) in Self.yurts(for: terrain, w: w) { yurt(at: t, width: width) }
+        case .town:
+            // Низкие дома с двускатными крышами, водонапорная башня и минарет
+            let houses: [(Double, CGFloat, CGFloat)] = [(0.60, 0.07, 0.05), (0.69, 0.09, 0.065), (0.80, 0.06, 0.045), (0.88, 0.08, 0.06), (0.97, 0.07, 0.05)]
+            for (t, width, height) in houses {
+                let baseY = h * ground(t) + 2
+                let x = w * t - w * width / 2
+                let wallH = h * height
+                path.addRect(CGRect(x: x, y: baseY - wallH, width: w * width, height: wallH))
+                var roof = Path()
+                roof.move(to: CGPoint(x: x - 3, y: baseY - wallH))
+                roof.addLine(to: CGPoint(x: x + w * width / 2, y: baseY - wallH - h * height * 0.7))
+                roof.addLine(to: CGPoint(x: x + w * width + 3, y: baseY - wallH))
+                roof.closeSubpath()
+                path.addPath(roof)
+            }
+            let towerX = w * 0.745, towerBase = h * ground(0.745) + 2
+            path.addRect(CGRect(x: towerX - 2, y: towerBase - h * 0.17, width: 4, height: h * 0.17))
+            path.addEllipse(in: CGRect(x: towerX - 9, y: towerBase - h * 0.22, width: 18, height: h * 0.06))
+            let minX = w * 0.93, minBase = h * ground(0.93) + 2
+            path.addRect(CGRect(x: minX - 3, y: minBase - h * 0.2, width: 6, height: h * 0.2))
+            var cap = Path()
+            cap.move(to: CGPoint(x: minX - 4, y: minBase - h * 0.2))
+            cap.addLine(to: CGPoint(x: minX, y: minBase - h * 0.25))
+            cap.addLine(to: CGPoint(x: minX + 4, y: minBase - h * 0.2))
+            cap.closeSubpath()
+            path.addPath(cap)
         default:
             break
         }
@@ -366,17 +405,19 @@ struct StarField: View {
 struct Clouds: View {
     let time: Double
     let phase: SkyPhase
+    var count = 4
+    var opacity: Double? = nil
 
     var body: some View {
         Canvas { context, size in
             var rng = SeededGenerator(seed: 11)
-            let tint: Color = phase == .day ? .white : Color(red: 1, green: 0.85, blue: 0.7)
-            for _ in 0..<4 {
+            let tint: Color = opacity != nil ? Color(white: 0.85) : (phase == .day ? .white : Color(red: 1, green: 0.85, blue: 0.7))
+            for _ in 0..<count {
                 let x0 = Double.random(in: 0...1, using: &rng)
                 let y = Double.random(in: 0.08...0.42, using: &rng) * size.height
                 let scale = Double.random(in: 0.6...1.2, using: &rng)
                 let speed = Double.random(in: 0.006...0.012, using: &rng)
-                let alpha = Double.random(in: 0.10...0.22, using: &rng)
+                let alpha = opacity ?? Double.random(in: 0.10...0.22, using: &rng)
                 let span = size.width + 200
                 let x = ((x0 * span + time * speed * size.width).truncatingRemainder(dividingBy: span)) - 100
                 var cloud = Path()
@@ -416,5 +457,30 @@ struct Particles: View {
     private func wrap(_ v: Double) -> Double {
         let f = v.truncatingRemainder(dividingBy: 1)
         return f < 0 ? f + 1 : f
+    }
+}
+
+
+/// Косые штрихи дождя.
+struct Rain: View {
+    let time: Double
+
+    var body: some View {
+        Canvas { context, size in
+            var rng = SeededGenerator(seed: 23)
+            var streaks = Path()
+            for _ in 0..<120 {
+                let x0 = Double.random(in: 0...1, using: &rng)
+                let y0 = Double.random(in: 0...1, using: &rng)
+                let speed = Double.random(in: 0.8...1.3, using: &rng)
+                let len = Double.random(in: 8...14, using: &rng)
+                let y = (y0 + time * 0.9 * speed).truncatingRemainder(dividingBy: 1) * size.height
+                let x = (x0 + time * 0.12 * speed).truncatingRemainder(dividingBy: 1) * size.width
+                streaks.move(to: CGPoint(x: x, y: y))
+                streaks.addLine(to: CGPoint(x: x - len * 0.25, y: y + len))
+            }
+            context.stroke(streaks, with: .color(Color(white: 0.85).opacity(0.45)), lineWidth: 1)
+        }
+        .allowsHitTesting(false)
     }
 }

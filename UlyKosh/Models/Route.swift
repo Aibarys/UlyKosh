@@ -37,6 +37,8 @@ struct Stop: Identifiable, Codable, Hashable {
     let legend: String
     let fauna: [Fauna]
     let character: Character?
+    /// С какого приближения подписывать стоянку на карте: 1 — сразу, 2 — ближе, 3 — совсем близко, 9 — никогда.
+    var labelRank: Int = 1
 }
 
 /// Испытание в пути: пройти `goalKm` за `days` дней после срабатывания на `triggerKm`.
@@ -48,8 +50,8 @@ struct RouteEvent: Identifiable, Codable, Hashable {
     let triggerKm: Double
     let goalKm: Double
     let days: Int
+    /// Запись в дневнике после успешного испытания.
     let rewardText: String
-    let reward: HerdDelta
     /// Как испытание выглядит на сцене.
     let weather: SceneWeather
 }
@@ -63,8 +65,11 @@ struct Route: Identifiable {
     let outro: String
     let stops: [Stop]
     let events: [RouteEvent]
+    /// Геометрия пути по дорогам для своих маршрутов; у великих кочевий путь рисуется по стоянкам.
+    var path: RoadPath? = nil
 
     var totalKm: Double { stops.last?.km ?? 0 }
+    var isCustom: Bool { id == CustomRoute.routeId }
 }
 
 enum Routes {
@@ -82,4 +87,9 @@ enum Routes {
     }
 
     static func byId(_ id: String) -> Route? { all.first { $0.id == id } }
+
+    /// Все стоянки великих кочевий, доступные как знаковые места для своих маршрутов.
+    static let landmarkStops: [(key: String, stop: Stop)] = all.flatMap { route in
+        route.stops.map { (key: "\(route.id)/\($0.id)", stop: $0) }
+    }
 }

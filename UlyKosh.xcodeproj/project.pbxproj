@@ -10,11 +10,15 @@
 		09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA374652C6F6D6E467AF0FA5 /* HomeView.swift */; };
 		0D3DCE881ED66E02ED24A46D /* UlyKoshWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B33FD2AE73AE601439C91069 /* UlyKoshWidget.swift */; };
 		0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617FA4D102727E0CC62F293 /* RouteMapView.swift */; };
+		0F9836E305AB0A10863B7880 /* kz-roads.json in Resources */ = {isa = PBXBuildFile; fileRef = 8650ECD280E19898EE6B0EFD /* kz-roads.json */; };
 		1CF86482E637268CBEEF255A /* WinterRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */; };
 		2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */; };
+		3C6819F67E82BCE55C768134 /* WeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D617F21525B1A8BE15483747 /* WeatherStore.swift */; };
 		3CDEA2F9ACFE49D44D3EB919 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48A14E4FFB337A35451614EC /* Assets.xcassets */; };
 		3D2B8EB223A0CB197FC9A02C /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
+		40DB5D8B3B0E8D1EEEC63F4A /* RoutePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C070BE5891E090CD93F776BE /* RoutePickerView.swift */; };
 		441907A1BDA8E7D94D250EAD /* TestSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A46CC9B7CF6243CFC3837F /* TestSupport.swift */; };
+		4B2D6B59869E41A4B91A2435 /* GeoData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E200D303F34E1C839B58DB4 /* GeoData.swift */; };
 		4DB9ABEEAB11C608E3DC4AF3 /* EngineTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34994C08915FFC40EDD08F99 /* EngineTests.swift */; };
 		512D56B308A6A058C4C91494 /* UlyKoshWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 60C2DFB7119649968104366B /* UlyKoshWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		52C0096D2654C7744BC8DB37 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */; };
@@ -36,22 +40,25 @@
 		9121F88EDA93D73B83B648E8 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = F888AF3C2A86756E8C5AAC40 /* PrivacyInfo.xcprivacy */; };
 		922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */; };
 		95FD3480EBD3940C75704169 /* SceneView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */; };
+		985183855EE1F6B19FDCDEE2 /* JournalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0A099B2B23A3BFBBA857981 /* JournalView.swift */; };
 		9991EE468C967BBB05A9988B /* SummerRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60B12FFE0A9DEDDE8342F3 /* SummerRoute.swift */; };
 		9A91EA0BD6EB31E810F0DDD3 /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 39CD843740DD3290D6E37F3B /* Route.swift */; };
+		9AC175523062BE73546ED26B /* RouteBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E923E5C8185658B2F5AB31 /* RouteBuilder.swift */; };
 		9C539DC345877EA6711534AD /* RouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */; };
+		A8F3AB20AB06A9E6C19C5286 /* RouteContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E2FDA91865F349287B065B /* RouteContent.swift */; };
 		AFBB706AFBAF613622C5FE6B /* Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAF139901566A4D74C8AB674 /* Season.swift */; };
+		B777C1940FE609C822B5B3C9 /* kz-places.json in Resources */ = {isa = PBXBuildFile; fileRef = 044FBC5DB1F86946D357B6C5 /* kz-places.json */; };
 		B990802E5A1231B7E54D6EBB /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF29D5081EB728FED8BF154E /* OnboardingView.swift */; };
 		C87C063ED198832D5886002C /* StateStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06702F7441D5CF31C7A774F3 /* StateStore.swift */; };
 		C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */; };
 		C9F1FC2E2C8833A5C27CA0B2 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */; };
 		CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 575F1C5AAC906C5C78F4DE5B /* GameState.swift */; };
 		D9B8D4564419CC4A228FFAF0 /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
-		E01F7229EFB90E72A16BB95A /* Herd.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C04906DC303EFA406662493 /* Herd.swift */; };
 		E5BAFED9EC47D61365A728DB /* StopDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */; };
 		ED559C6F72758549DE1A0AEA /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = D82F50346CB5ACB44C8AA880 /* Localization.swift */; };
 		EED6AFFFF2F005736C950887 /* AggregationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56B4CEA357F74A573EBC1179 /* AggregationTests.swift */; };
 		F017E88E1A9CCA6C30035180 /* BuildEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70390BF0FD707FF0C429BCB9 /* BuildEnvironment.swift */; };
-		F5002506627A97E4F3DC8100 /* AulView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F75E0DC15E5323E9381F143 /* AulView.swift */; };
+		F0C92BFDBF6C145DFADDBC35 /* RouteBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28E173AD177DCB0A53446BBA /* RouteBuilderTests.swift */; };
 		F7D2208D1DB73802FA44AF9B /* SpringRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */; };
 		F85B3FEF8DC0D07DC4B07DC0 /* WidgetSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */; };
 		F9A940E803A636F8F171D365 /* GameEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 174EFFB53CA4198660D33705 /* GameEngine.swift */; };
@@ -90,13 +97,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		044FBC5DB1F86946D357B6C5 /* kz-places.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kz-places.json"; sourceTree = "<group>"; };
 		06702F7441D5CF31C7A774F3 /* StateStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateStore.swift; sourceTree = "<group>"; };
 		09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteView.swift; sourceTree = "<group>"; };
+		09E2FDA91865F349287B065B /* RouteContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteContent.swift; sourceTree = "<group>"; };
 		174EFFB53CA4198660D33705 /* GameEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameEngine.swift; sourceTree = "<group>"; };
 		1A78890B7F7ED51971628D2E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		226A70BF8FEC05D068B7C205 /* CalendarTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTests.swift; sourceTree = "<group>"; };
 		24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitStepSource.swift; sourceTree = "<group>"; };
 		269E0BD9AAF05C828064B9B3 /* WidgetSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSnapshot.swift; sourceTree = "<group>"; };
+		28E173AD177DCB0A53446BBA /* RouteBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBuilderTests.swift; sourceTree = "<group>"; };
 		297D5DBDE162C378FA024F52 /* UlyKosh.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = UlyKosh.entitlements; sourceTree = "<group>"; };
 		2FD2CF9D88AA0D4FFEEAC37F /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		34994C08915FFC40EDD08F99 /* EngineTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EngineTests.swift; sourceTree = "<group>"; };
@@ -111,12 +121,12 @@
 		70390BF0FD707FF0C429BCB9 /* BuildEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuildEnvironment.swift; sourceTree = "<group>"; };
 		7376BF3CCECB9F9C6F5A383F /* WinterRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinterRoute.swift; sourceTree = "<group>"; };
 		82C8A1393060E44E6B227C8F /* MapWorld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapWorld.swift; sourceTree = "<group>"; };
+		8650ECD280E19898EE6B0EFD /* kz-roads.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kz-roads.json"; sourceTree = "<group>"; };
 		87330EE442BE509F530E870C /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8916F4E19ECBDE22B4EEC350 /* KazakhstanMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KazakhstanMapView.swift; sourceTree = "<group>"; };
 		8994525A1EF735990AAE25FE /* Pictograms.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pictograms.swift; sourceTree = "<group>"; };
-		8C04906DC303EFA406662493 /* Herd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Herd.swift; sourceTree = "<group>"; };
 		8D60B12FFE0A9DEDDE8342F3 /* SummerRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummerRoute.swift; sourceTree = "<group>"; };
-		8F75E0DC15E5323E9381F143 /* AulView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AulView.swift; sourceTree = "<group>"; };
+		8E200D303F34E1C839B58DB4 /* GeoData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoData.swift; sourceTree = "<group>"; };
 		9196C3239C4E23B179D5B5D8 /* UlyKosh.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = UlyKosh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9617FA4D102727E0CC62F293 /* RouteMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteMapView.swift; sourceTree = "<group>"; };
 		9C26BF5E2ED5030BD8A24804 /* SpringRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpringRoute.swift; sourceTree = "<group>"; };
@@ -126,11 +136,15 @@
 		B2B6BA6A687154A08320F94E /* UlyKoshApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyKoshApp.swift; sourceTree = "<group>"; };
 		B33FD2AE73AE601439C91069 /* UlyKoshWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UlyKoshWidget.swift; sourceTree = "<group>"; };
 		B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "kazakhstan-map.json"; sourceTree = "<group>"; };
+		C070BE5891E090CD93F776BE /* RoutePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutePickerView.swift; sourceTree = "<group>"; };
+		C0A099B2B23A3BFBBA857981 /* JournalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalView.swift; sourceTree = "<group>"; };
 		CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StopDetailView.swift; sourceTree = "<group>"; };
 		D48EE511B542603879310EEE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		D617F21525B1A8BE15483747 /* WeatherStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherStore.swift; sourceTree = "<group>"; };
 		D82F50346CB5ACB44C8AA880 /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		DEE61575FC44C1BDDB364FB3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		E5B84EBDD7C14722DB6E4CDD /* SceneView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneView.swift; sourceTree = "<group>"; };
+		E5E923E5C8185658B2F5AB31 /* RouteBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouteBuilder.swift; sourceTree = "<group>"; };
 		EA374652C6F6D6E467AF0FA5 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		EEBF5F95249F7BC3C38CA71E /* AutumnRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutumnRoute.swift; sourceTree = "<group>"; };
 		F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
@@ -166,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				575F1C5AAC906C5C78F4DE5B /* GameState.swift */,
-				8C04906DC303EFA406662493 /* Herd.swift */,
 				39CD843740DD3290D6E37F3B /* Route.swift */,
 			);
 			path = Models;
@@ -204,6 +217,8 @@
 				48A14E4FFB337A35451614EC /* Assets.xcassets */,
 				6088EA59A04A2AEA4B186CCF /* InfoPlist.xcstrings */,
 				B7CF44D4F62B02EDAD66E804 /* kazakhstan-map.json */,
+				044FBC5DB1F86946D357B6C5 /* kz-places.json */,
+				8650ECD280E19898EE6B0EFD /* kz-roads.json */,
 				F13C73590D48D121FA8CDB77 /* Localizable.xcstrings */,
 			);
 			path = Resources;
@@ -215,6 +230,7 @@
 				56B4CEA357F74A573EBC1179 /* AggregationTests.swift */,
 				226A70BF8FEC05D068B7C205 /* CalendarTests.swift */,
 				34994C08915FFC40EDD08F99 /* EngineTests.swift */,
+				28E173AD177DCB0A53446BBA /* RouteBuilderTests.swift */,
 				F6A46CC9B7CF6243CFC3837F /* TestSupport.swift */,
 			);
 			path = UlyKoshTests;
@@ -256,6 +272,7 @@
 				24A4D7B3ECC3F6F94D3162FC /* HealthKitStepSource.swift */,
 				87330EE442BE509F530E870C /* NotificationService.swift */,
 				06702F7441D5CF31C7A774F3 /* StateStore.swift */,
+				D617F21525B1A8BE15483747 /* WeatherStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -270,6 +287,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		E4FF4A6391943D1AF8D3B80D /* Geo */ = {
+			isa = PBXGroup;
+			children = (
+				8E200D303F34E1C839B58DB4 /* GeoData.swift */,
+				E5E923E5C8185658B2F5AB31 /* RouteBuilder.swift */,
+				09E2FDA91865F349287B065B /* RouteContent.swift */,
+			);
+			path = Geo;
+			sourceTree = "<group>";
+		};
 		F8EC1DDB8C843F6ED6F2CC34 /* UlyKosh */ = {
 			isa = PBXGroup;
 			children = (
@@ -277,6 +304,7 @@
 				297D5DBDE162C378FA024F52 /* UlyKosh.entitlements */,
 				3A126D46EA3549250F031D85 /* App */,
 				018358E88CD7FEE12A72F211 /* Data */,
+				E4FF4A6391943D1AF8D3B80D /* Geo */,
 				1375E8720321B40DC2235691 /* Models */,
 				3E7309C2AC20C0888DBDFC44 /* Resources */,
 				C477AE2E15F2CB4E7766B609 /* Services */,
@@ -289,11 +317,12 @@
 		FBC7D4915384604DBDFAFB17 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				8F75E0DC15E5323E9381F143 /* AulView.swift */,
 				EA374652C6F6D6E467AF0FA5 /* HomeView.swift */,
+				C0A099B2B23A3BFBBA857981 /* JournalView.swift */,
 				AF29D5081EB728FED8BF154E /* OnboardingView.swift */,
 				FD734DCCD061DD5E164CE25A /* RootView.swift */,
 				9617FA4D102727E0CC62F293 /* RouteMapView.swift */,
+				C070BE5891E090CD93F776BE /* RoutePickerView.swift */,
 				09E08BC2ACED8C6FB5781EB0 /* RouteView.swift */,
 				1A78890B7F7ED51971628D2E /* SettingsView.swift */,
 				CCD8C129C1A11B7E334020E7 /* StopDetailView.swift */,
@@ -430,6 +459,8 @@
 				C9F1FC2E2C8833A5C27CA0B2 /* Localizable.xcstrings in Resources */,
 				829501065AE9FF66A3BD0063 /* PrivacyInfo.xcprivacy in Resources */,
 				75D9ADD14DFFCFF97611D030 /* kazakhstan-map.json in Resources */,
+				B777C1940FE609C822B5B3C9 /* kz-places.json in Resources */,
+				0F9836E305AB0A10863B7880 /* kz-roads.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,14 +512,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5002506627A97E4F3DC8100 /* AulView.swift in Sources */,
 				C9179E1338C3206D70012AA6 /* AutumnRoute.swift in Sources */,
 				F017E88E1A9CCA6C30035180 /* BuildEnvironment.swift in Sources */,
 				F9A940E803A636F8F171D365 /* GameEngine.swift in Sources */,
 				CE4C8B583EAA7E107DB6DA13 /* GameState.swift in Sources */,
+				4B2D6B59869E41A4B91A2435 /* GeoData.swift in Sources */,
 				79E533F1BEF47B74F56321A0 /* HealthKitStepSource.swift in Sources */,
-				E01F7229EFB90E72A16BB95A /* Herd.swift in Sources */,
 				09EBD59E8C4294DA19247696 /* HomeView.swift in Sources */,
+				985183855EE1F6B19FDCDEE2 /* JournalView.swift in Sources */,
 				880B2AE959E7A5F93C93B649 /* KazakhstanMapView.swift in Sources */,
 				D9B8D4564419CC4A228FFAF0 /* Localization.swift in Sources */,
 				8664C10F178D43AF437299C4 /* MapWorld.swift in Sources */,
@@ -497,7 +528,10 @@
 				5CBBD67FC66561D5F9542EC6 /* Pictograms.swift in Sources */,
 				7AD1615D54A5D5721D529FB6 /* RootView.swift in Sources */,
 				9A91EA0BD6EB31E810F0DDD3 /* Route.swift in Sources */,
+				9AC175523062BE73546ED26B /* RouteBuilder.swift in Sources */,
+				A8F3AB20AB06A9E6C19C5286 /* RouteContent.swift in Sources */,
 				0EE100EA7A9A2B1C2E7B7375 /* RouteMapView.swift in Sources */,
+				40DB5D8B3B0E8D1EEEC63F4A /* RoutePickerView.swift in Sources */,
 				9C539DC345877EA6711534AD /* RouteView.swift in Sources */,
 				95FD3480EBD3940C75704169 /* SceneView.swift in Sources */,
 				AFBB706AFBAF613622C5FE6B /* Season.swift in Sources */,
@@ -508,6 +542,7 @@
 				9991EE468C967BBB05A9988B /* SummerRoute.swift in Sources */,
 				922A730A68A4E5CDCA5F5795 /* Theme.swift in Sources */,
 				2D82FF6D1A37E615BBB1CFB1 /* UlyKoshApp.swift in Sources */,
+				3C6819F67E82BCE55C768134 /* WeatherStore.swift in Sources */,
 				90084229E6B8BED639BC032F /* WidgetSnapshot.swift in Sources */,
 				8C49DC4B131096CFD837E698 /* WidgetViews.swift in Sources */,
 				1CF86482E637268CBEEF255A /* WinterRoute.swift in Sources */,
@@ -521,6 +556,7 @@
 				EED6AFFFF2F005736C950887 /* AggregationTests.swift in Sources */,
 				54EA1B4348DEFEE749BAAAAD /* CalendarTests.swift in Sources */,
 				4DB9ABEEAB11C608E3DC4AF3 /* EngineTests.swift in Sources */,
+				F0C92BFDBF6C145DFADDBC35 /* RouteBuilderTests.swift in Sources */,
 				441907A1BDA8E7D94D250EAD /* TestSupport.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

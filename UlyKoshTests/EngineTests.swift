@@ -43,23 +43,22 @@ struct EngineTests {
         #expect(h.engine.usesHealthDistance)
     }
 
-    @Test("Стоянка достигается, персонаж присоединяется, приходит уведомление")
+    @Test("Стоянка достигается, встреча попадает в дневник, приходит уведомление")
     func reachingStop() async {
         var h = await Harness(start: Fixtures.spring)
         let log = h.recordNotifications()
         let otyrar = h.engine.route.stops[1]
         h.walk(km: otyrar.km + 0.1)
         #expect(h.engine.currentStop.id == otyrar.id)
-        #expect(h.engine.joinedCharacters.map(\.id).contains(otyrar.character!.id))
+        #expect(h.engine.metPeople.map(\.id).contains(otyrar.character!.id))
         #expect(log.ids().contains("stop-\(otyrar.id)"))
     }
 
-    @Test("Испытание: запускается на триггере, засчитывается при выполнении, даёт награду")
+    @Test("Испытание: запускается на триггере, засчитывается и попадает в дневник")
     func eventCompletes() async {
         var h = await Harness(start: Fixtures.spring)
         let log = h.recordNotifications()
         let event = h.engine.route.events[0]
-        let sheepBefore = h.engine.herd.sheep
         h.walk(km: event.triggerKm + 0.5)
         #expect(h.engine.activeEvent?.event.id == event.id)
         #expect(log.ids().contains("event-\(event.id)-start"))
@@ -68,21 +67,20 @@ struct EngineTests {
         if case .completed = h.engine.status(of: event) {} else { Issue.record("испытание должно быть завершено") }
         #expect(log.ids().contains("event-\(event.id)-done"))
         // награда + рост стада за пройденные километры
-        #expect(h.engine.herd.sheep >= sheepBefore + event.reward.sheep)
+        #expect(h.engine.completedEvents.map(\.id).contains(event.id))
     }
 
-    @Test("Испытание проваливается по дедлайну без штрафа для стада")
+    @Test("Испытание проваливается по дедлайну без записи в дневнике")
     func eventFails() async {
         var h = await Harness(start: Fixtures.spring)
         let log = h.recordNotifications()
         let event = h.engine.route.events[0]
         h.walk(km: event.triggerKm + 0.5)
-        let sheepAtStart = h.engine.herd.sheep
         h.clock.advance(days: Double(event.days) + 1)
         h.engine.addDebugSteps(0)
         if case .failed = h.engine.status(of: event) {} else { Issue.record("испытание должно провалиться") }
         #expect(log.ids().contains("event-\(event.id)-fail"))
-        #expect(h.engine.herd.sheep >= sheepAtStart)
+        #expect(h.engine.completedEvents.isEmpty)
     }
 
     @Test("Выполненное до дедлайна испытание не проваливается, даже если приложение открыли позже")
@@ -112,12 +110,12 @@ struct EngineTests {
         let clock = TestClock(Fixtures.spring)
         let first = GameEngine(storeDirectory: dir, clock: { clock.now })
         await first.load()
-        await first.startJourney(aulName: "Аул теста")
+        await first.startJourney(heroName: "Ерлан")
         first.addDebugSteps(5_000)
 
         let second = GameEngine(storeDirectory: dir, clock: { clock.now })
         await second.load()
-        #expect(second.state?.aulName == "Аул теста")
+        #expect(second.state?.heroName == "Ерлан")
         #expect(second.stepsToday == 5_000)
         #expect(second.route.id == first.route.id)
     }

@@ -2,12 +2,17 @@ import SwiftUI
 
 struct HomeView: View {
     @Environment(GameEngine.self) private var engine
+    @Environment(\.scenePhase) private var scenePhase
+    private var weather: WeatherStore { WeatherStore.shared }
+
+    /// Испытание важнее реальной погоды: буран в сюжете виден, даже если за окном солнце.
+    private var sceneWeather: SceneWeather { engine.eventWeather ?? weather.sceneWeather ?? .clear }
 
     var body: some View {
         GeometryReader { geo in
             ScrollView {
                 VStack(spacing: 0) {
-                    SceneView(terrain: engine.sceneTerrain, weather: engine.sceneWeather)
+                    SceneView(terrain: engine.sceneTerrain, weather: sceneWeather)
                         .frame(height: geo.size.height * 0.52)
                         .id(engine.sceneTerrain)
                         .transition(.opacity)
@@ -20,6 +25,8 @@ struct HomeView: View {
                         Text("\(Date.now.formatted(.dateTime.day().month(.wide))) · \(Season.current().title)")
                             .font(.system(size: 12))
                             .foregroundStyle(Color.ash)
+                        WeatherLine()
+                            .padding(.top, 2)
 
                         Text(Fmt.km(engine.totalKm))
                             .font(.display(66))
@@ -53,7 +60,7 @@ struct HomeView: View {
                             Text("\(engine.stepsToday.formatted()) шагов сегодня")
                             if let next = engine.nextStop {
                                 Text("·")
-                                Text("до стоянки \(next.name) \(Fmt.km(engine.kmToNextStop)) км")
+                                Text("до \(next.name) \(Fmt.km(engine.kmToNextStop)) км")
                             } else {
                                 Text("·")
                                 Text("маршрут пройден")
@@ -70,9 +77,65 @@ struct HomeView: View {
                 .animation(.easeInOut(duration: 0.7), value: engine.totalKm)
             }
             .ignoresSafeArea(edges: .top)
-            .refreshable { await engine.syncSteps() }
+            .refreshable {
+                await engine.syncSteps()
+                weather.refreshIfNeeded()
+            }
         }
         .background(Color.night.ignoresSafeArea())
+        .onAppear { weather.refreshIfNeeded() }
+        .onChange(of: scenePhase) { _, phase in if phase == .active { weather.refreshIfNeeded() } }
+    }
+}
+
+/// Погода там, где сейчас пользователь, и обязательная подпись Apple Weather.
+struct WeatherLine: View {
+    private var weather: WeatherStore { WeatherStore.shared }
+
+    var body: some View {
+        Group {
+            switch weather.status {
+            case .ready:
+                VStack(spacing: 3) {
+                    HStack(spacing: 6) {
+                        if let symbol = weather.symbolName {
+                            Image(systemName: symbol)
+                                .symbolRenderingMode(.hierarchical)
+                                .foregroundStyle(Color.gold)
+                        }
+                        if let t = weather.temperatureText {
+                            Text(t).foregroundStyle(Color.parchment)
+                        }
+                        if let condition = weather.condition {
+                            Text(condition.description.lowercased())
+                        }
+                        if let place = weather.placeName {
+                            Text("· \(place)")
+                        }
+                    }
+                    .font(.system(size: 13))
+                    .foregroundStyle(Color.ash)
+                    if let legal = weather.attributionLegalURL {
+                        Link(destination: legal) {
+                            Text("\u{F8FF} Weather")
+                                .font(.system(size: 9))
+                                .foregroundStyle(Color.ash.opacity(0.7))
+                        }
+                    }
+                }
+            case .needsPermission:
+                Button {
+                    weather.requestPermission()
+                } label: {
+                    Label("Показать погоду", systemImage: "cloud.sun")
+                        .font(.system(size: 12))
+                        .foregroundStyle(Color.gold)
+                }
+                .buttonStyle(.plain)
+            default:
+                EmptyView()
+            }
+        }
     }
 }
 

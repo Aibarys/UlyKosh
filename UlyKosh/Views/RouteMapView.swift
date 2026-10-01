@@ -6,6 +6,23 @@ struct RouteGeometry {
     private let samples: [(point: CGPoint, km: Double, length: Double)]
     let totalLength: Double
 
+    /// Ломаная без сглаживания: для пути по реальным дорогам.
+    init(polyline points: [CGPoint], kms: [Double]) {
+        var path = Path()
+        var samples: [(point: CGPoint, km: Double, length: Double)] = []
+        var length = 0.0
+        for (i, p) in points.enumerated() {
+            if i == 0 { path.move(to: p) } else {
+                path.addLine(to: p)
+                length += hypot(p.x - points[i - 1].x, p.y - points[i - 1].y)
+            }
+            samples.append((p, kms[i], length))
+        }
+        self.path = path
+        self.samples = samples
+        self.totalLength = length
+    }
+
     init(points: [CGPoint], kms: [Double]) {
         var path = Path()
         var samples: [(CGPoint, Double, Double)] = []
@@ -91,7 +108,7 @@ struct CaravanMarker: View {
                     .fill(Color.gold.opacity(0.35))
                     .frame(width: 30, height: 30)
                     .blur(radius: 8)
-                PictogramView(kind: .rider, size: 26, tint: .gold)
+                PictogramView(kind: .walker, size: 28, tint: .gold)
                     .offset(y: CGFloat(sin(t * 5)) * 1.2)
                     .rotationEffect(.degrees(sin(t * 2.5) * 2))
             }

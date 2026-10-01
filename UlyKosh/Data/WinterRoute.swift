@@ -203,7 +203,6 @@ enum WinterRoute {
                 goalKm: 12,
                 days: 4,
                 rewardText: L("Скот собран, ни одна овца не потерялась в буране"),
-                reward: HerdDelta(sheep: 30),
                 weather: .snow
             ),
             RouteEvent(
@@ -215,7 +214,6 @@ enum WinterRoute {
                 goalKm: 18,
                 days: 5,
                 rewardText: L("Успели к сену. Соседи, потерявшие корм, отдали аулу лошадей на прокорм"),
-                reward: HerdDelta(horses: 5),
                 weather: .snow
             ),
             RouteEvent(
@@ -227,7 +225,6 @@ enum WinterRoute {
                 goalKm: 15,
                 days: 4,
                 rewardText: L("Волков отогнали. Аңшы Талғат взял двух капканами, шкуры пошли на шапки"),
-                reward: HerdDelta(sheep: 40),
                 weather: .clear
             ),
             RouteEvent(
@@ -239,7 +236,6 @@ enum WinterRoute {
                 goalKm: 10,
                 days: 3,
                 rewardText: L("Перевели по крепкому льду. Керуенбасы Мұрат отдал аулу двух верблюдов за помощь"),
-                reward: HerdDelta(camels: 2),
                 weather: .clear
             )
         ]

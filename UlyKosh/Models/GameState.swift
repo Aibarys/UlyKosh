@@ -16,7 +16,8 @@ enum EventStatus: Codable, Hashable {
 /// Всё, что нужно сохранить между запусками. Километры не хранятся, а считаются из шагов.
 struct GameState: Codable {
     var routeId: String
-    var aulName: String
+    /// Имя путника. В файле лежит под старым ключом aulName, чтобы старые сохранения читались.
+    var heroName: String
     var startDate: Date
     /// Запасной коэффициент: используется только для дней без данных о расстоянии и для отладочных шагов.
     var strideMeters: Double = 0.7
@@ -29,24 +30,31 @@ struct GameState: Codable {
     /// Шаги, добавленные вручную в отладочном режиме.
     var debugSteps: [String: Int] = [:]
     var eventStatus: [String: EventStatus] = [:]
-    var herdBonus: HerdDelta = .zero
     var finishedAt: Date?
+    /// Свой маршрут из точки А в точку Б, если выбран.
+    var customRoute: CustomRoute?
     /// HealthKit не сообщает статус чтения, поэтому запоминаем сами, что диалог уже показывали.
     var healthRequested: Bool = false
     /// Километраж, по которому уже отправлены уведомления о стоянках. nil — ещё не инициализирован.
     var lastNotifiedKm: Double?
 
-    init(routeId: String, aulName: String, startDate: Date) {
+    enum CodingKeys: String, CodingKey {
+        case routeId, heroName = "aulName", startDate, strideMeters, healthSteps, healthDistanceKm, sourceSettings,
+             debugSteps, eventStatus, finishedAt, customRoute, healthRequested, lastNotifiedKm
+    }
+
+    init(routeId: String, heroName: String, startDate: Date, customRoute: CustomRoute? = nil) {
         self.routeId = routeId
-        self.aulName = aulName
+        self.heroName = heroName
         self.startDate = startDate
+        self.customRoute = customRoute
     }
 
     // Терпимое декодирование: новые поля с дефолтами не должны ломать старые сохранения.
     init(from decoder: Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         routeId = try c.decode(String.self, forKey: .routeId)
-        aulName = try c.decode(String.self, forKey: .aulName)
+        heroName = try c.decode(String.self, forKey: .heroName)
         startDate = try c.decode(Date.self, forKey: .startDate)
         strideMeters = try c.decodeIfPresent(Double.self, forKey: .strideMeters) ?? 0.7
         healthSteps = try c.decodeIfPresent([String: Int].self, forKey: .healthSteps) ?? [:]
@@ -54,8 +62,8 @@ struct GameState: Codable {
         sourceSettings = try c.decodeIfPresent([String: SourceSetting].self, forKey: .sourceSettings) ?? [:]
         debugSteps = try c.decodeIfPresent([String: Int].self, forKey: .debugSteps) ?? [:]
         eventStatus = try c.decodeIfPresent([String: EventStatus].self, forKey: .eventStatus) ?? [:]
-        herdBonus = try c.decodeIfPresent(HerdDelta.self, forKey: .herdBonus) ?? .zero
         finishedAt = try c.decodeIfPresent(Date.self, forKey: .finishedAt)
+        customRoute = try c.decodeIfPresent(CustomRoute.self, forKey: .customRoute)
         healthRequested = try c.decodeIfPresent(Bool.self, forKey: .healthRequested) ?? false
         lastNotifiedKm = try c.decodeIfPresent(Double.self, forKey: .lastNotifiedKm)
     }

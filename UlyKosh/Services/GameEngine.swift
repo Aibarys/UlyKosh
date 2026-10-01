@@ -15,7 +15,7 @@ struct ActiveEvent {
 @MainActor
 @Observable
 final class GameEngine {
-    /// Аул идёт всегда, даже если хозяин сегодня не ходил: чуть-чуть, чтобы не было чувства вины.
+    /// Путник идёт всегда, даже если хозяин сегодня не ходил: чуть-чуть, чтобы не было чувства вины.
     static let passiveKmPerDay = 0.5
 
     enum HealthStatus { case unknown, unavailable, requested }
@@ -56,10 +56,23 @@ final class GameEngine {
 
     private var now: Date { clock() }
 
-    /// Маршрут текущего кочевья; до старта — тот, что подходит по сезону.
+    /// Текущий маршрут; до старта — великое кочевье по сезону.
     var route: Route {
-        if let id = state?.routeId, let r = Routes.byId(id) { return r }
+        if let s = state {
+            if s.routeId == CustomRoute.routeId, let custom = s.customRoute { return customRoute(custom) }
+            if let r = Routes.byId(s.routeId) { return r }
+        }
         return Routes.forStart(now)
+    }
+
+    @ObservationIgnored private var customCache: (key: CustomRoute, language: String?, route: Route)?
+
+    private func customRoute(_ custom: CustomRoute) -> Route {
+        let language = Bundle.main.preferredLocalizations.first
+        if let cache = customCache, cache.key == custom, cache.language == language { return cache.route }
+        let built = RouteBuilder.makeRoute(custom)
+        customCache = (custom, language, built)
+        return built
     }
     private var loaded = false
     private var suppressNotificationsOnce = false
@@ -105,13 +118,25 @@ final class GameEngine {
         await syncSteps()
     }
 
-    func startJourney(aulName: String, routeId: String? = nil) async {
-        let name = aulName.trimmingCharacters(in: .whitespacesAndNewlines)
-        state = GameState(
-            routeId: routeId ?? Routes.forStart(now).id,
-            aulName: name.isEmpty ? String(localized: "Аул Ұлы Көш") : name,
-            startDate: Calendar.current.startOfDay(for: now)
+    static var defaultHeroName: String { String(localized: "Жолаушы") }
+
+    /// Начинает путь: великое кочевье по сезону, выбранное кочевье или свой маршрут.
+    func startJourney(heroName: String, routeId: String? = nil, customRoute: CustomRoute? = nil) async {
+        let name = heroName.trimmingCharacters(in: .whitespacesAndNewlines)
+        // Новый путь продолжает прежний: шаги «Здоровья» и настройки источников не теряются.
+        let previous = state
+        var fresh = GameState(
+            routeId: customRoute != nil ? CustomRoute.routeId : (routeId ?? Routes.forStart(now).id),
+            heroName: name.isEmpty ? (previous?.heroName ?? Self.defaultHeroName) : name,
+            startDate: Calendar.current.startOfDay(for: now),
+            customRoute: customRoute
         )
+        if let previous {
+            fresh.strideMeters = previous.strideMeters
+            fresh.sourceSettings = previous.sourceSettings
+            fresh.healthRequested = previous.healthRequested
+        }
+        state = fresh
         persist()
         suppressNotificationsOnce = true
         guard !isolated else { evaluateAndNotify(); persist(); return }
@@ -179,8 +204,8 @@ final class GameEngine {
 
     func rename(_ name: String) {
         let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty, state?.aulName != trimmed else { return }
-        state?.aulName = trimmed
+        guard !trimmed.isEmpty, state?.heroName != trimmed else { return }
+        state?.heroName = trimmed
         persist()
     }
 
@@ -339,16 +364,20 @@ final class GameEngine {
 
     var isFinished: Bool { state?.finishedAt != nil }
 
-    var joinedCharacters: [Character] { reachedStops.compactMap(\.character) }
+    // MARK: - Дневник
 
-    var herd: Herd {
-        let km = totalKm
-        let bonus = state?.herdBonus ?? .zero
-        return Herd(
-            sheep: 120 + Int(km * 0.8) + bonus.sheep,
-            horses: 24 + Int(km / 5) + bonus.horses,
-            camels: 6 + Int(km / 40) + bonus.camels
-        )
+    /// Люди, встреченные на пройденных стоянках.
+    var metPeople: [Character] { reachedStops.compactMap(\.character) }
+
+    /// Звери и растения пройденных стоянок без повторов.
+    var seenFauna: [Fauna] {
+        var seen: [Fauna] = []
+        for f in reachedStops.flatMap(\.fauna) where !seen.contains(where: { $0.name == f.name }) { seen.append(f) }
+        return seen
+    }
+
+    var completedEvents: [RouteEvent] {
+        route.events.filter { if case .completed = status(of: $0) { return true } else { return false } }
     }
 
     func status(of event: RouteEvent) -> EventStatus? { state?.eventStatus[event.id] }
@@ -371,7 +400,7 @@ final class GameEngine {
         return nil
     }
 
-    /// Стоянка, к которой идёт аул; после финиша — жайляу.
+    /// Стоянка, к которой идёт путник; после финиша — последняя.
     var targetStop: Stop { nextStop ?? currentStop }
 
     var sceneTerrain: Terrain { targetStop.terrain }
@@ -383,9 +412,10 @@ final class GameEngine {
         return notes[(dayNumber + reachedStops.count) % notes.count]
     }
 
-    var sceneWeather: SceneWeather { activeEvent?.event.weather ?? .clear }
+    /// Погода активного испытания; реальная погода подмешивается на экране.
+    var eventWeather: SceneWeather? { activeEvent?.event.weather }
 
-    /// Кого аул встретил сегодня: выбирается детерминированно по дате из фауны ближайшей стоянки.
+    /// Кого путник встретил сегодня: выбирается детерминированно по дате из фауны ближайшей стоянки.
     var encounterOfTheDay: Fauna? {
         let pool = (nextStop ?? currentStop).fauna
         guard !pool.isEmpty else { return nil }
@@ -417,10 +447,10 @@ final class GameEngine {
 
         let reached = route.stops.filter { $0.km > 0 && $0.km > oldKm && $0.km <= newKm }
         if reached.count == 1, let stop = reached.first {
-            let body = stop.character.map { String(localized: "\($0.role) \($0.name) присоединяется к аулу. \(stop.subtitle).") } ?? stop.subtitle
-            notify("stop-\(stop.id)", String(localized: "Аул дошёл до стоянки \(stop.name)"), body)
+            let body = stop.character.map { String(localized: "Здесь вас встречает \($0.name), \($0.role.lowercased()). \(stop.subtitle).") } ?? stop.subtitle
+            notify("stop-\(stop.id)", String(localized: "Вы дошли до: \(stop.name)"), body)
         } else if reached.count > 1, let last = reached.last {
-            notify("stop-\(last.id)", String(localized: "Аул прошёл \(reached.count) стоянки"), String(localized: "Последняя: \(last.name). Загляните в маршрут."))
+            notify("stop-\(last.id)", String(localized: "Пройдено стоянок: \(reached.count)"), String(localized: "Последняя: \(last.name). Загляните в дневник."))
         }
 
         for event in route.events {
@@ -430,16 +460,16 @@ final class GameEngine {
             case (.none, .some(.active)):
                 notify("event-\(event.id)-start", event.title, String(localized: "\(event.description) Нужно пройти \(Fmt.km(event.goalKm)) км за \(Fmt.days(event.days))."))
             case (.some(.active), .some(.completed)):
-                notify("event-\(event.id)-done", String(localized: "\(event.title): аул справился"), event.rewardText)
+                notify("event-\(event.id)-done", String(localized: "\(event.title): испытание пройдено"), event.rewardText)
             case (.some(.active), .some(.failed)):
-                notify("event-\(event.id)-fail", String(localized: "\(event.title) позади"), String(localized: "Не успели, но аул справился. Награды не будет, дорога продолжается."))
+                notify("event-\(event.id)-fail", String(localized: "\(event.title) позади"), String(localized: "Не успели, но путник справился. Записи в дневнике не будет, дорога продолжается."))
             default:
                 break
             }
         }
 
         if old.finishedAt == nil, new.finishedAt != nil {
-            notify("finish", String(localized: "Кочевье окончено!"), route.outro)
+            notify("finish", String(localized: "Путь пройден!"), route.outro)
         }
     }
 
@@ -457,7 +487,6 @@ final class GameEngine {
             case let .active(startedAt, startKm):
                 if km - startKm >= event.goalKm {
                     s.eventStatus[event.id] = .completed(at: now)
-                    s.herdBonus = s.herdBonus + event.reward
                 } else if now.timeIntervalSince(startedAt) > Double(event.days) * 86_400 {
                     s.eventStatus[event.id] = .failed(at: now)
                 }
@@ -481,7 +510,7 @@ final class GameEngine {
     private func publishWidgetSnapshot() {
         if let s = state {
             WidgetSnapshot(
-                aulName: s.aulName,
+                aulName: s.heroName,
                 routeTitle: route.title,
                 dayNumber: dayNumber,
                 kmToday: kmToday,

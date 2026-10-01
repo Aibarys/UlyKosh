@@ -36,7 +36,7 @@ struct Harness {
         let c = clock
         engine = GameEngine(storeDirectory: Fixtures.tempDirectory(), clock: { c.now })
         await engine.load()
-        await engine.startJourney(aulName: "Тестовый аул")
+        await engine.startJourney(heroName: "Тестовый путник")
     }
 
     /// Начинает записывать уведомления.

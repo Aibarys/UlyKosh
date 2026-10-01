@@ -2,88 +2,111 @@ import SwiftUI
 
 struct OnboardingView: View {
     @Environment(GameEngine.self) private var engine
-    @State private var aulName = ""
+    @State private var heroName = ""
     @State private var isStarting = false
+    @State private var path: [Step] = []
+
+    enum Step: Hashable { case pickRoute }
 
     var body: some View {
-        GeometryReader { geo in
-            ScrollView {
-                VStack(spacing: 0) {
-                    SceneView(terrain: engine.route.stops.first?.terrain ?? .river, phase: .dawn, showCaravan: true)
-                        .frame(height: geo.size.height * 0.42)
+        NavigationStack(path: $path) {
+            GeometryReader { geo in
+                ScrollView {
+                    VStack(spacing: 0) {
+                        SceneView(terrain: .steppe, phase: .dawn, showCaravan: true)
+                            .frame(height: geo.size.height * 0.40)
 
-                    VStack(spacing: 22) {
-                        VStack(spacing: 6) {
-                            Text("Ұлы Көш")
-                                .font(.display(44, weight: .regular))
-                                .foregroundStyle(Color.gold)
-                            Text("Великое Кочевье")
-                                .font(.system(size: 15))
-                                .kerning(1)
-                                .foregroundStyle(Color.ash)
-                        }
-                        .padding(.top, 28)
-
-                        Text(engine.route.title)
-                            .font(.system(size: 11, weight: .semibold))
-                            .kerning(1.4)
-                            .textCase(.uppercase)
-                            .foregroundStyle(Color.gold.opacity(0.85))
-                        Text(engine.route.intro)
-                            .font(.system(size: 15))
-                            .italic()
-                            .multilineTextAlignment(.center)
-                            .foregroundStyle(Color.parchment)
-                            .lineSpacing(3)
-
-                        VStack(alignment: .leading, spacing: 12) {
-                            featureRow("figure.walk", String(localized: "Ваши шаги превращаются в километры пути"))
-                            featureRow("person.2", String(localized: "На стоянках к аулу присоединяются люди"))
-                            featureRow("leaf", String(localized: "Стадо растёт с каждым километром"))
-                            featureRow("wind.snow", String(localized: "Буран и половодье проверят аул на прочность"))
-                        }
-                        .panel()
-
-                        VStack(alignment: .leading, spacing: 10) {
-                            SectionTitle(text: String(localized: "Как назвать аул"))
-                            TextField("", text: $aulName, prompt: Text("Например, аул Жақыпа").foregroundStyle(Color.ash))
-                                .foregroundStyle(Color.parchment)
-                                .padding(12)
-                                .background(Color.black.opacity(0.4), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
-                                .overlay(RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color.hairline))
-                                .submitLabel(.done)
-                        }
-
-                        Button {
-                            isStarting = true
-                            Task {
-                                await engine.startJourney(aulName: aulName)
-                                isStarting = false
+                        VStack(spacing: 22) {
+                            VStack(spacing: 6) {
+                                Text("Ұлы Көш")
+                                    .font(.display(44, weight: .regular))
+                                    .foregroundStyle(Color.gold)
+                                Text("Великое Кочевье")
+                                    .font(.system(size: 15))
+                                    .kerning(1)
+                                    .foregroundStyle(Color.ash)
                             }
-                        } label: {
-                            Text(isStarting ? "Собираем юрты…" : "Начать кочевье")
-                                .font(.display(19, weight: .medium))
-                                .foregroundStyle(Color.night)
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 14)
-                                .background(Color.gold, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
-                        }
-                        .buttonStyle(.plain)
-                        .disabled(isStarting)
+                            .padding(.top, 28)
 
-                        Text("Приложение попросит доступ к шагам и расстоянию в «Здоровье» и разрешение на уведомления, чтобы сообщать о стоянках и испытаниях. Данные остаются на устройстве.")
-                            .font(.system(size: 12))
-                            .foregroundStyle(Color.ash)
-                            .multilineTextAlignment(.center)
-                            .padding(.bottom, 24)
+                            Text("Вы — путник. Каждый шаг, который вы делаете в жизни, становится шагом по дорогам Казахстана: от города к городу, через степь, горы и пустыню.")
+                                .font(.system(size: 15))
+                                .italic()
+                                .multilineTextAlignment(.center)
+                                .foregroundStyle(Color.parchment)
+                                .lineSpacing(3)
+
+                            VStack(alignment: .leading, spacing: 12) {
+                                featureRow("figure.walk", String(localized: "Ваши шаги превращаются в километры пути"))
+                                featureRow("map", String(localized: "Маршрут выбираете вы: из любого города в любой"))
+                                featureRow("book", String(localized: "В дневник ложатся места, звери и встречи"))
+                                featureRow("cloud.sun", String(localized: "Погода и сезон за окном видны в пути"))
+                            }
+                            .panel()
+
+                            VStack(alignment: .leading, spacing: 10) {
+                                SectionTitle(text: String(localized: "Как вас зовут в пути"))
+                                TextField("", text: $heroName, prompt: Text(GameEngine.defaultHeroName).foregroundStyle(Color.ash))
+                                    .foregroundStyle(Color.parchment)
+                                    .padding(12)
+                                    .background(Color.black.opacity(0.4), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                                    .overlay(RoundedRectangle(cornerRadius: 10, style: .continuous).stroke(Color.hairline))
+                                    .submitLabel(.done)
+                            }
+
+                            Button {
+                                path.append(.pickRoute)
+                            } label: {
+                                Text("Выбрать свой путь")
+                                    .font(.display(19, weight: .medium))
+                                    .foregroundStyle(Color.night)
+                                    .frame(maxWidth: .infinity)
+                                    .padding(.vertical, 14)
+                                    .background(Color.gold, in: RoundedRectangle(cornerRadius: 12, style: .continuous))
+                            }
+                            .buttonStyle(.plain)
+
+                            Button {
+                                start(customRoute: nil)
+                            } label: {
+                                VStack(spacing: 2) {
+                                    Text("Или пройти великим кочевьем")
+                                        .font(.system(size: 14))
+                                        .foregroundStyle(Color.gold)
+                                    Text("\(engine.route.title) · \(engine.route.season)")
+                                        .font(.system(size: 12))
+                                        .foregroundStyle(Color.ash)
+                                }
+                            }
+                            .buttonStyle(.plain)
+                            .disabled(isStarting)
+
+                            Text("Приложение попросит доступ к шагам и расстоянию в «Здоровье» и разрешение на уведомления. Данные остаются на устройстве.")
+                                .font(.system(size: 12))
+                                .foregroundStyle(Color.ash)
+                                .multilineTextAlignment(.center)
+                                .padding(.bottom, 24)
+                        }
+                        .padding(.horizontal, 24)
                     }
-                    .padding(.horizontal, 24)
                 }
+                .ignoresSafeArea(edges: .top)
+                .scrollDismissesKeyboard(.interactively)
             }
-            .ignoresSafeArea(edges: .top)
-            .scrollDismissesKeyboard(.interactively)
+            .background(Color.night.ignoresSafeArea())
+            .toolbar(.hidden, for: .navigationBar)
+            .navigationDestination(for: Step.self) { _ in
+                RoutePickerView { route in start(customRoute: route) }
+                    .toolbarBackground(.hidden, for: .navigationBar)
+            }
         }
-        .background(Color.night.ignoresSafeArea())
+    }
+
+    private func start(customRoute: CustomRoute?) {
+        isStarting = true
+        Task {
+            await engine.startJourney(heroName: heroName, customRoute: customRoute)
+            isStarting = false
+        }
     }
 
     private func featureRow(_ symbol: String, _ text: String) -> some View {
